@@ -29,10 +29,6 @@ namespace GentlemensClub.Controllers
 
         public async Task<IActionResult> StockInfo(string? symbol)
         {
-            if (symbol == null)
-            {
-                return View("Stocks");
-            }
             var apiHandler = new ApiHandler.ApiHandler();
             var stockInfo =
                 (await apiHandler.GetDataByUrl<SelectedStock>(
