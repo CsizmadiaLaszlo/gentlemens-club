@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GentlemensClub.Models.Account;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GentlemensClub.Controllers
 {
@@ -10,6 +11,11 @@ namespace GentlemensClub.Controllers
         }
 
         public IActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Login([FromForm] LoginCredential credential)
         {
             return View();
         }

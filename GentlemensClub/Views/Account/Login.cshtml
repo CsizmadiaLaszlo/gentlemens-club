@@ -1,5 +1,31 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model GentlemensClub.Models.Account.LoginCredential
 @{
 }
+<div class="container p-5 bg-black">
+    <form method="post">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="row">
+            <div class="col-2">
+                <label class="form-label" asp-for="Username"></label>
+            </div>
+            <div class="col-5">
+                <input class="form-control" type="text" asp-for="Username"/>
+            </div>
+            <span class="text-danger" asp-validation-for="Username"></span>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <label class="form-label" asp-for="Password"></label>
+            </div>
+            <div class="col-5">
+                <input class="form-control" type="password" asp-for="Password"/>
+            </div>
+            <span class="text-danger" asp-validation-for="Password"></span>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <input type="submit" class="btn btn-dark" value="Login"/>
+            </div>
+        </div>
+    </form>
+</div>
