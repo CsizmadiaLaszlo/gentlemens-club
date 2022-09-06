@@ -17,7 +17,7 @@ public class BankAccountController : Controller
     [Route("account")]
     public IActionResult Account()
     {
-        return View("~/Views/Finance/Account.cshtml");
+        return View("~/Views/Finance/BankAccount.cshtml");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
