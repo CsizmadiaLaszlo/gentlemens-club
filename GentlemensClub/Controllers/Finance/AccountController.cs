@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GentlemensClub.Controllers.Finance;
 
+[Route("finance")]
 public class AccountController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -12,7 +13,8 @@ public class AccountController : Controller
     {
         _logger = logger;
     }
-    
+
+    [Route("account")]
     public IActionResult Account()
     {
         return View("~/Views/Finance/Account.cshtml");
