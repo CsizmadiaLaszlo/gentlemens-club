@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Daos\" />
+      <Folder Include="Daos\Implementations\" />
       <Folder Include="Services\" />
     </ItemGroup>
 
