@@ -78,5 +78,38 @@ namespace GentlemensClub.Controllers.ApiControllers
             return JsonSerializer.Serialize(items);
         }
 
+        /// <summary>
+        /// Return a list of tables and their data. Can filter by minimum amount of seats.
+        /// </summary>
+        /// <returns>JSON Serialized TableModel List</returns>
+        [HttpGet]
+        [Route("get-all-tables")]
+        public string GetAllTables([FromBody] SearchTableModel filter)
+        {
+
+            var tables = new List<TableModel>
+            {
+                new TableModel
+                {
+                    Id = 1,
+                    Description = "Our fanciest table.",
+                    SeatCount = 8
+                },
+                new TableModel
+                {
+                    Id = 2,
+                    Description = "A test, reserved table with 4 seats.",
+                    Reservation = new ReservationModel
+                    {
+                        Id = 1,
+                        Member = 69,
+                        ReservationStartDate = DateTime.Now
+                    },
+                    SeatCount = 4
+                }
+            };
+
+            return JsonSerializer.Serialize(tables);
+        }
     }
 }
