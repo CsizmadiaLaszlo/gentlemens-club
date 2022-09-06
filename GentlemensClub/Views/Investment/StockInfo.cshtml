@@ -1,0 +1,18 @@
+﻿@{
+    IEnumerable<Months> yearlyInfo = ViewBag.YearlyInfo;
+}
+@if (yearlyInfo.Count().Equals(0))
+{
+    <div class="card">No available data!</div>
+}
+@foreach (var element in yearlyInfo)
+{
+    <div class="card">
+        <div>@element.Date</div>
+        <div>@element.High</div>
+        <div>@element.Low</div>
+        <div>@element.Open</div>
+        <div>@element.Close</div>
+        <div>@element.Volume</div>
+    </div>
+}

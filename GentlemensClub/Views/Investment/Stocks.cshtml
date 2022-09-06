@@ -19,7 +19,7 @@
     @foreach (var element in stockList)
     {
         <div class="card">
-            <a href="@element.Name">@element.Name</a>
+            <a asp-area="" asp-controller="Investment" asp-action="StockInfo" asp-route-symbol="@element.Symbol">@element.Name</a>
             <div>@element.Symbol</div>
         </div>
     }
