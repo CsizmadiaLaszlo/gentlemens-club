@@ -49,6 +49,11 @@ public class AccountDaoMemory : IAccountDao
         return data.Find(x => x.Username == username);
     }
 
+    public Account? GetByEmail(string email)
+    {
+        return data.Find(x => x.Email == email);
+    }
+
     public IEnumerable<Account> GetAll()
     {
         return data;
