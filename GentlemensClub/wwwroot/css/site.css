@@ -16,3 +16,28 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/*
+Finance view
+*/
+.finance-parent {
+    display: flex;
+    border: 2px;
+    border: white;
+}
+
+.finance-menu {
+    max-width: 200px;
+    margin: 10px;
+    padding: 10px;
+    border: 10px;
+    border: white;
+}
+
+.finance-container {
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+    border: 10px;
+    border: white;
+}
