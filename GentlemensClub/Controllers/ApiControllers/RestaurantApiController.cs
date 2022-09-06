@@ -99,7 +99,7 @@ namespace GentlemensClub.Controllers.ApiControllers
         /// <returns>JSON Serialized TableModel List</returns>
         [HttpGet]
         [Route("get-all-tables")]
-        public string GetAllTables([FromBody] SearchTableModel filter)
+        public string GetAllTables([FromQuery] int minimumSeats)
         {
 
             var tables = new List<TableModel>
@@ -121,6 +121,12 @@ namespace GentlemensClub.Controllers.ApiControllers
                         ReservationStartDate = DateTime.Now
                     },
                     SeatCount = 4
+                },
+                new TableModel
+                {
+                    Id = 3,
+                    Description = "Query amount of seats.",
+                    SeatCount = minimumSeats
                 }
             };
 
