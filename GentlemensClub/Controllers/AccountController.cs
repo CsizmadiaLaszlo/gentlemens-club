@@ -16,6 +16,7 @@ namespace GentlemensClub.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Login([FromForm] LoginCredential credential)
         {
@@ -38,6 +39,13 @@ namespace GentlemensClub.Controllers
             }
 
             return await Task.Run(View);
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync("LoginCookieAuth");
+
+            return Redirect("/");
         }
     }
 }
