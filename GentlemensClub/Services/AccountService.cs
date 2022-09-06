@@ -24,8 +24,14 @@ public class AccountService
     /// <returns>Bool value for the validity of the credential.</returns>
     public bool CredentialIsValid(LoginCredential credential)
     {
-        //TODO
-        return credential.Username == "test" && credential.Password == "123";
+        var account = AccountDao.GetByUsername(credential.Username);
+        if (account == null)
+        {
+            return false;
+        }
+
+        //TODO Proper password checking
+        return account.PasswordHash == credential.Password;
     }
 
     /// <summary>
