@@ -25,5 +25,20 @@ namespace GentlemensClub.Controllers
             ViewBag.MaxPage = await MaxPage();
             return View();
         }
+
+        public async Task<IActionResult> StockInfo(string? symbol)
+        {
+            if (symbol == null)
+            {
+                return View("Stocks");
+            }
+            var apiHandler = new ApiHandler.ApiHandler();
+            var stockInfo =
+                (await apiHandler.GetDataByUrl<SelectedStock>(
+                    $"https://api.stockdata.org/v1/data/eod?symbols={symbol}&api_token={ApiKey}")).Data;
+            var yearlyInfo = stockInfo.Select(x => x);
+            ViewBag.YearlyInfo = yearlyInfo;
+            return View();
+        }
     }
 }
