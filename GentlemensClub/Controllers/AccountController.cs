@@ -1,4 +1,6 @@
-﻿using GentlemensClub.Models.Account;
+﻿using System.Security.Claims;
+using GentlemensClub.Models.Account;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GentlemensClub.Controllers
@@ -15,9 +17,27 @@ namespace GentlemensClub.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Login([FromForm] LoginCredential credential)
+        public async Task<IActionResult> Login([FromForm] LoginCredential credential)
         {
-            return View();
+            if (!ModelState.IsValid) return await Task.Run(View);
+
+            var credentialIsValid = credential.Username == "test" && credential.Password == "123";
+            if (credentialIsValid)
+            {
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, "test"),
+                    new Claim(ClaimTypes.Email, "test@test.ts")
+                };
+                var identity = new ClaimsIdentity(claims, "LoginCookieAuth");
+                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
+
+                await HttpContext.SignInAsync("LoginCookieAuth", claimsPrincipal);
+
+                return Redirect("/Index");
+            }
+
+            return await Task.Run(View);
         }
     }
 }

@@ -3,6 +3,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddAuthentication().AddCookie("LoginCookieAuth", options =>
+{
+    options.Cookie.Name = "LoginCookieAuth";
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
