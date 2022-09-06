@@ -1,4 +1,6 @@
 ﻿using System.Security.Claims;
+using GentlemensClub.Daos;
+using GentlemensClub.Daos.Implementations;
 using GentlemensClub.Models.Account;
 
 namespace GentlemensClub.Services;
@@ -8,6 +10,13 @@ namespace GentlemensClub.Services;
 /// </summary>
 public class AccountService
 {
+    public IAccountDao AccountDao { get; set; }
+
+    public AccountService()
+    {
+        AccountDao = AccountDaoMemory.GetInstance();
+    }
+
     /// <summary>
     /// Checks if login credential contains valid username and password pair.
     /// </summary>
