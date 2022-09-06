@@ -60,7 +60,20 @@ public class AccountService
 
     public void CreateAccount(RegistrationData data)
     {
-        throw new NotImplementedException();
+        if (!RegistrationIsValid(data))
+        {
+            throw new ArgumentException("Registration data is invalid.", nameof(data));
+        }
+
+        var account = new Account()
+        {
+            Username = data.Username,
+            Email = data.Email,
+            //TODO proper password hashing
+            PasswordHash = data.Password
+        };
+
+        AccountDao.Add(account);
     }
 
     public bool RegistrationIsValid(RegistrationData data)
