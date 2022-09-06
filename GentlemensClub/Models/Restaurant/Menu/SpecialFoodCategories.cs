@@ -1,4 +1,4 @@
-﻿namespace GentlemensClub.Models.Restaurant;
+﻿namespace GentlemensClub.Models.Restaurant.Menu;
 
 public enum SpecialFoodCategories
 {
