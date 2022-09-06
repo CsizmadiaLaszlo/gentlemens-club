@@ -3,7 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddAuthentication().AddCookie("LoginCookieAuth", options =>
+builder.Services.AddAuthentication("LoginCookieAuth").AddCookie("LoginCookieAuth", options =>
 {
     options.Cookie.Name = "LoginCookieAuth";
 });
@@ -23,6 +23,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
