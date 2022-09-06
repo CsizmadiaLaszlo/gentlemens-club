@@ -29,5 +29,38 @@ namespace GentlemensClub.Controllers.ApiControllers
 
             return JsonSerializer.Serialize(categories);
         }
+
+        /// <summary>
+        /// Returns in a JSON Serialized Dictionary all the menu items in a given search category. Can filter by specialty.
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns>JSON Serialized List</returns>
+        [HttpPost]
+        [Route("get-items-of-category")]
+        public string GetItemsInCategory([FromBody] SearchCategoryModel category)
+        {
+
+            var items = new List<MenuItemModel>
+            {
+                new MenuItemModel
+                {
+                    Id = 1,
+                    Ingredients = new List<string> { "Tomato", "Bread" },
+                    Name = category.Name,
+                    SpecialCategories = category.Filter,
+                    isChefFavorite = false
+                },
+                new MenuItemModel
+                {
+                    Id = 2,
+                    Ingredients = new List<string> { "Steak", "Bread" },
+                    Name = "Bread with a huge steak",
+                    isChefFavorite = true
+                }
+            };
+
+            return JsonSerializer.Serialize(items);
+        }
+
     }
 }
