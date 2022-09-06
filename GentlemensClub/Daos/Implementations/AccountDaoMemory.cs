@@ -5,7 +5,7 @@ namespace GentlemensClub.Daos.Implementations;
 public class AccountDaoMemory : IAccountDao
 {
     private List<Account> data = new List<Account>();
-    private static AccountDaoMemory instance = null;
+    private static AccountDaoMemory? _instance = null;
 
     private AccountDaoMemory()
     {
@@ -13,12 +13,12 @@ public class AccountDaoMemory : IAccountDao
 
     public static AccountDaoMemory GetInstance()
     {
-        if (instance == null)
+        if (_instance == null)
         {
-            instance = new AccountDaoMemory();
+            _instance = new AccountDaoMemory();
         }
 
-        return instance;
+        return _instance;
     }
 
     public void Add(Account item)
