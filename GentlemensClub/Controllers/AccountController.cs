@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using GentlemensClub.Models.Account;
+using GentlemensClub.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,13 @@ namespace GentlemensClub.Controllers
 {
     public class AccountController : Controller
     {
+        public AccountService AccountService { get; set; }
+
+        public AccountController()
+        {
+            AccountService = new AccountService();
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -22,17 +30,9 @@ namespace GentlemensClub.Controllers
         {
             if (!ModelState.IsValid) return await Task.Run(View);
 
-            var credentialIsValid = credential.Username == "test" && credential.Password == "123";
-            if (credentialIsValid)
+            if (AccountService.CredentialIsValid(credential))
             {
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, "test"),
-                    new Claim(ClaimTypes.Email, "test@test.ts")
-                };
-                var identity = new ClaimsIdentity(claims, "LoginCookieAuth");
-                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
-
+                var claimsPrincipal = AccountService.CreateClaimsPrincipal(credential);
                 await HttpContext.SignInAsync("LoginCookieAuth", claimsPrincipal);
 
                 return Redirect("/");
