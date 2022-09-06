@@ -35,11 +35,17 @@ public class AccountService
     /// <returns>Created ClaimsPrincipal</returns>
     public ClaimsPrincipal CreateClaimsPrincipal(LoginCredential credential)
     {
-        //TODO
+        if (!CredentialIsValid(credential))
+        {
+            throw new ArgumentException("Credential contains invalid information.", nameof(credential));
+        }
+
+        var account = AccountDao.GetByUsername(credential.Username);
+
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, "test"),
-            new Claim(ClaimTypes.Email, "test@test.ts")
+            new Claim(ClaimTypes.Name, account.Username),
+            new Claim(ClaimTypes.Email, account.Email)
         };
         var identity = new ClaimsIdentity(claims, "LoginCookieAuth");
 
