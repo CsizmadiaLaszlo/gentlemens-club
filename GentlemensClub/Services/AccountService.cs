@@ -57,4 +57,16 @@ public class AccountService
 
         return new ClaimsPrincipal(identity);
     }
+
+    public void CreateAccount(RegistrationData data)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool RegistrationIsValid(RegistrationData data)
+    {
+        return data.Password == data.ConfirmPassword
+               && AccountDao.GetByUsername(data.Username) is null
+               && AccountDao.GetByEmail(data.Email) is null;
+    }
 }
