@@ -34,7 +34,7 @@ namespace GentlemensClub.Controllers
 
                 await HttpContext.SignInAsync("LoginCookieAuth", claimsPrincipal);
 
-                return Redirect("/Index");
+                return Redirect("/");
             }
 
             return await Task.Run(View);
