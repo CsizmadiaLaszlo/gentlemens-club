@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GentlemensClub.Controllers.Finance;
 
+[Route("finance")]
 public class StockController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -13,6 +14,7 @@ public class StockController : Controller
         _logger = logger;
     }
     
+    [Route("stock")]
     public IActionResult Stock()
     {
         return View("~/Views/Finance/Stock.cshtml");

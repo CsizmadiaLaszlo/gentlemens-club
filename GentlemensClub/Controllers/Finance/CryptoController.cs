@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GentlemensClub.Controllers.Finance;
 
+[Route("finance")]
 public class CryptoController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -13,6 +14,7 @@ public class CryptoController : Controller
         _logger = logger;
     }
     
+    [Route("crypto")]
     public IActionResult Crypto()
     {
         return View("~/Views/Finance/Crypto.cshtml");
