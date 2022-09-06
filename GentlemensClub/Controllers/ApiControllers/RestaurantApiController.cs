@@ -11,6 +11,24 @@ namespace GentlemensClub.Controllers.ApiControllers
     public class RestaurantApiController : ControllerBase
     {
 
+        [HttpGet]
+        [Route("get-filters")]
+        public string GetAllFoodFilters()
+        {
+            var filters = new Dictionary<string, int>();
+
+            foreach (var category in Enum.GetValues(typeof(SpecialFoodCategories)))
+            {
+                var categoryName = System.Text.RegularExpressions.Regex.Replace(
+                    category.ToString(), "[A-Z]", " $0").TrimStart();
+
+                filters.Add(categoryName, (int)category);
+            }
+
+            return JsonSerializer.Serialize(filters);
+
+        }
+
         /// <summary>
         /// Returns in a JSON Serialized Dictionary all the available menu categories with the amount of available items in them.
         /// </summary>
@@ -21,7 +39,7 @@ namespace GentlemensClub.Controllers.ApiControllers
         {
             var categories = new Dictionary<string, int>();
 
-            if (filter.Contains(SpecialFoodCategories.Vegan))
+            if (filter.Length is 0)
             {
                 categories = new Dictionary<string, int>
                 {
