@@ -1,4 +1,5 @@
-﻿using GentlemensClub.Models;
+﻿using GentlemensClub.Models.Stocks;
+using GentlemensClub.Models.YearlyStatistics;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GentlemensClub.Controllers

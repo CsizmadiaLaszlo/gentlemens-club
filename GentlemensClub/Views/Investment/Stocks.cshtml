@@ -1,4 +1,6 @@
-﻿@{
+﻿@using GentlemensClub.Models.Stocks
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@{
     IEnumerable<Data> stockList = ViewBag.StockList;
     var maxPage = ViewBag.MaxPage;
     int page = ViewBag.Page;

@@ -1,4 +1,4 @@
-﻿namespace GentlemensClub.Models;
+﻿namespace GentlemensClub.Models.YearlyStatistics;
 
 public class Months
 {
