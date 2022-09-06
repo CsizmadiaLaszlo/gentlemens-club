@@ -18,26 +18,75 @@ body {
 }
 
 /*
-Finance view
+BankAccount.cshtml
 */
-.finance-parent {
-    display: flex;
-    border: 2px;
-    border: white;
+
+.account-grid-parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
 }
 
-.finance-menu {
-    max-width: 200px;
-    margin: 10px;
-    padding: 10px;
-    border: 10px;
-    border: white;
+.account-grid-left {
+    grid-area: 1 / 1 / 2 / 2;
 }
 
-.finance-container {
+.account-grid-right {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.account-container{
     width: 100%;
-    margin: 10px;
+}
+
+.account-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.currency-container {
+    grid-area: 1 / 1 / 2 / 2;
     padding: 10px;
-    border: 10px;
-    border: white;
+}
+
+.flag-container {
+    padding: 10px;
+    text-align: right;
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.account-action-container {
+    padding: 10px;
+    grid-area: 2 / 1 / 3 / 3;
+}
+
+.fi {
+    font-size: 65px;
+}
+
+p.currency-value{
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+p.currency-symbol{
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+p.currency-name{
+    display: block;
+    font-size: 1em;
+}
+
+p.dropdown-arrow{
+    padding: 15px;
 }

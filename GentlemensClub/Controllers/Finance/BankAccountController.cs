@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace GentlemensClub.Controllers.Finance;
 
 [Route("finance")]
-public class AccountController : Controller
+public class BankAccountController : Controller
 {
     private readonly ILogger<HomeController> _logger;
 
-    public AccountController(ILogger<HomeController> logger)
+    public BankAccountController(ILogger<HomeController> logger)
     {
         _logger = logger;
     }
@@ -17,7 +17,7 @@ public class AccountController : Controller
     [Route("account")]
     public IActionResult Account()
     {
-        return View("~/Views/Finance/Account.cshtml");
+        return View("~/Views/Finance/BankAccount.cshtml");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
