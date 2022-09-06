@@ -2,6 +2,8 @@
 using System.Text.Json.Serialization;
 using GentlemensClub.Models.Restaurant;
 using Microsoft.AspNetCore.Http;
+using GentlemensClub.Models.Restaurant.Menu;
+using GentlemensClub.Models.Restaurant.Table;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
@@ -18,14 +20,28 @@ namespace GentlemensClub.Controllers.ApiControllers
         /// <returns>JSON Serialized Dictionary</returns>
         [HttpGet]
         [Route("get-all-categories")]
-        public string GetAllCategories()
+        public string GetAllCategories([FromQuery] SpecialFoodCategories[] filter)
         {
-            var categories = new Dictionary<string, int>
+            var categories = new Dictionary<string, int>();
+
+            if (filter.Contains(SpecialFoodCategories.Vegan))
             {
-                { "Food", 12 },
-                { "Drinks", 4 },
-                { "Desserts", 2 }
-            };
+                categories = new Dictionary<string, int>
+                {
+                    { "Food", 12 },
+                    { "Drinks", 4 },
+                    { "Desserts", 2 }
+                };
+            }
+            else
+            {
+                categories = new Dictionary<string, int>
+                {
+                    { filter.Length.ToString(), 69 },
+                    { "Drinks", 55 },
+                    { "Desserts", 69 }
+                };
+            }
 
             return JsonSerializer.Serialize(categories);
         }
