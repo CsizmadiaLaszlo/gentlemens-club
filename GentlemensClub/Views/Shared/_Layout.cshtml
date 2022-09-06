@@ -38,10 +38,7 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav flex-grow-1">
-                      <!-- TODO make buttons in this section apper or not depending on logged in status -->
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Login</a>
-                    </li>
+                    <partial name="_LoginStatusPartial"/>
                 </ul>
             </div>
         </div>
