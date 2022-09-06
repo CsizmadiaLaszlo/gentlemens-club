@@ -1,7 +1,4 @@
 ﻿using System.Text.Json;
-using System.Text.Json.Serialization;
-using GentlemensClub.Models.Restaurant;
-using Microsoft.AspNetCore.Http;
 using GentlemensClub.Models.Restaurant.Menu;
 using GentlemensClub.Models.Restaurant.Table;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +14,7 @@ namespace GentlemensClub.Controllers.ApiControllers
         /// <summary>
         /// Returns in a JSON Serialized Dictionary all the available menu categories with the amount of available items in them.
         /// </summary>
-        /// <returns>JSON Serialized Dictionary</returns>
+        /// <returns>JSON Serialized string,int Dictionary</returns>
         [HttpGet]
         [Route("get-all-categories")]
         public string GetAllCategories([FromQuery] SpecialFoodCategories[] filter)
@@ -50,7 +47,7 @@ namespace GentlemensClub.Controllers.ApiControllers
         /// Returns in a JSON Serialized Dictionary all the menu items in a given search category. Can filter by specialty.
         /// </summary>
         /// <param name="category"></param>
-        /// <returns>JSON Serialized List</returns>
+        /// <returns>JSON Serialized MenuItemModel List</returns>
         [HttpPost]
         [Route("get-items-of-category")]
         public string GetItemsInCategory([FromBody] SearchCategoryModel category)
@@ -63,7 +60,7 @@ namespace GentlemensClub.Controllers.ApiControllers
                     Id = 1,
                     Ingredients = new List<string> { "Tomato", "Bread" },
                     Name = category.Name,
-                    SpecialCategories = category.Filter,
+                    SpecialCategories = category.Categories,
                     isChefFavorite = false
                 },
                 new MenuItemModel
