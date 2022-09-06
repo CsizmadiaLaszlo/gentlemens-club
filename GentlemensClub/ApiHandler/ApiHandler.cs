@@ -18,8 +18,8 @@ public class ApiHandler
             if (response.IsSuccessStatusCode)
             {
                 var data = await response.Content.ReadAsStringAsync();
-                var table = JsonConvert.DeserializeObject<T>(data);
-                return table;
+                var statistics = JsonConvert.DeserializeObject<T>(data);
+                return statistics;
             }
         }
 
