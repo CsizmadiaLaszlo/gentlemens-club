@@ -9,6 +9,13 @@ public class AccountDaoMemory : IAccountDao
 
     private AccountDaoMemory()
     {
+        //TODO remove test data
+        Add(new Account()
+        {
+            Username = "test",
+            PasswordHash = "123",
+            Email = "test@test.hu"
+        });
     }
 
     public static AccountDaoMemory GetInstance()
