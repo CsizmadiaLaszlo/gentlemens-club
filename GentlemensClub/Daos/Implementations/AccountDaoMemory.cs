@@ -32,12 +32,12 @@ public class AccountDaoMemory : IAccountDao
         data.Remove(this.Get(id));
     }
 
-    public Account Get(int id)
+    public Account? Get(int id)
     {
         return data.Find(x => x.Id == id);
     }
 
-    public Account GetByUserame(string username)
+    public Account? GetByUsername(string username)
     {
         return data.Find(x => x.Username == username);
     }

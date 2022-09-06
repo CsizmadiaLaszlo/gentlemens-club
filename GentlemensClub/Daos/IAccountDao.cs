@@ -4,5 +4,5 @@ namespace GentlemensClub.Daos;
 
 public interface IAccountDao : IDao<Account>
 {
-    Account GetByUsername(string name);
+    Account? GetByUsername(string name);
 }
