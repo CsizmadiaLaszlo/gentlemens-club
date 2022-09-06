@@ -12,5 +12,22 @@ namespace GentlemensClub.Controllers.ApiControllers
     public class RestaurantApiController : ControllerBase
     {
 
+        /// <summary>
+        /// Returns in a JSON Serialized Dictionary all the available menu categories with the amount of available items in them.
+        /// </summary>
+        /// <returns>JSON Serialized Dictionary</returns>
+        [HttpGet]
+        [Route("get-all-categories")]
+        public string GetAllCategories()
+        {
+            var categories = new Dictionary<string, int>
+            {
+                { "Food", 12 },
+                { "Drinks", 4 },
+                { "Desserts", 2 }
+            };
+
+            return JsonSerializer.Serialize(categories);
+        }
     }
 }
