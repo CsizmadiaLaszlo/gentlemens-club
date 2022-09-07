@@ -41,3 +41,7 @@ Finance view
     border: 10px;
     border: white;
 }
+
+.text-justify {
+    text-align: justify;
+}
