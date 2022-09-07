@@ -13,7 +13,7 @@ public class AccountDaoMemory : IAccountDao
         Add(new Account()
         {
             Username = "test",
-            PasswordHash = "123",
+            PasswordHash = "AQAAAAEAACcQAAAAEC6FNjtlFym5GluVkzBpNOhFI4scoKFgSicIRltejVDOfKQLIa0pDgvHHgN1wHi9Uw==", // Hashed form of "123"
             Email = "test@test.hu"
         });
     }
