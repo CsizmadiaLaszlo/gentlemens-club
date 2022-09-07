@@ -77,4 +77,9 @@ public class BankAccountService
         CurrencyDao.Add(currency);
     }
 
+    public void RemoveCurrency(int currencyId)
+    {
+        CurrencyDao.Remove(currencyId);
+    }
+
 }
