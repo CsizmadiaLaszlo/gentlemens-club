@@ -97,4 +97,9 @@ public class BankAccountService
         TransactionDao.Add(transaction);
     }
 
+    public void RemoveTransaction(int id)
+    {
+        TransactionDao.Remove(id);
+    }
+
 }
