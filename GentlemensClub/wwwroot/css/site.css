@@ -106,3 +106,15 @@ p.dropdown-arrow{
 .pag {
     margin: 1%;
 }
+
+/*
+    Restaurant View
+*/
+
+.text-justify {
+    text-align: justify;
+}
+
+.visible-maparea {
+    border: 1px solid red;
+}
