@@ -3,10 +3,15 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - Gentlemen's Club</title>
+    <title>Finance - Gentlemen's Club</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/GentlemensClub.styles.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" 
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer" />   
+    <link rel="stylesheet" href="/"/>
 </head>
 <body class="bg-dark text-light">
 <header>
@@ -22,23 +27,14 @@
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Restaurant</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Fitness/Wellness</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Private healthcare</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Membership</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="BankAccount" asp-action="Account">Bank</a>
+                        <p>Johnny Test</p>
                     </li>
                 </ul>
                 <ul class="navbar-nav flex-grow-1">
-                    <partial name="_LoginStatusPartial"/>
+                    <!-- TODO make buttons in this section apper or not depending on logged in status -->
+                    <li class="nav-item">
+                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Logout from bank</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -46,7 +42,30 @@
 </header>
 <div class="container">
     <main role="main" class="pb-3">
-        @RenderBody()
+        <div class="finance-parent">
+            <div class="finance-menu">
+                <div class="btn-group-vertical">
+                    <a asp-controller="BankAccount" asp-action="Account" class="btn btn-dark">
+                        Accounts
+                    </a>
+                    <a asp-controller="Card" asp-action="Card" class="btn btn-dark">
+                        Cards
+                    </a>
+                    <a asp-controller="Stock" asp-action="Stock" class="btn btn-dark">
+                        Stocks
+                    </a>
+                    <a asp-controller="Crypto" asp-action="Crypto" class="btn btn-dark">
+                        Crypto
+                    </a>
+                    <a asp-controller="Vault" asp-action="Vault" class="btn btn-dark">
+                        Vaults
+                    </a>
+                </div>
+            </div>
+            <div class="finance-container">
+                @RenderBody()
+            </div>
+        </div>
     </main>
 </div>
 
@@ -57,7 +76,7 @@
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/js/finance.js" asp-append-version="true"></script>
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -1,31 +1,23 @@
 ﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
 using GentlemensClub.Models;
+using Microsoft.AspNetCore.Mvc;
 
-namespace GentlemensClub.Controllers;
+namespace GentlemensClub.Controllers.Finance;
 
-public class HomeController : Controller
+[Route("finance")]
+public class VaultController : Controller
 {
     private readonly ILogger<HomeController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    public VaultController(ILogger<HomeController> logger)
     {
         _logger = logger;
     }
-
-    public IActionResult Index()
+    
+    [Route("vault")]
+    public IActionResult Vault()
     {
-        return View();
-    }
-
-    public IActionResult Services()
-    {
-        return View();
-    }
-
-    public IActionResult Privacy()
-    {
-        return View();
+        return View("~/Views/Finance/Vault.cshtml");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
