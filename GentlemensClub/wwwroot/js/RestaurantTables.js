@@ -1,17 +1,8 @@
-﻿$("#mapsterareathing").click(function () {
-    alert("Click");
-    $("mapsterareathing").mapster({
-        singleSelect: true,
-        fill: true,
-        fillOpacity: 0.6,
-        fillColor: 'ffffff',
-        onMouseover: function (e) {
-            $(this).mapster('set', false).mapster('set', true);
-        },
-        onMouseout: function (e) {
-            $(this).mapster('set', false);
-        }
-    });
+﻿$("#mapsterimage").mapster({
+    fillColor: '338833',
+    fillOpacity: 0.5,
+    isSelectable: false,
+    onClick: function(e) {
+        alert("Clicked the " + this.id);
+    }
 });
-
-$("#mapsterareathing").mapster();
