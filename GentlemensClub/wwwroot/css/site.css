@@ -90,3 +90,19 @@ p.currency-name{
 p.dropdown-arrow{
     padding: 15px;
 }
+
+/*
+    Stock.cshtml
+*/
+
+.stock {
+    margin: 1%;
+    min-width: 18%;
+    max-width: 18%;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.pag {
+    margin: 1%;
+}
