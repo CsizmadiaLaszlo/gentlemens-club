@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <Folder Include="Models\Restaurant\Table\" />
+      <Folder Include="wwwroot\img\restaurant\" />
     </ItemGroup>
 
 </Project>
