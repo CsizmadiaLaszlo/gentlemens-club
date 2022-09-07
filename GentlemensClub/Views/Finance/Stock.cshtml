@@ -1,4 +1,8 @@
-﻿@using GentlemensClub.Models.Stocks
+﻿@{
+    Layout = "_FinanceLayout";
+}
+
+@using GentlemensClub.Models.Stocks
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     IEnumerable<Data> stockList = ViewBag.StockList;
@@ -10,18 +14,18 @@
 }
 @if (page > 1)
 {
-    <span><a asp-area="" asp-controller="Investment" asp-action="Stocks" asp-route-page="@prev"><button>P</button></a></span>
+    <span><a asp-area="" asp-controller="Stock" asp-action="Stock" asp-route-page="@prev"><button>P</button></a></span>
 }
 <span>@current</span>
 @if (page < maxPage)
 {
-    <span><a asp-area="" asp-controller="Investment" asp-action="Stocks" asp-route-page="@next"><button>N</button></a></span>
+    <span><a asp-area="" asp-controller="Stock" asp-action="Stock" asp-route-page="@next"><button>N</button></a></span>
 }
 <div>
     @foreach (var element in stockList)
     {
         <div class="card">
-            <a asp-area="" asp-controller="Investment" asp-action="StockInfo" asp-route-symbol="@element.Symbol">@element.Name</a>
+            <a asp-area="" asp-controller="Stock" asp-action="StockInfo" asp-route-symbol="@element.Symbol">@element.Name</a>
             <div>@element.Symbol</div>
         </div>
     }
