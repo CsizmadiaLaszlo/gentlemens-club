@@ -92,4 +92,9 @@ public class BankAccountService
         return CurrencyDao.GetAll(bankAccountId);
     }
 
+    public void AddTransaction(TransactionModel transaction)
+    {
+        TransactionDao.Add(transaction);
+    }
+
 }
