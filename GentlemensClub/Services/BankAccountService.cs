@@ -107,4 +107,8 @@ public class BankAccountService
         return TransactionDao.Get(id);
     }
 
+    public List<TransactionModel> GetAllTransaction(int bankAccountId)
+    {
+        return TransactionDao.GetAll(bankAccountId);
+    }
 }
