@@ -42,6 +42,14 @@ Finance view
     border: white;
 }
 
+/*
+    Restaurant View
+*/
+
 .text-justify {
     text-align: justify;
+}
+
+.visible-maparea {
+    border: 1px solid red;
 }
