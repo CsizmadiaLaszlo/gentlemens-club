@@ -87,4 +87,9 @@ public class BankAccountService
         return CurrencyDao.Get(id);
     }
     
+    public List<Currency> GetAllCurrency(int bankAccountId)
+    {
+        return CurrencyDao.GetAll(bankAccountId);
+    }
+
 }
