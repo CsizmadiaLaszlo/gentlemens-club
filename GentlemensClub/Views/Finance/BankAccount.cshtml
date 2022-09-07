@@ -12,12 +12,9 @@
                         <p class="currency-symbol"></p>
                         <div class="dropdown">
                             <p class="dropdown-arrow dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="text-align: center"></p>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu" id="dropdown-menu">
                                 <li>
-                                    <a class="dropdown-item" href="#"><span></span> HUF</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">EUR</a>
+                                    <p class="dropdown-item" data-acronym="HUF"><span></span> HUF</p>
                                 </li>
                             </ul>
                         </div>
@@ -25,7 +22,7 @@
                     <p class="currency-name">N/D</p>
                 </div>
                 <div class="flag-container">
-                    <span class="fi fi-xx"></span>
+                    <span class="fi fi-xx flag-icon" data-country="xx"></span>
                 </div>
                 <div class="account-action-container">
                     <div class="btn-group" role="group" aria-label="Basic example">
@@ -39,13 +36,14 @@
             <div class="transaction-history-container">
                 <div class="card bg-dark text-white">
                     <div class="card-body">
-                        Test transaction card.
+                        Transaction1
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="account-grid-right">
-        'Detailed transaction view'
+        'Transaction details coming soon.'
     </div>
 </div>
+<script src="~/js/Finance/Bank/BankAccount.js"></script>
