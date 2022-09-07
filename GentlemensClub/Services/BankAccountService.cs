@@ -82,4 +82,9 @@ public class BankAccountService
         CurrencyDao.Remove(currencyId);
     }
 
+    public Currency GetCurrency(int id)
+    {
+        return CurrencyDao.Get(id);
+    }
+    
 }
