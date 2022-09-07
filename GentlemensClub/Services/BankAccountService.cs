@@ -102,4 +102,9 @@ public class BankAccountService
         TransactionDao.Remove(id);
     }
 
+    public TransactionModel GetTransaction(int id)
+    {
+        return TransactionDao.Get(id);
+    }
+
 }
