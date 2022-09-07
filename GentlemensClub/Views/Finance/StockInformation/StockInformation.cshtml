@@ -6,18 +6,23 @@
 @{
     IEnumerable<Months> yearlyInfo = ViewBag.YearlyInfo;
 }
+
+<div class="text-white d-flex flex-wrap justify-content-center"><h1>Past year statistics</h1></div>
+
 @if (yearlyInfo.Count().Equals(0))
 {
-    <div class="card">No available data!</div>
+    <div class="text-white d-flex flex-wrap justify-content-center"><h2>No available data!</h2></div>
 }
-@foreach (var element in yearlyInfo)
-{
-    <div class="card">
-        <div>@element.Date</div>
-        <div>@element.High</div>
-        <div>@element.Low</div>
-        <div>@element.Open</div>
-        <div>@element.Close</div>
-        <div>@element.Volume</div>
-    </div>
-}
+<div class="d-flex flex-wrap">
+    @foreach (var element in yearlyInfo)
+    {
+        <div class="stock card bg-dark text-white border-light">
+            <div>@element.Date</div>
+            <div>High: @element.High</div>
+            <div>Low: @element.Low</div>
+            <div>Open: @element.Open</div>
+            <div>Close: @element.Close</div>
+            <div>Volume: @element.Volume</div>
+        </div>
+    }
+</div>

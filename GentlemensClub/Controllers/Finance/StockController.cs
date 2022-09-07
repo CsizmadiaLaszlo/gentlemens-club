@@ -9,7 +9,7 @@ namespace GentlemensClub.Controllers.Finance;
 [Route("finance")]
 public class StockController : Controller
 {
-    const string ApiKey = "MSib4HhZXcRqPQKDsqXcR25R6eMhYcQKiR8CvBv4";
+    const string ApiKey = "z8cLmNOjx2nuLaQu1GQRuNvswMP6sZkeaAFsGroI";
 
     private readonly ILogger<HomeController> _logger;
 
