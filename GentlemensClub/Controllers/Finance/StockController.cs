@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
 using GentlemensClub.Models;
 using GentlemensClub.Models.Stocks;
+using GentlemensClub.Models.TodayStatistic;
+using GentlemensClub.Models.WeeklyStatistics;
 using GentlemensClub.Models.YearlyStatistics;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,7 +11,7 @@ namespace GentlemensClub.Controllers.Finance;
 [Route("finance")]
 public class StockController : Controller
 {
-    const string ApiKey = "z8cLmNOjx2nuLaQu1GQRuNvswMP6sZkeaAFsGroI";
+    const string ApiKey = "hY5rrMwpo64ZtqeqLRDztphuFoupB9N0FBffaBGU";
 
     private readonly ILogger<HomeController> _logger;
 
@@ -44,11 +46,35 @@ public class StockController : Controller
     {
         var apiHandler = new ApiHandler.ApiHandler();
         var stockInfo =
-            (await apiHandler.GetDataByUrl<SelectedStock>(
+            (await apiHandler.GetDataByUrl<TodayStatistic>(
+                $"https://api.stockdata.org/v1/data/quote?symbols={symbol}&api_token={ApiKey}")).Data;
+        var todayInfo = stockInfo.Select(x => x);
+        ViewBag.TodayInfo = todayInfo;
+        return View("~/Views/Finance/StockInformation/SelectedStock.cshtml");
+    }
+
+    [Route("selected-stock/weekly-statistics")]
+    public async Task<IActionResult> WeeklyStatistics(string? symbol)
+    {
+        var apiHandler = new ApiHandler.ApiHandler();
+        var stockInfo =
+            (await apiHandler.GetDataByUrl<WeeklyStatistics>(
+                $"https://api.stockdata.org/v1/data/intraday?symbols={symbol}&api_token={ApiKey}")).Data;
+        var weeklyInfo = stockInfo.Select(x => x);
+        ViewBag.WeeklyInfo = weeklyInfo;
+        return View("~/Views/Finance/StockInformation/WeeklyStatistics.cshtml");
+    }
+
+    [Route("selected-stock/yearly-statistics")]
+    public async Task<IActionResult> YearlyStatistics(string? symbol)
+    {
+        var apiHandler = new ApiHandler.ApiHandler();
+        var stockInfo =
+            (await apiHandler.GetDataByUrl<YearlyStatistics>(
                 $"https://api.stockdata.org/v1/data/eod?symbols={symbol}&api_token={ApiKey}")).Data;
         var yearlyInfo = stockInfo.Select(x => x);
         ViewBag.YearlyInfo = yearlyInfo;
-        return View("~/Views/Finance/StockInformation/StockInformation.cshtml");
+        return View("~/Views/Finance/StockInformation/YearlyStatistics.cshtml");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
