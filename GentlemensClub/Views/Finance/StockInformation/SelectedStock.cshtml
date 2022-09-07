@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "_FinanceLayout";
+}
+
+@using GentlemensClub.Models.TodayStatistic
+@{
+    IEnumerable<TodayData> todayInfo = ViewBag.TodayInfo;
+}
+
+<div class="text-white d-flex flex-wrap justify-content-center"><h1>@todayInfo.First().Name statistics</h1></div>
+
+@if (todayInfo.Count().Equals(0))
+{
+    <div class="text-white d-flex flex-wrap justify-content-center"><h2>No available data!</h2></div>
+}
+else
+{
+    <div class="d-flex flex-wrap">
+        @foreach (var element in todayInfo)
+        {
+            <div class="selected-stock card bg-dark text-white border-light">
+                <div>
+                    <h2>Price: @element.Price</h2></div>
+                <div>
+                    <h2>Currency: @element.Currency</h2></div>
+                <div>
+                    <h2>Exchange: @element.Exchange_Long / @element.Exchange_Short</h2></div>
+                <div>
+                    <h2>Mic code: @element.Mic_Code</h2></div>
+                <div>Previous close price time: @element.Previous_Close_Price_Time</div>
+                <div>Previous close price: @element.Previous_Close_Price</div>
+                <div>Last trade time: @element.Last_Trade_Time</div>
+                <div>Day high: @element.Day_High</div>
+                <div>Day low: @element.Day_Low</div>
+                <div>Day open: @element.Day_Open</div>
+                <div>Day change: @element.Day_Change</div>
+                @*<div>52 week high: @element.WeekHigh</div>
+            <div>52 week low: @element.WeekLow</div>*@
+                <div>Volume: @element.Volume</div>
+                <div>Market cap: @element.Market_Cap</div>
+            </div>
+        }
+    </div>
+    <div class="graph-box">
+        <div class="text-white d-flex flex-wrap justify-content-center">
+            <h1>@todayInfo.First().Name weekly graph statistics</h1></div>
+        <div class="d-flex flex-wrap justify-content-center"><img src="~/img/shared/placeholder_chart.jpg" alt="Placeholder for real chart" width="90%" height="30%"></div>
+        <div class="text-white d-flex flex-wrap justify-content-center"><a asp-area="" asp-controller="Stock" asp-action="WeeklyStatistics" asp-route-symbol="@todayInfo.First().Ticker">@todayInfo.First().Name weekly statistics in data</a></div>
+    </div>
+    <div class="graph-box">
+        <div class="text-white d-flex flex-wrap justify-content-center">
+            <h1>@todayInfo.First().Name yearly graph statistics</h1></div>
+        <div class="d-flex flex-wrap justify-content-center"><img src="~/img/shared/placeholder_chart.jpg" alt="Placeholder for real chart" width="90%" height="30%"></div>
+        <div class="text-white d-flex flex-wrap justify-content-center"><a asp-area="" asp-controller="Stock" asp-action="YearlyStatistics" asp-route-symbol="@todayInfo.First().Ticker">@todayInfo.First().Name yearly statistics in data</a></div>
+    </div>
+}
