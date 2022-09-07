@@ -72,4 +72,9 @@ public class BankAccountService
         return BankAccountDao.Get(id) ?? throw new InvalidOperationException($"No bank account with id: {id}");
     }
 
+    public void AddCurrency(Currency currency)
+    {
+        CurrencyDao.Add(currency);
+    }
+
 }
