@@ -8,5 +8,15 @@ namespace GentlemensClub.Controllers
         {
             return View();
         }
+
+        public IActionResult Menu()
+        {
+            return View();
+        }
+
+        public IActionResult Tables()
+        {
+            return View();
+        }
     }
 }
