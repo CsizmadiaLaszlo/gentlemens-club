@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GentlemensClub.Controllers.Finance;
 
+[Route("finance")]
 public class VaultController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -13,6 +14,7 @@ public class VaultController : Controller
         _logger = logger;
     }
     
+    [Route("vault")]
     public IActionResult Vault()
     {
         return View("~/Views/Finance/Vault.cshtml");

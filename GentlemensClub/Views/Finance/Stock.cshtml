@@ -1,7 +1,46 @@
 ﻿@{
-    Layout = "_BankLayout";
+    Layout = "_FinanceLayout";
 }
 
-<div>
-    Stock
+@using GentlemensClub.Models.Stocks
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    IEnumerable<Data> stockList = ViewBag.StockList;
+    var maxPage = ViewBag.MaxPage;
+    int page = ViewBag.Page;
+    var current = page;
+    var prev = page - 1;
+    var next = page + 1;
+}
+
+<div class="text-white d-flex flex-wrap justify-content-center"><h1>Stocks</h1></div>
+
+<div class="d-flex flex-wrap">
+    @foreach (var element in stockList)
+    {
+        <div class="stock card bg-dark text-white border-light">
+            <div><a asp-area="" asp-controller="Stock" asp-action="StockInfo" asp-route-symbol="@element.Symbol">@element.Name</a></div>
+            <div>@element.Symbol</div>
+        </div>
+    }
+</div>
+
+<div class="pag d-flex flex-wrap justify-content-center">
+    @if (page > 1)
+    {
+        <a class="btn btn-dark border-light" asp-area="" asp-controller="Stock" asp-action="Stock" asp-route-page="@prev">Previous</a>
+    }
+    else
+    {
+        <a class="btn btn-dark disabled border-light" asp-area="" asp-controller="Stock" asp-action="Stock" asp-route-page="@prev">Previous</a>
+    }
+    <a class="btn btn-dark border-light" asp-area="" asp-controller="Stock" asp-action="Stock" asp-route-page="@current">@current</a>
+    @if (page < maxPage)
+    {
+        <a class="btn btn-dark border-light" asp-area="" asp-controller="Stock" asp-action="Stock" asp-route-page="@next">Next</a>
+    }
+    else
+    {
+        <a class="btn btn-dark disabled border-light" asp-area="" asp-controller="Stock" asp-action="Stock" asp-route-page="@next">Next</a>
+    }
 </div>
