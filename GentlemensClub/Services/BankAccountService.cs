@@ -62,4 +62,9 @@ public class BankAccountService
         }
     }
 
+    public void RemoveBankAccount(BankAccount bankAccount)
+    {
+        BankAccountDao.Remove(bankAccount.Id);
+    }
+
 }
