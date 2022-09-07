@@ -18,4 +18,11 @@ public class BankAccountApiController : ControllerBase
         BankAccountService = new BankAccountService(new BankAccountDao(), new CurrencyDao(), new TransactionDao());
     }
     
+    [HttpGet]
+    [Route("currency")]
+    public string GetCurrency([FromQuery] string acronym)
+    {
+        var currency = BankAccountService.GetCurrency(acronym);
+        return JsonSerializer.Serialize(currency);
+    }
 }
