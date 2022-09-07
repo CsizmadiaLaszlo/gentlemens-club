@@ -106,3 +106,20 @@ p.dropdown-arrow{
 .pag {
     margin: 1%;
 }
+
+/*
+    SelectedStock.cshtml
+*/
+
+.selected-stock {
+    margin: 1%;
+    padding: 1%;
+    min-width: 98%;
+    max-width: 98%;
+    text-align: center;
+    justify-content: center;
+}
+
+.graph-box {
+    margin-top: 5%;
+}
