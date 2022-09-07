@@ -67,4 +67,9 @@ public class BankAccountService
         BankAccountDao.Remove(bankAccount.Id);
     }
 
+    public BankAccount GetBankAccountById(int id)
+    {
+        return BankAccountDao.Get(id) ?? throw new InvalidOperationException($"No bank account with id: {id}");
+    }
+
 }
