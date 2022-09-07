@@ -25,4 +25,11 @@ public class BankAccountApiController : ControllerBase
         var currency = BankAccountService.GetCurrency(acronym);
         return JsonSerializer.Serialize(currency);
     }
+    [HttpGet]
+    [Route("currencies")]
+    public string GetAllCurrency()
+    {
+        var currency = BankAccountService.GetAllCurrency(1);
+        return JsonSerializer.Serialize(currency);
+    }
 }
