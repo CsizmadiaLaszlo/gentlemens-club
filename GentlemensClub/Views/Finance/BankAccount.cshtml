@@ -34,16 +34,20 @@
             </div>
             <h4>Transaction history</h4>
             <div class="transaction-history-container">
-                <div class="card bg-dark text-white">
-                    <div class="card-body">
-                        Transaction1
-                    </div>
-                </div>
             </div>
         </div>
     </div>
-    <div class="account-grid-right">
-        'Transaction details coming soon.'
+    <div class="account-grid-right" hidden="hidden">
+        <i class="fa-solid fa-x" id="transaction-detail-close"></i>
+        <div class="mapouter" style="text-align: center; align-content: center">
+            <div class="gmap_canvas">
+                <iframe width="400" height="300" id="google-map-canvas"
+                        src="https://maps.google.com/maps?q=Apple One Apple Park Way Cupertino, CA 95014&t=&z=17&ie=UTF8&iwloc=&output=embed">
+                </iframe>
+                <style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style>
+                <style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style>
+            </div>
+        </div>
     </div>
 </div>
 <script src="~/js/Finance/Bank/BankAccount.js"></script>
