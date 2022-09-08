@@ -50,9 +50,19 @@ async function SetDropDownElements(acronym) {
     }
 }
 
-function LoadDefaultCurrency() {
-    LoadCurrency("USD");
-    
+function DropDownElementFactory(currency) {
+    let liElement = document.createElement('li');
+    let pElement = document.createElement('p');
+
+    pElement.classList.add('dropdown-item');
+    pElement.dataset.acronym = currency["Acronym"];
+    pElement.innerHTML = `<span>${currency["Value"]}</span> ${currency["Acronym"]}`;
+    liElement.appendChild(pElement);
+    pElement.addEventListener('click', () => LoadCurrency(currency["Acronym"]));
+
+    return liElement;
+}
+
 }
 
 (function () {
