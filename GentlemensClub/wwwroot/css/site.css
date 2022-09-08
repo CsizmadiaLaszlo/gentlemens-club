@@ -153,3 +153,12 @@ div.transaction-card{
 .graph-box {
     margin-top: 5%;
 }
+
+/*
+    Services.cshtml
+*/
+
+div.col{
+    display: flex;
+    justify-content: center;
+}
