@@ -27,10 +27,12 @@ BankAccount.cshtml
     grid-template-rows: 1fr;
     grid-column-gap: 0;
     grid-row-gap: 0;
+    min-height: 600px;
 }
 
 .account-grid-left {
     grid-area: 1 / 1 / 2 / 2;
+    max-width: 520px;
 }
 
 .account-grid-right {
@@ -102,6 +104,11 @@ p.dropdown-item{
     cursor: pointer;
 }
 
+div.transaction-card{
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
 /*
     Stock.cshtml
 */
@@ -145,4 +152,13 @@ p.dropdown-item{
 
 .graph-box {
     margin-top: 5%;
+}
+
+/*
+    Services.cshtml
+*/
+
+div.col{
+    display: flex;
+    justify-content: center;
 }
