@@ -68,6 +68,15 @@ async function GetAllTransaction() {
     return await fetch(url).then(r => r.json());
 }
 
+async function LoadAllTransaction() {
+    let transactions = await GetAllTransaction();
+    let transactionContainer = document.querySelector('.transaction-history-container');
+    for (const transaction of transactions) {
+        let transactionCard = TransactionCardFactory(transaction);
+        transactionContainer.appendChild(transactionCard);
+    }
+}
+
 }
 
 (function () {
