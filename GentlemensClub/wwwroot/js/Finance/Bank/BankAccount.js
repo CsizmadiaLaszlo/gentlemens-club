@@ -63,6 +63,11 @@ function DropDownElementFactory(currency) {
     return liElement;
 }
 
+async function GetAllTransaction() {
+    const url = `../api/finance/transaction`;
+    return await fetch(url).then(r => r.json());
+}
+
 }
 
 (function () {
