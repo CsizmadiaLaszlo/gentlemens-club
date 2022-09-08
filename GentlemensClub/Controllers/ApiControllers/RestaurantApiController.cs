@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using GentlemensClub.Daos.Implementations.Restaurant;
 using GentlemensClub.Models.Restaurant.Menu;
 using GentlemensClub.Models.Restaurant.Table;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,8 @@ namespace GentlemensClub.Controllers.ApiControllers
     [ApiController]
     public class RestaurantApiController : ControllerBase
     {
+
+        private TableDao _tableDaos = new TableDao();
 
         [HttpGet]
         [Route("get-filters")]
@@ -101,36 +104,19 @@ namespace GentlemensClub.Controllers.ApiControllers
         [Route("get-all-tables")]
         public string GetAllTables([FromQuery] int minimumSeats)
         {
+            return JsonSerializer.Serialize(_tableDaos);
+        }
 
-            var tables = new List<TableModel>
-            {
-                new TableModel
-                {
-                    Id = 1,
-                    Description = "Our fanciest table.",
-                    SeatCount = 8
-                },
-                new TableModel
-                {
-                    Id = 2,
-                    Description = "A test, reserved table with 4 seats.",
-                    Reservation = new ReservationModel
-                    {
-                        Id = 1,
-                        Member = 69,
-                        ReservationStartDate = DateTime.Now
-                    },
-                    SeatCount = 4
-                },
-                new TableModel
-                {
-                    Id = 3,
-                    Description = "Query amount of seats.",
-                    SeatCount = minimumSeats
-                }
-            };
-
-            return JsonSerializer.Serialize(tables);
+        /// <summary>
+        /// Return table data in JSON format by tableId.
+        /// </summary>
+        /// <param name="tableId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("get-table-data")]
+        public string GetTableData([FromRoute] int tableId)
+        {
+            return JsonSerializer.Serialize(_tableDaos.Get(tableId));
         }
     }
 }
