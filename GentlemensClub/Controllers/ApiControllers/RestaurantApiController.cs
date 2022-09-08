@@ -118,5 +118,13 @@ namespace GentlemensClub.Controllers.ApiControllers
         {
             return JsonSerializer.Serialize(_tableDaos.Get(tableId));
         }
+
+        [HttpGet]
+        [Route("get-table-reservations")]
+        public string GetTableReservations()
+        {
+            return JsonSerializer.Serialize(_tableDaos.GetTableReservations());
+        }
+
     }
 }
