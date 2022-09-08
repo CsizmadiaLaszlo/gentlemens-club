@@ -86,6 +86,17 @@ function ShowDetailedView(e) {
     detailedView.hidden = false;
 }
 
+function TransactionCardFactory(transaction) {
+    let mainDiv = document.createElement('div');
+    mainDiv.classList.add("card", "bg-dark", "text-white");
+    let bodyDiv = document.createElement('div');
+    bodyDiv.classList.add("card-body");
+    bodyDiv.dataset.address = transaction['Address'];
+    bodyDiv.innerHTML = `${transaction["Company"]} ${transaction["Value"]} ${transaction["CurrencyAcronym"]} ${transaction["Date"]}`;
+    mainDiv.appendChild(bodyDiv);
+
+    bodyDiv.addEventListener('click', ShowDetailedView)
+    return mainDiv;
 }
 
 (function () {
