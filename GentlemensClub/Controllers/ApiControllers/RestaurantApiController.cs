@@ -104,7 +104,7 @@ namespace GentlemensClub.Controllers.ApiControllers
         [Route("get-all-tables")]
         public string GetAllTables([FromQuery] int minimumSeats)
         {
-            return JsonSerializer.Serialize(_tableDaos);
+            return JsonSerializer.Serialize(_tableDaos.GetAll());
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace GentlemensClub.Controllers.ApiControllers
         /// <returns></returns>
         [HttpGet]
         [Route("get-table-data")]
-        public string GetTableData([FromRoute] int tableId)
+        public string GetTableData([FromQuery] int tableId)
         {
             return JsonSerializer.Serialize(_tableDaos.Get(tableId));
         }
