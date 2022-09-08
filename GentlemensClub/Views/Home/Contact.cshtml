@@ -1,0 +1,43 @@
+@{
+    ViewBag.Title = "Contact";
+    Layout = "_Layout";
+}
+
+<div id="cotact-map" style="display: flex; justify-content: center; padding-bottom: 40px">
+    <div class="mapouter">
+        <div class="gmap_canvas">
+            <iframe width="657" height="761" id="gmap_canvas"
+                    src="https://maps.google.com/maps?q=150W%2059th%20street,%20New%20York&t=k&z=17&ie=UTF8&iwloc=&output=embed"
+                    frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+            </iframe>
+            <a href="https://123movies-to.org">123movies</a>
+            <br>
+            <style>.mapouter{position:relative;text-align:right;height:761px;width:657px;}</style>
+            <a href="https://www.embedgooglemap.net">embedgooglemap.net</a>
+            <style>.gmap_canvas {overflow:hidden;background:none!important;height:761px;width:657px;}</style>
+        </div>
+    </div>
+</div>
+
+<h5 class="text-center">If you have questions, please fill the form at the bottom:</h5>
+
+<div id="contact-form" class="d-flex justify-content-center" style="padding-top: 10px">
+    <div class="card bg-black text-light text-center" style="width: 33rem">
+        <form>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="contactMessage">Message:</label>
+                    <textarea class="form-control" placeholder="Please add your message here." id="contactMessage" name="contactMessage"></textarea>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="contactEmail">Your e-mail address:</label>
+                    <input type="email" class="form-control" id="contactEmail" name="contactEmail"
+                           pattern="^[a-zA-Z0-9._+-]+@("@")[a-zA-Z0-9.-]+\.[a-zA-Z]{2,9}$" placeholder="example@domain.com">
+                </div>
+                <br>
+                <button type="submit" class="btn btn-dark">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
