@@ -77,6 +77,15 @@ async function LoadAllTransaction() {
     }
 }
 
+function ShowDetailedView(e) {
+    let address = e.target.dataset.address;
+    let gMapCanvas = document.getElementById('google-map-canvas');
+    gMapCanvas.src = `https://maps.google.com/maps?q=${address}&t=&z=17&ie=UTF8&iwloc=&output=embed`;
+
+    let detailedView = document.querySelector('.account-grid-right');
+    detailedView.hidden = false;
+}
+
 }
 
 (function () {
