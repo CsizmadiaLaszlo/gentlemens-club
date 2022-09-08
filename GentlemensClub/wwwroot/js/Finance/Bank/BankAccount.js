@@ -3,7 +3,16 @@
     detailedView.hidden = true;
 }
 
-async function GetCurrency(acronym){
+function InitTransactionDetailCloseButton() {
+    let closeX = document.getElementById("transaction-detail-close");
+    closeX.addEventListener('click', CloseTransactionDetailedView)
+}
+
+function InitEventListeners() {
+    InitTransactionDetailCloseButton();
+}
+
+async function GetCurrency(acronym) {
     const url = `../api/finance/currency?acronym=${acronym}`;
     return await fetch(url).then(r => r.json());
 }
