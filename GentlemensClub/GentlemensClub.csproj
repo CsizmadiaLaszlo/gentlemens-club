@@ -20,4 +20,9 @@
       <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Models\Restaurant\Table\" />
+      <Folder Include="wwwroot\img\restaurant\" />
+    </ItemGroup>
+
 </Project>

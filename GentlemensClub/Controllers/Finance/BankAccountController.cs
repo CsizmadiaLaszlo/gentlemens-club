@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using GentlemensClub.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GentlemensClub.Controllers.Finance;
@@ -15,6 +16,7 @@ public class BankAccountController : Controller
     }
 
     [Route("account")]
+    [Authorize]
     public IActionResult Account()
     {
         return View("~/Views/Finance/BankAccount.cshtml");

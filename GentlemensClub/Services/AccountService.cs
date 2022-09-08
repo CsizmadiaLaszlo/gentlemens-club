@@ -2,6 +2,7 @@
 using GentlemensClub.Daos;
 using GentlemensClub.Daos.Implementations;
 using GentlemensClub.Models.Account;
+using Microsoft.AspNetCore.Identity;
 
 namespace GentlemensClub.Services;
 
@@ -11,10 +12,12 @@ namespace GentlemensClub.Services;
 public class AccountService
 {
     public IAccountDao AccountDao { get; set; }
+    public PasswordHasher<Account> PasswordHasher { get; set; }
 
     public AccountService()
     {
         AccountDao = AccountDaoMemory.GetInstance();
+        PasswordHasher = new PasswordHasher<Account>();
     }
 
     /// <summary>
@@ -29,9 +32,8 @@ public class AccountService
         {
             return false;
         }
-
-        //TODO Proper password checking
-        return account.PasswordHash == credential.Password;
+        var result = PasswordHasher.VerifyHashedPassword(account, account.PasswordHash, credential.Password);
+        return result == PasswordVerificationResult.Success;
     }
 
     /// <summary>
@@ -69,9 +71,9 @@ public class AccountService
         {
             Username = data.Username,
             Email = data.Email,
-            //TODO proper password hashing
-            PasswordHash = data.Password
         };
+
+        account.PasswordHash = PasswordHasher.HashPassword(account, data.Password);
 
         AccountDao.Add(account);
     }
