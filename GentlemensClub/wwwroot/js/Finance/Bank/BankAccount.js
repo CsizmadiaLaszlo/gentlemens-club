@@ -41,16 +41,11 @@ async function SetDropDownElements(acronym) {
     let currencies = await GetAllCurrency();
     let dropDownMenu = document.getElementById("dropdown-menu");
     dropDownMenu.innerHTML = '';
+
     for (const currency of currencies) {
-        if (currency["Acronym"] !== acronym){
-            let liElement = document.createElement('li');
-            let pElement = document.createElement('p');
-            pElement.classList.add('dropdown-item');
-            pElement.dataset.acronym = currency["Acronym"];
-            pElement.innerHTML = `<span>${currency["Value"]}</span> ${currency["Acronym"]}`;
-            liElement.appendChild(pElement);
+        if (currency["Acronym"] !== acronym) {
+            let liElement = DropDownElementFactory(currency);
             dropDownMenu.appendChild(liElement);
-            pElement.addEventListener('click', () => LoadCurrency(currency["Acronym"]))
         }
     }
 }
