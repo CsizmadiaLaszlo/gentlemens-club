@@ -88,7 +88,8 @@ function ShowDetailedView(e) {
 
 function TransactionCardFactory(transaction) {
     let mainDiv = document.createElement('div');
-    mainDiv.classList.add("card", "transaction-card", "bg-secondary", "text-white");
+    mainDiv.classList.add("card", "transaction-card", "btn-outline-secondary");
+    mainDiv.style.backgroundColor = '';
     let bodyDiv = document.createElement('div');
     bodyDiv.classList.add("card-body");
     bodyDiv.dataset.address = transaction['Address'];
