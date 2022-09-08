@@ -2,9 +2,9 @@
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
-namespace GentlemensClub.ApiHandler;
+namespace GentlemensClub.Services;
 
-public class ApiHandler
+public class ApiHandlerService
 {
     public async Task<T> GetDataByUrl<T>(string apiURL)
     {
