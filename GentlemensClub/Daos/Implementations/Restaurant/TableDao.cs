@@ -38,6 +38,18 @@ public class TableDao : ITableDao
         return tables;
     }
 
+    public Dictionary<int, ReservationModel> GetTableReservations()
+    {
+        var reservations = new Dictionary<int, ReservationModel>();
+
+        foreach (TableModel table in tables)
+        {
+            reservations.Add(table.Id, table.Reservation);
+        }
+
+        return reservations;
+    }
+
     private void FillTablesList()
     {
         const string chars = " A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ";
