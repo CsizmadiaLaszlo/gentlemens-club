@@ -1,4 +1,6 @@
-﻿function InitEventListeners() {
+﻿function CloseTransactionDetailedView() {
+    let detailedView = document.querySelector('.account-grid-right');
+    detailedView.hidden = true;
 }
 
 async function GetCurrency(acronym){
