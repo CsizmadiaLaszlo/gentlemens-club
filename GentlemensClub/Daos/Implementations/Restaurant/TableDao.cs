@@ -49,7 +49,7 @@ public class TableDao : ITableDao
             newTable.Id = i + 1;
             newTable.Description = new string(Enumerable.Repeat(chars, 50)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
-            newTable.SeatCount = random.Next(0, 6);
+            newTable.SeatCount = random.Next(2, 6);
             if (random.Next(0, 100) > 50)
             {
                 newReservation.Id = random.Next(0, 100);
