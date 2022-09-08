@@ -101,5 +101,6 @@ function TransactionCardFactory(transaction) {
 
 (function () {
     InitEventListeners();
-    LoadCurrency("USD").then(r => r);
+    LoadCurrency("USD").then();
+    LoadAllTransaction().then();
 })();
