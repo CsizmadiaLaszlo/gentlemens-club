@@ -98,6 +98,10 @@ p.dropdown-arrow{
     padding: 15px;
 }
 
+p.dropdown-item{
+    cursor: pointer;
+}
+
 /*
     Stock.cshtml
 */

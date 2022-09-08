@@ -6,9 +6,9 @@ namespace GentlemensClub.Services;
 
 public class BankAccountService
 {
-    public IBankAccountDao BankAccountDao { get; }
-    public ICurrencyDao CurrencyDao { get; }
-    public ITransactionDao TransactionDao { get; }
+    private IBankAccountDao BankAccountDao { get; }
+    private ICurrencyDao CurrencyDao { get; }
+    private ITransactionDao TransactionDao { get; }
 
     public BankAccountService(IBankAccountDao bankAccountDao, ICurrencyDao currencyDao, ITransactionDao transactionDao)
     {
@@ -82,6 +82,11 @@ public class BankAccountService
         CurrencyDao.Remove(currencyId);
     }
 
+    public Currency GetCurrency(string acronym)
+    {
+        return CurrencyDao.Get(acronym);
+    }
+    
     public Currency GetCurrency(int id)
     {
         return CurrencyDao.Get(id);
