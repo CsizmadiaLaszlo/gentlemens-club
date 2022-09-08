@@ -8,44 +8,46 @@
             <div class="account-details">
                 <div class="currency-container">
                     <div style="display: flex">
-                        <p class="currency-value">456.45</p>
-                        <p class="currency-symbol">USD</p>
+                        <p class="currency-value">N/D</p>
+                        <p class="currency-symbol"></p>
                         <div class="dropdown">
                             <p class="dropdown-arrow dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="text-align: center"></p>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu" id="dropdown-menu">
                                 <li>
-                                    <a class="dropdown-item" href="#">HUF</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">EUR</a>
+                                    <p class="dropdown-item" data-acronym="HUF"><span></span> HUF</p>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <p class="currency-name">United States dollar</p>
+                    <p class="currency-name">N/D</p>
                 </div>
                 <div class="flag-container">
-                    <span class="fi fi-us"></span>
+                    <span class="fi fi-xx flag-icon" data-country="xx"></span>
                 </div>
                 <div class="account-action-container">
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-plus"></i> Add money</button>
-                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</button>
-                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-arrows-rotate"></i> Exchange</button>
+                        <button type="button" class="btn btn-outline-secondary"><i class="fa-solid fa-plus"></i> Add money</button>
+                        <button type="button" class="btn btn-outline-secondary"><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</button>
+                        <button type="button" class="btn btn-outline-secondary"><i class="fa-solid fa-arrows-rotate"></i> Exchange</button>
                     </div>
                 </div>
             </div>
             <h4>Transaction history</h4>
             <div class="transaction-history-container">
-                <div class="card bg-dark text-white">
-                    <div class="card-body">
-                        Test transaction card.
-                    </div>
-                </div>
             </div>
         </div>
     </div>
-    <div class="account-grid-right">
-        'Detailed transaction view'
+    <div class="account-grid-right" hidden="hidden">
+        <i class="fa-solid fa-x" id="transaction-detail-close"></i>
+        <div class="mapouter" style="text-align: center; align-content: center">
+            <div class="gmap_canvas">
+                <iframe width="400" height="300" id="google-map-canvas"
+                        src="https://maps.google.com/maps?q=Apple One Apple Park Way Cupertino, CA 95014&t=&z=17&ie=UTF8&iwloc=&output=embed">
+                </iframe>
+                <style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style>
+                <style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style>
+            </div>
+        </div>
     </div>
 </div>
+<script src="~/js/Finance/Bank/BankAccount.js"></script>

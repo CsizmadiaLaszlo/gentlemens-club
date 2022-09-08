@@ -17,7 +17,12 @@ public class BankAccountDao : IBankAccountDao
 
     public BankAccount? Get(int id)
     {
-        throw new NotImplementedException();
+        // Mock data
+        return new BankAccount()
+        {
+            Id = 1,
+            AccountId = 1,
+        };
     }
 
     public IEnumerable<BankAccount> GetAll()

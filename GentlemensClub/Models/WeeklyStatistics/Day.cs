@@ -1,8 +1,7 @@
-﻿namespace GentlemensClub.Models.YearlyStatistics;
+﻿namespace GentlemensClub.Models.WeeklyStatistics;
 
-public class Months
+public class Day
 {
-    public DateTime Date { get; set; }
     public float Open { get; set; }
     public float High { get; set; }
     public float Low { get; set; }

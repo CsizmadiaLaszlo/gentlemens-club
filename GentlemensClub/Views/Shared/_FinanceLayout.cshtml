@@ -45,19 +45,19 @@
         <div class="finance-parent">
             <div class="finance-menu">
                 <div class="btn-group-vertical">
-                    <a asp-controller="BankAccount" asp-action="Account" class="btn btn-dark">
+                    <a asp-controller="BankAccount" asp-action="Account" class="btn btn-outline-secondary">
                         Accounts
                     </a>
-                    <a asp-controller="Card" asp-action="Card" class="btn btn-dark">
+                    <a asp-controller="Card" asp-action="Card" class="btn btn-outline-secondary">
                         Cards
                     </a>
-                    <a asp-controller="Stock" asp-action="Stock" class="btn btn-dark">
+                    <a asp-controller="Stock" asp-action="Stock" class="btn btn-outline-secondary">
                         Stocks
                     </a>
-                    <a asp-controller="Crypto" asp-action="Crypto" class="btn btn-dark">
+                    <a asp-controller="Crypto" asp-action="Crypto" class="btn btn-outline-secondary">
                         Crypto
                     </a>
-                    <a asp-controller="Vault" asp-action="Vault" class="btn btn-dark">
+                    <a asp-controller="Vault" asp-action="Vault" class="btn btn-outline-secondary">
                         Vaults
                     </a>
                 </div>
@@ -76,7 +76,7 @@
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/finance.js" asp-append-version="true"></script>
+<script src="~/js/Finance/finance.js" asp-append-version="true"></script>
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

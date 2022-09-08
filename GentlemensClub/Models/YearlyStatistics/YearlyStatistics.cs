@@ -1,6 +1,6 @@
 ﻿namespace GentlemensClub.Models.YearlyStatistics;
 
-public class SelectedStock
+public class YearlyStatistics
 {
     public List<Months> Data { get; set; }
 }
