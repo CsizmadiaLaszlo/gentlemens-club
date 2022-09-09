@@ -82,7 +82,7 @@ function updateTableInformationModal(tableData) {
         `<p class="card-text">This table has ${tableData.SeatCount} seats</p>`;
 
     if (tableData.Reservation == null) {
-        modalHTML += '<a href="#" class="btn btn-secondary">Reserve this table</a>';
+        modalHTML += `<a href="/Restaurant/Reservation?table=${tableData.Id}" class="btn btn-secondary">Reserve this table</a>`;
     } else {
         modalHTML += '<button class="btn btn-secondary" disabled>Reservation not available</button>';
     }

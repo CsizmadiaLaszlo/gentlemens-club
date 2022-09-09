@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Restaurant";
+    Layout = "_RestaurantLayout";
+}
+<div class="d-flex justify-content-center flex-column w-25 align-self-center p-5 border mb-3 rounded">
+    <h1 class="text-center">Reservation for table @ViewData["tableId"]</h1>
+    <label for="staticName" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
+        <input type="text" readonly class="form-control" id="staticName" value="László György" disabled>
+    </div>
+    <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+        <input type="text" readonly class="form-control" id="staticEmail" value="lacci@gentlemens.club" disabled>
+    </div>
+    <label for="reservationTime" class="col-sm-4 col-form-label">Reservation length</label>
+    <div class="col-sm-8">
+        <select class="form-select" id="reservationTime">
+            <option value="0">4 hours</option>
+            <option value="1">8 Hours</option>
+            <option value="2">12 Hours</option>
+            <option value="3">24 Hours</option>
+        </select>
+    </div>
+    <label for="textArea" class="col-sm-4 col-form-label">Special requests</label>
+    <div class="col-sm-8">
+        <textarea class="form-control text-black" placeholder="Leave any special requests here" id="textArea" style="height: 200px"></textarea>
+    </div>
+    <div class="col-12 mt-5 text-center">
+        <a href="/Restaurant/ReservationSuccess?table=@ViewData["tableId"]"><button class="btn-lg btn-secondary">Reserve table @ViewData["tableId"]</button></a>
+    </div>
+</div>

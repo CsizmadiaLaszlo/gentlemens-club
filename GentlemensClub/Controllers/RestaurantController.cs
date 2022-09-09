@@ -18,5 +18,17 @@ namespace GentlemensClub.Controllers
         {
             return View();
         }
+
+        public IActionResult Reservation()
+        {
+            ViewData["tableId"] = HttpContext.Request.Query["table"];
+            return View();
+        }
+
+        public IActionResult ReservationSuccess()
+        {
+            ViewData["tableId"] = HttpContext.Request.Query["table"];
+            return View();
+        }
     }
 }
