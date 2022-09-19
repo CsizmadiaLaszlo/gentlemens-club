@@ -1,6 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GentlemensClub", "GentlemensClub\GentlemensClub.csproj", "{0CAAB6CA-8291-4DFF-936C-91182B09A886}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32516.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GentlemensClub", "GentlemensClub\GentlemensClub.csproj", "{0CAAB6CA-8291-4DFF-936C-91182B09A886}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "GentlemensClub-Frontend", "GentlemensClub-Frontend\GentlemensClub-Frontend.esproj", "{8A187A3E-5612-4AA9-9092-6D29C09C2010}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +17,17 @@ Global
 		{0CAAB6CA-8291-4DFF-936C-91182B09A886}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CAAB6CA-8291-4DFF-936C-91182B09A886}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CAAB6CA-8291-4DFF-936C-91182B09A886}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A187A3E-5612-4AA9-9092-6D29C09C2010}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A187A3E-5612-4AA9-9092-6D29C09C2010}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A187A3E-5612-4AA9-9092-6D29C09C2010}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8A187A3E-5612-4AA9-9092-6D29C09C2010}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A187A3E-5612-4AA9-9092-6D29C09C2010}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A187A3E-5612-4AA9-9092-6D29C09C2010}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB553823-B75A-4584-B55B-0CD88F5FE8FC}
 	EndGlobalSection
 EndGlobal
