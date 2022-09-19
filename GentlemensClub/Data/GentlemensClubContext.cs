@@ -14,4 +14,9 @@ public class GentlemensClubContext : DbContext
         
     }
     
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Account>().ToTable("account");
+        modelBuilder.Entity<BankAccount>().ToTable("bank_account");
+    }
 }
