@@ -88,5 +88,11 @@ public class AccountService : IAccountService
                // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
                && await GetAccountByEmail(data.Email) is null;
     }
+
+    private async Task<Account?> GetAccountByUsername(string username)
+    {
+        return await _context.Accounts.FirstOrDefaultAsync(a => a.Username == username);
+    }
+
     }
 }
