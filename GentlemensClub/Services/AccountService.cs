@@ -42,15 +42,15 @@ public class AccountService : IAccountService
     /// </summary>
     /// <param name="credential">Login credential.</param>
     /// <returns>Created ClaimsPrincipal</returns>
-    public ClaimsPrincipal CreateClaimsPrincipal(LoginCredential credential)
+    public async Task<ClaimsPrincipal> CreateClaimsPrincipal(LoginCredential credential)
     {
-        if (!CredentialIsValid(credential))
+        if (await CredentialIsValid(credential) is false)
         {
             throw new ArgumentException("Credential contains invalid information.", nameof(credential));
         }
 
-        var account = AccountDao.GetByUsername(credential.Username);
-
+        var account = await GetAccountByUsername(credential.Username);
+        
         var claims = new List<Claim>
         {
             new Claim(ClaimTypes.Name, account.Username),
