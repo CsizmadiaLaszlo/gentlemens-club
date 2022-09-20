@@ -1,4 +1,6 @@
 using GentlemensClub.Data;
+using GentlemensClub.Services;
+using GentlemensClub.Services.Interfaces.Finance.Bank;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,7 @@ builder.Services.AddAuthentication("LoginCookieAuth").AddCookie("LoginCookieAuth
 builder.Services.AddDbContext<GentlemensClubContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("GentlemensClubConnectionString") ??
                          throw new InvalidOperationException("Connection string not found!")));
+builder.Services.AddScoped<IBankService, BankService>();
 
 
 var app = builder.Build();
