@@ -1,22 +1,23 @@
 ﻿using System.Security.Claims;
-using GentlemensClub.Daos;
-using GentlemensClub.Daos.Implementations;
+using GentlemensClub.Data;
 using GentlemensClub.Models.Account;
+using GentlemensClub.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace GentlemensClub.Services;
 
 /// <summary>
 /// A class dedicated for account related processes.
 /// </summary>
-public class AccountService
+public class AccountService : IAccountService
 {
-    public IAccountDao AccountDao { get; set; }
-    public PasswordHasher<Account> PasswordHasher { get; set; }
+    private readonly GentlemensClubContext _context;
+    private PasswordHasher<Account> PasswordHasher { get; }
 
-    public AccountService()
+    public AccountService(GentlemensClubContext context)
     {
-        AccountDao = AccountDaoMemory.GetInstance();
+        _context = context;
         PasswordHasher = new PasswordHasher<Account>();
     }
 
@@ -25,9 +26,9 @@ public class AccountService
     /// </summary>
     /// <param name="credential">Login credential.</param>
     /// <returns>Bool value for the validity of the credential.</returns>
-    public bool CredentialIsValid(LoginCredential credential)
+    public async Task<bool> CredentialIsValid(LoginCredential credential)
     {
-        var account = AccountDao.GetByUsername(credential.Username);
+        var account = await GetAccountByUsername(credential.Username);
         if (account == null)
         {
             return false;
@@ -41,15 +42,15 @@ public class AccountService
     /// </summary>
     /// <param name="credential">Login credential.</param>
     /// <returns>Created ClaimsPrincipal</returns>
-    public ClaimsPrincipal CreateClaimsPrincipal(LoginCredential credential)
+    public async Task<ClaimsPrincipal> CreateClaimsPrincipal(LoginCredential credential)
     {
-        if (!CredentialIsValid(credential))
+        if (await CredentialIsValid(credential) is false)
         {
             throw new ArgumentException("Credential contains invalid information.", nameof(credential));
         }
 
-        var account = AccountDao.GetByUsername(credential.Username);
-
+        var account = await GetAccountByUsername(credential.Username);
+        
         var claims = new List<Claim>
         {
             new Claim(ClaimTypes.Name, account.Username),
@@ -60,9 +61,9 @@ public class AccountService
         return new ClaimsPrincipal(identity);
     }
 
-    public void CreateAccount(RegistrationData data)
+    public async Task CreateAccount(RegistrationData data)
     {
-        if (!RegistrationIsValid(data))
+        if (await RegistrationIsValid(data) is false)
         {
             throw new ArgumentException("Registration data is invalid.", nameof(data));
         }
@@ -75,13 +76,26 @@ public class AccountService
 
         account.PasswordHash = PasswordHasher.HashPassword(account, data.Password);
 
-        AccountDao.Add(account);
+        await _context.Accounts.AddAsync(account);
+        await _context.SaveChangesAsync();
     }
 
-    public bool RegistrationIsValid(RegistrationData data)
+    public async Task<bool> RegistrationIsValid(RegistrationData data)
     {
         return data.Password == data.ConfirmPassword
-               && AccountDao.GetByUsername(data.Username) is null
-               && AccountDao.GetByEmail(data.Email) is null;
+               // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+               && await GetAccountByUsername(data.Username) is null
+               // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+               && await GetAccountByEmail(data.Email) is null;
+    }
+
+    private async Task<Account?> GetAccountByUsername(string username)
+    {
+        return await _context.Accounts.FirstOrDefaultAsync(a => a.Username == username);
+    }
+
+    private async Task<Account?> GetAccountByEmail(string email)
+    {
+        return await _context.Accounts.FirstOrDefaultAsync(a => a.Username == email);
     }
 }

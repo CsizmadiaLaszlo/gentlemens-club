@@ -1,6 +1,5 @@
-﻿using System.Security.Claims;
-using GentlemensClub.Models.Account;
-using GentlemensClub.Services;
+﻿using GentlemensClub.Models.Account;
+using GentlemensClub.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,11 +7,11 @@ namespace GentlemensClub.Controllers
 {
     public class AccountController : Controller
     {
-        public AccountService AccountService { get; set; }
+        private readonly IAccountService _accountService;
 
-        public AccountController()
+        public AccountController(IAccountService accountService)
         {
-            AccountService = new AccountService();
+            _accountService = accountService;
         }
 
         // public IActionResult Index()
@@ -30,16 +29,16 @@ namespace GentlemensClub.Controllers
         {
             if (!ModelState.IsValid) return await Task.Run(View);
 
-            if (AccountService.RegistrationIsValid(data))
+            if (await _accountService.RegistrationIsValid(data))
             {
-                AccountService.CreateAccount(data);
+                await _accountService.CreateAccount(data);
 
                 var credential = new LoginCredential()
                 {
                     Username = data.Username,
                     Password = data.Password
                 };
-                var claimsPrincipal = AccountService.CreateClaimsPrincipal(credential);
+                var claimsPrincipal = await _accountService.CreateClaimsPrincipal(credential);
                 await HttpContext.SignInAsync("LoginCookieAuth", claimsPrincipal);
 
                 return Redirect("/");
@@ -58,9 +57,9 @@ namespace GentlemensClub.Controllers
         {
             if (!ModelState.IsValid) return await Task.Run(View);
 
-            if (AccountService.CredentialIsValid(credential))
+            if (await _accountService.CredentialIsValid(credential))
             {
-                var claimsPrincipal = AccountService.CreateClaimsPrincipal(credential);
+                var claimsPrincipal = await _accountService.CreateClaimsPrincipal(credential);
                 await HttpContext.SignInAsync("LoginCookieAuth", claimsPrincipal);
 
                 return Redirect("/");
