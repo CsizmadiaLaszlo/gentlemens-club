@@ -9,7 +9,7 @@ namespace GentlemensClub.Services;
 /// <summary>
 /// A class dedicated for account related processes.
 /// </summary>
-public class AccountService
+public class AccountService : IAccountService
 {
     public IAccountDao AccountDao { get; set; }
     public PasswordHasher<Account> PasswordHasher { get; set; }
