@@ -26,9 +26,9 @@ public class AccountService : IAccountService
     /// </summary>
     /// <param name="credential">Login credential.</param>
     /// <returns>Bool value for the validity of the credential.</returns>
-    public bool CredentialIsValid(LoginCredential credential)
+    public async Task<bool> CredentialIsValid(LoginCredential credential)
     {
-        var account = AccountDao.GetByUsername(credential.Username);
+        var account = await GetAccountByUsername(credential.Username);
         if (account == null)
         {
             return false;
