@@ -1,5 +1,4 @@
-﻿using GentlemensClub.Daos.Implementations;
-using GentlemensClub.Data;
+﻿using GentlemensClub.Data;
 using GentlemensClub.Models.Account;
 using GentlemensClub.Models.Finance.Bank;
 using GentlemensClub.Services.Interfaces.Finance.Bank;
@@ -7,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GentlemensClub.Services;
 
-public class BankAccountService : IBankService
+public class BankService : IBankService
 {
     private readonly GentlemensClubContext _context;
 
-    public BankAccountService(GentlemensClubContext context)
+    public BankService(GentlemensClubContext context)
     {
         _context = context;
     }
@@ -63,14 +62,27 @@ public class BankAccountService : IBankService
         throw new NotImplementedException();
     }
 
-    public Task<BankCurrency> GetBankCurrency(int bankCurrencyId)
+    public async Task<BankCurrency> GetBankCurrency(int bankCurrencyId)
     {
-        throw new NotImplementedException();
+        return (await _context.BankCurrencies.FirstOrDefaultAsync(currency => currency.Id == bankCurrencyId))!;
+    }
+    
+    public async Task<BankCurrency> GetBankCurrency(int bankAccountId, string acronym)
+    {
+        var bankAccount = await _context.BankAccounts
+            .Include(account => account.Currencies)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(account => account.Id == bankAccountId);
+        return bankAccount!.Currencies.First(currency => currency.Acronym == acronym);
     }
 
-    public Task<HashSet<BankCurrency>> GetAllBankCurrencyByBankAccount(int bankAccountId)
+    public async Task<HashSet<BankCurrency>> GetAllBankCurrencyByBankAccount(int bankAccountId)
     {
-        throw new NotImplementedException();
+        var bankAccount = await _context.BankAccounts
+            .Include(account => account.Currencies)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(account => account.Id == bankAccountId);
+        return bankAccount!.Currencies;
     }
 
     public Task AddBankTransaction(int bankAccountId, BankTransaction bankTransaction)
@@ -88,14 +100,22 @@ public class BankAccountService : IBankService
         throw new NotImplementedException();
     }
 
-    public Task<BankCurrency> GetBankTransaction(int bankCurrencyId)
+    public async Task<BankTransaction> GetBankTransaction(int bankAccountId, int transactionId)
     {
-        throw new NotImplementedException();
+        var bankAccount = await _context.BankAccounts
+            .Include(account => account.BankTransactions)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(account => account.Id == bankAccountId);
+        return bankAccount!.BankTransactions.First(transaction => transaction.Id == transactionId);
     }
 
-    public Task<HashSet<BankCurrency>> GetAllBankTransactionByBankAccount(int bankAccountId)
+    public async Task<HashSet<BankTransaction>> GetAllBankTransactionByBankAccount(int bankAccountId)
     {
-        throw new NotImplementedException();
+        var bankAccount = await _context.BankAccounts
+            .Include(account => account.BankTransactions)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(account => account.Id == bankAccountId);
+        return bankAccount!.BankTransactions;
     }
     
     private BankAccount CreateDefaultBankAccount(int userAccountId)
