@@ -5,8 +5,8 @@ namespace GentlemensClub.Services.Interfaces.Finance.Bank;
 public interface IBankTransactionService
 {
     Task AddBankTransaction(int bankAccountId, BankTransaction bankTransaction);
-    Task RemoveBankTransaction(int bankCurrencyId);
+    Task RemoveBankTransaction(int bankTransactionId);
     Task UpdateBankTransaction(BankTransaction bankTransaction);
-    Task<BankCurrency> GetBankTransaction(int bankCurrencyId);
-    Task<HashSet<BankCurrency>> GetAllBankTransactionByBankAccount(int bankAccountId);
+    Task<BankTransaction> GetBankTransaction(int bankAccountId, int bankTransactionId);
+    Task<HashSet<BankTransaction>> GetAllBankTransactionByBankAccount(int bankAccountId);
 }
