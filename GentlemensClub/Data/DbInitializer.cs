@@ -18,7 +18,7 @@ public class DbInitializer
 
         Account account = new Account
         {
-            Username = "Johnny Test",
+            Username = "test",
             Email = "test@test.hu",
             PasswordHash = "AQAAAAEAACcQAAAAEC6FNjtlFym5GluVkzBpNOhFI4scoKFgSicIRltejVDOfKQLIa0pDgvHHgN1wHi9Uw=="
         };
