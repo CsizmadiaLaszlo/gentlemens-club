@@ -8,5 +8,6 @@ public interface IBankCurrencyService
     Task RemoveBankCurrency(int bankCurrencyId);
     Task UpdateBankCurrency(BankCurrency bankCurrency);
     Task<BankCurrency> GetBankCurrency(int bankCurrencyId);
+    Task<BankCurrency> GetBankCurrency(int bankAccountId, string acronym);
     Task<HashSet<BankCurrency>> GetAllBankCurrencyByBankAccount(int bankAccountId);
 }
