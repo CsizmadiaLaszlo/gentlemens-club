@@ -1,8 +1,9 @@
 ﻿using System.Security.Claims;
-using GentlemensClub.Daos;
-using GentlemensClub.Daos.Implementations;
+using GentlemensClub.Data;
 using GentlemensClub.Models.Account;
+using GentlemensClub.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace GentlemensClub.Services;
 
@@ -11,12 +12,12 @@ namespace GentlemensClub.Services;
 /// </summary>
 public class AccountService : IAccountService
 {
-    public IAccountDao AccountDao { get; set; }
-    public PasswordHasher<Account> PasswordHasher { get; set; }
+    private readonly GentlemensClubContext _context;
+    private PasswordHasher<Account> PasswordHasher { get; }
 
-    public AccountService()
+    public AccountService(GentlemensClubContext context)
     {
-        AccountDao = AccountDaoMemory.GetInstance();
+        _context = context;
         PasswordHasher = new PasswordHasher<Account>();
     }
 
