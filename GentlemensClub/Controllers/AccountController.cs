@@ -29,16 +29,16 @@ namespace GentlemensClub.Controllers
         {
             if (!ModelState.IsValid) return await Task.Run(View);
 
-            if (AccountService.RegistrationIsValid(data))
+            if (await _accountService.RegistrationIsValid(data))
             {
-                AccountService.CreateAccount(data);
+                await _accountService.CreateAccount(data);
 
                 var credential = new LoginCredential()
                 {
                     Username = data.Username,
                     Password = data.Password
                 };
-                var claimsPrincipal = AccountService.CreateClaimsPrincipal(credential);
+                var claimsPrincipal = await _accountService.CreateClaimsPrincipal(credential);
                 await HttpContext.SignInAsync("LoginCookieAuth", claimsPrincipal);
 
                 return Redirect("/");
