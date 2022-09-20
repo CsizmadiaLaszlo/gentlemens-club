@@ -10,7 +10,7 @@ namespace GentlemensClub.Controllers.ApiControllers;
 [Authorize]
 public class BankAccountApiController : ControllerBase
 {
-    public IBankService BankService { get; set; }
+    private IBankService BankService { get; set; }
 
     public BankAccountApiController(IBankService bankService)
     {
