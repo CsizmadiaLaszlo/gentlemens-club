@@ -1,6 +1,6 @@
 ﻿namespace GentlemensClub.Models.Finance.Bank;
 
-public enum TransactionStatus
+public enum BankTransactionStatus
 {
     Approved,
     Declined

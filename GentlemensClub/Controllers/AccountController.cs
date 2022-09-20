@@ -15,10 +15,10 @@ namespace GentlemensClub.Controllers
             AccountService = new AccountService();
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        // public IActionResult Index()
+        // {
+        //     return View();
+        // }
 
         public IActionResult Registration()
         {
