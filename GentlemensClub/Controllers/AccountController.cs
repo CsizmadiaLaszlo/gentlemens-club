@@ -1,6 +1,5 @@
-﻿using System.Security.Claims;
-using GentlemensClub.Models.Account;
-using GentlemensClub.Services;
+﻿using GentlemensClub.Models.Account;
+using GentlemensClub.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,11 +7,11 @@ namespace GentlemensClub.Controllers
 {
     public class AccountController : Controller
     {
-        public AccountService AccountService { get; set; }
+        private readonly IAccountService _accountService;
 
-        public AccountController()
+        public AccountController(IAccountService accountService)
         {
-            AccountService = new AccountService();
+            _accountService = accountService;
         }
 
         // public IActionResult Index()
