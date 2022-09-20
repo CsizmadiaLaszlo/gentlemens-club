@@ -57,9 +57,9 @@ namespace GentlemensClub.Controllers
         {
             if (!ModelState.IsValid) return await Task.Run(View);
 
-            if (AccountService.CredentialIsValid(credential))
+            if (await _accountService.CredentialIsValid(credential))
             {
-                var claimsPrincipal = AccountService.CreateClaimsPrincipal(credential);
+                var claimsPrincipal = await _accountService.CreateClaimsPrincipal(credential);
                 await HttpContext.SignInAsync("LoginCookieAuth", claimsPrincipal);
 
                 return Redirect("/");
