@@ -61,9 +61,9 @@ public class AccountService : IAccountService
         return new ClaimsPrincipal(identity);
     }
 
-    public void CreateAccount(RegistrationData data)
+    public async Task CreateAccount(RegistrationData data)
     {
-        if (!RegistrationIsValid(data))
+        if (await RegistrationIsValid(data) is false)
         {
             throw new ArgumentException("Registration data is invalid.", nameof(data));
         }
@@ -76,7 +76,8 @@ public class AccountService : IAccountService
 
         account.PasswordHash = PasswordHasher.HashPassword(account, data.Password);
 
-        AccountDao.Add(account);
+        await _context.Accounts.AddAsync(account);
+        await _context.SaveChangesAsync();
     }
 
     public bool RegistrationIsValid(RegistrationData data)
