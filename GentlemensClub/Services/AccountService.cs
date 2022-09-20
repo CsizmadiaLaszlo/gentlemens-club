@@ -94,5 +94,8 @@ public class AccountService : IAccountService
         return await _context.Accounts.FirstOrDefaultAsync(a => a.Username == username);
     }
 
+    private async Task<Account?> GetAccountByEmail(string email)
+    {
+        return await _context.Accounts.FirstOrDefaultAsync(a => a.Username == email);
     }
 }
