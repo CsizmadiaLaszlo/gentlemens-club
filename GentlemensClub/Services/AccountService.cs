@@ -80,10 +80,13 @@ public class AccountService : IAccountService
         await _context.SaveChangesAsync();
     }
 
-    public bool RegistrationIsValid(RegistrationData data)
+    public async Task<bool> RegistrationIsValid(RegistrationData data)
     {
         return data.Password == data.ConfirmPassword
-               && AccountDao.GetByUsername(data.Username) is null
-               && AccountDao.GetByEmail(data.Email) is null;
+               // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+               && await GetAccountByUsername(data.Username) is null
+               // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+               && await GetAccountByEmail(data.Email) is null;
+    }
     }
 }
