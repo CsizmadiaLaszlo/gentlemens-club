@@ -78,6 +78,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="src\js" />
+    <Folder Include="src\routes\contact" />
+    <Folder Include="src\routes\finance" />
+    <Folder Include="src\routes\fitness" />
+    <Folder Include="src\routes\healthcare" />
+    <Folder Include="src\routes\membership" />
+    <Folder Include="src\routes\restaurant" />
   </ItemGroup>
 </Project>
