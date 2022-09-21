@@ -4,7 +4,6 @@ export async function getCurrency(acronym) {
 }
 
 export async function getAllCurrency() {
-    console.log("getAllcurrency called")
     return await fetch("api/finance/currencies").then(r => r.json());
 }
 
