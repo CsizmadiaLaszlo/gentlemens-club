@@ -1,5 +1,6 @@
 using GentlemensClub.Models.Account;
 using GentlemensClub.Models.Finance.Bank;
+using GentlemensClub.Models.Restaurant.Table;
 using Microsoft.EntityFrameworkCore;
 
 namespace GentlemensClub.Data;
@@ -10,6 +11,8 @@ public class GentlemensClubContext : DbContext
     public DbSet<BankAccount> BankAccounts { get; set; }
     public DbSet<BankCurrency> BankCurrencies { get; set; }
     public DbSet<BankTransaction> BankTransactions { get; set; }
+    public DbSet<Table> Tables { get; set; }
+    public DbSet<Reservation> Reservations { get; set; }
 
     public GentlemensClubContext(DbContextOptions<GentlemensClubContext> options) : base(options)
     {
