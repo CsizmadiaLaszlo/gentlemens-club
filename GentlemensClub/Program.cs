@@ -1,4 +1,6 @@
 using GentlemensClub.Data;
+using GentlemensClub.Services;
+using GentlemensClub.Services.Interfaces.Finance.Stock;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,7 @@ builder.Services.AddDbContext<GentlemensClubContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("GentlemensClubConnectionString") ??
                          throw new InvalidOperationException("Connection string not found!")));
 
+builder.Services.AddSingleton<IStockApiService>(x => new ApiHandlerStockService(builder.Configuration));
 
 var app = builder.Build();
 
