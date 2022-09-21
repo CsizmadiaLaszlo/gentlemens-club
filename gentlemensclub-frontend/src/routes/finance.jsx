@@ -1,12 +1,13 @@
-﻿import {Footer, Header} from "../components/layout";
+import {Footer} from "../components/layout";
+import {FinanceContainer, FinanceHeader} from "../components/finance/financeComponents";
 
 export default function Finance() {
     return (
         <div>
-            <Header></Header>
+            <FinanceHeader></FinanceHeader>
             <div className={"container"}>
                 <main role={"main"} className={"pb-3"}>
-                    <h1>finance</h1>
+                    <FinanceContainer></FinanceContainer>
                 </main>
             </div>
             <Footer></Footer>

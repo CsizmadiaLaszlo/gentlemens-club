@@ -69,6 +69,25 @@ body {
 }
 
 /*
+Finance.cshtml
+*/
+
+.finance-parent {
+  display: flex;
+}
+
+.finance-menu {
+  margin: 10px;
+}
+
+.finance-container {
+  width: 100%;
+  margin: 5px;
+  padding: 5px;
+  /*border: solid 1px white;*/
+}
+
+/*
 BankAccount.cshtml
 */
 

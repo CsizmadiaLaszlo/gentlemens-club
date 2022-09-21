@@ -12,7 +12,7 @@ import {
     RouterProvider,
 } from "react-router-dom";
 
-// Component import for route pages
+// Component import for main route pages
 import Index from "./routes/index.jsx";
 import Restaurant from "./routes/restaurant";
 import Fitness from "./routes/fitness";
@@ -21,6 +21,9 @@ import Membership from "./routes/membership";
 import Finance from "./routes/finance";
 import Contact from "./routes/contact";
 import Service from "./routes/service";
+
+// Sub-page imports
+import {Accounts} from "./routes/finance/accounts";
 
 const router = createBrowserRouter([
     {
@@ -52,6 +55,12 @@ const router = createBrowserRouter([
         path: "/finance",
         element: <Finance/>,
         errorElement: <ErrorPage/>,
+        children: [
+            {
+                path: "account",
+                element: <Accounts />
+            },
+        ],
     },
     {
         path: "/contact",
