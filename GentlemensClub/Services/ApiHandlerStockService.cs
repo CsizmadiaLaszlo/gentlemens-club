@@ -56,4 +56,13 @@ public class ApiHandlerStockService : IStockApiService
         var todayInfo = stockInfo.Select(x => x);
         return todayInfo;
     }
+
+    public async Task<IEnumerable> WeeklyStatistics(string? symbol)
+    {
+        var stockInfo =
+            (await GetDataByUrl<WeeklyStatistics>(
+                $"https://api.stockdata.org/v1/data/intraday?symbols={symbol}&api_token={_apiKey}")).Data;
+        var weeklyInfo = stockInfo.Select(x => x);
+        return weeklyInfo;
+    }
 }
