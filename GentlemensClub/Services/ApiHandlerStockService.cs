@@ -40,4 +40,11 @@ public class ApiHandlerStockService : IStockApiService
         throw new NotImplementedException();
     }
 
+    public async Task<IEnumerable> Stock(int? page = 1)
+    {
+        var stocks =
+            await GetDataByUrl<Stocks>($"https://api.stockdata.org/v1/entity/search?exchanges=NASDAQ&page={page}&api_token={_apiKey}");
+        var stockList = stocks.Data;
+        return stockList;
+    }
 }
