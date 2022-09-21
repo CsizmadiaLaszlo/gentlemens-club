@@ -2,7 +2,7 @@
 
 namespace GentlemensClub.Daos.Restaurant;
 
-public interface IReservationDao : IDao<ReservationModel>
+public interface IReservationDao : IDao<Reservation>
 {
     
 }

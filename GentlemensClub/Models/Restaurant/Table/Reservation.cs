@@ -1,6 +1,6 @@
-﻿namespace GentlemensClub.Models.Restaurant.Table;
+namespace GentlemensClub.Models.Restaurant.Table;
 
-public class ReservationModel
+public class Reservation
 {
     public int Id { get; set; }
     public DateTime ReservationStartDate { get; set; }

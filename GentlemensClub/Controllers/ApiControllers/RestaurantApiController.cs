@@ -99,7 +99,7 @@ namespace GentlemensClub.Controllers.ApiControllers
         /// <summary>
         /// Return a list of tables and their data. Can filter by minimum amount of seats.
         /// </summary>
-        /// <returns>JSON Serialized TableModel List</returns>
+        /// <returns>JSON Serialized Table List</returns>
         [HttpGet]
         [Route("get-all-tables")]
         public string GetAllTables([FromQuery] int minimumSeats)

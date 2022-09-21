@@ -6,15 +6,15 @@ namespace GentlemensClub.Daos.Implementations.Restaurant;
 public class TableDao : ITableDao
 {
 
-    private List<TableModel> tables;
+    private List<Table> tables;
 
     public TableDao()
     {
-        tables = new List<TableModel>();
+        tables = new List<Table>();
         FillTablesList();
     }
 
-    public void Add(TableModel item)
+    public void Add(Table item)
     {
         throw new NotImplementedException();
     }
@@ -24,25 +24,25 @@ public class TableDao : ITableDao
         throw new NotImplementedException();
     }
 
-    public TableModel? Get(int id)
+    public Table? Get(int id)
     {
-        foreach (TableModel table in tables)
+        foreach (Table table in tables)
         {
             if (table.Id == id) return table;
         }
         return null;
     }
 
-    public IEnumerable<TableModel> GetAll()
+    public IEnumerable<Table> GetAll()
     {
         return tables;
     }
 
-    public Dictionary<int, ReservationModel> GetTableReservations()
+    public Dictionary<int, Reservation> GetTableReservations()
     {
-        var reservations = new Dictionary<int, ReservationModel>();
+        var reservations = new Dictionary<int, Reservation>();
 
-        foreach (TableModel table in tables)
+        foreach (Table table in tables)
         {
             reservations.Add(table.Id, table.Reservation);
         }
@@ -56,8 +56,8 @@ public class TableDao : ITableDao
         Random random = new Random(6969);
         for (int i = 0; i < 25; i++)
         {
-            TableModel newTable = new TableModel();
-            ReservationModel newReservation = new ReservationModel();
+            Table newTable = new Table();
+            Reservation newReservation = new Reservation();
             newTable.Id = i + 1;
             newTable.Description = new string(Enumerable.Repeat(chars, 50)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
