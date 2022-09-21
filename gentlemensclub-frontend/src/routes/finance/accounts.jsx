@@ -1,4 +1,24 @@
-export function Accounts() {
+import {
+    useLoaderData,
+} from "react-router-dom";
+
+import {getAllCurrency} from "../../js/finance/bank/bankApiHandler";
+
+export async function loader() {
+    const currencies = await getAllCurrency();
+    if (!currencies) {
+        throw new Response("", {
+            status: 404,
+            statusText: "Not Found",
+        });
+    }
+    return currencies;
+}
+
+export default function Accounts() {
+    const currencies = useLoaderData();
+    // console.log("test")
+    console.log(currencies)
     return (
         <div className="account-grid-parent">
             <div className="account-grid-left">
