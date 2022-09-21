@@ -84,11 +84,11 @@ export default function Service() {
                                      alt={"A picture about a man, doing finance related work on a notebook, with a bankcard in his hand."}/>
 
                                 <div className="card-body">
-                                    <h5 className="card-title">Bank</h5>
+                                    <h5 className="card-title">Finance</h5>
                                     <p className="card-text">Online banking and investment solutions, private
                                         counseling, for members only.</p>
                                     <div className="text-center">
-                                        <Link className={"btn btn-dark"} to={"/bank"}>Go to Bank</Link>
+                                        <Link className={"btn btn-dark"} to={"/finance"}>Go to Finance</Link>
                                     </div>
                                 </div>
                             </div>

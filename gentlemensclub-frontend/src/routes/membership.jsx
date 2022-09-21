@@ -4,7 +4,11 @@ export default function Membership() {
     return (
         <div>
             <Header></Header>
-            <h1>membership</h1>
+            <div className={"container"}>
+                <main role={"main"} className={"pb-3"}>
+                    <h1>membership</h1>
+                </main>
+            </div>
             <Footer></Footer>
         </div>
     );
