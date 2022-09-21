@@ -5,80 +5,59 @@ using GentlemensClub.Models.TodayStatistic;
 using GentlemensClub.Models.WeeklyStatistics;
 using GentlemensClub.Models.YearlyStatistics;
 using GentlemensClub.Services;
+using GentlemensClub.Services.Interfaces.Finance.Stock;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GentlemensClub.Controllers.Finance;
 
+[ApiController]
 [Route("finance")]
 public class StockController : Controller
 {
-    private readonly string _apiKey;
-
-    private readonly IConfiguration _configuration;
-
     private readonly ILogger<HomeController> _logger;
 
-    public ApiHandlerService ApiHandler { get; set; }
+    public IStockApiService ApiHandler { get; set; }
 
-    public StockController(ILogger<HomeController> logger, IConfiguration configuration)
+    public StockController(ILogger<HomeController> logger, IStockApiService stockApi)
     {
-        _configuration = configuration;
         _logger = logger;
-        _apiKey = _configuration.GetValue<string>("ApiKey");
-        ApiHandler = new ApiHandlerService();
+        ApiHandler = stockApi;
     }
 
-    public async Task<int> MaxPage()
-    {
-        var endpoints = (await ApiHandler.GetDataByUrl<Stocks>($"https://api.stockdata.org/v1/entity/search?exchanges=NASDAQ&api_token={_apiKey}")).Meta;
-        var maxPage = endpoints.Found / endpoints.Limit + 1;
-        return maxPage;
-    }
-
+    [HttpGet]
     [Route("stock")]
-    public async Task<IActionResult> Stock(int page = 1)
+    public async Task<IActionResult> Stock([FromQuery] int? page)
     {
-        var stocks =
-            await ApiHandler.GetDataByUrl<Stocks>($"https://api.stockdata.org/v1/entity/search?exchanges=NASDAQ&page={page}&api_token={_apiKey}");
-        var stockList = stocks.Data;
-        ViewBag.StockList = stockList;
-        ViewBag.Page = page;
-        ViewBag.MaxPage = await MaxPage();
-        return View("~/Views/Finance/Stock.cshtml");
+        return Ok(await ApiHandler.Stock(page));
     }
 
+    [HttpGet]
     [Route("selected-stock")]
-    public async Task<IActionResult> StockInfo(string? symbol)
+    public async Task<IActionResult> StockInfo([FromQuery] string? symbol)
     {
-        var stockInfo =
-            (await ApiHandler.GetDataByUrl<TodayStatistic>(
-                $"https://api.stockdata.org/v1/data/quote?symbols={symbol}&api_token={_apiKey}")).Data;
-        var todayInfo = stockInfo.Select(x => x);
-        ViewBag.TodayInfo = todayInfo;
-        return View("~/Views/Finance/StockInformation/SelectedStock.cshtml");
+        return Ok(await ApiHandler.StockInfo(symbol));
     }
 
+    [HttpGet]
     [Route("selected-stock/weekly-statistics")]
-    public async Task<IActionResult> WeeklyStatistics(string? symbol)
+    public async Task<IActionResult> WeeklyStatistics([FromQuery] string? symbol)
     {
-        var stockInfo =
-            (await ApiHandler.GetDataByUrl<WeeklyStatistics>(
-                $"https://api.stockdata.org/v1/data/intraday?symbols={symbol}&api_token={_apiKey}")).Data;
-        var weeklyInfo = stockInfo.Select(x => x);
-        ViewBag.WeeklyInfo = weeklyInfo;
-        return View("~/Views/Finance/StockInformation/WeeklyStatistics.cshtml");
+        return Ok(await ApiHandler.WeeklyStatistics(symbol));
     }
 
+    [HttpGet]
     [Route("selected-stock/yearly-statistics")]
-    public async Task<IActionResult> YearlyStatistics(string? symbol)
+    public async Task<IActionResult> YearlyStatistics([FromQuery] string? symbol)
     {
-        var stockInfo =
-            (await ApiHandler.GetDataByUrl<YearlyStatistics>(
-                $"https://api.stockdata.org/v1/data/eod?symbols={symbol}&api_token={_apiKey}")).Data;
-        var yearlyInfo = stockInfo.Select(x => x);
-        ViewBag.YearlyInfo = yearlyInfo;
-        return View("~/Views/Finance/StockInformation/YearlyStatistics.cshtml");
+        return Ok(await ApiHandler.YearlyStatistics(symbol));
     }
+
+    [HttpGet]
+    [Route("stock/max-page")]
+    public async Task<int> MaxStockPage()
+    {
+        return await ApiHandler.MaxPage();
+    } 
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
