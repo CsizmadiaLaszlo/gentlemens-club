@@ -29,3 +29,25 @@ export function FinanceHeader() {
     )
 }
 
+export function FinanceContainer() {
+    return (
+        <div className="container">
+            <main role="main" className="pb-3">
+                <div className="finance-parent">
+                    <div className="finance-menu">
+                        <div className="btn-group-vertical">
+                            <Link className="btn btn-outline-secondary" to={"/finance/account"}>Accounts</Link>
+                            <Link className="btn btn-outline-secondary" to={"/finance"}>Cards</Link>
+                            <Link className="btn btn-outline-secondary" to={"/finance"}>Stocks</Link>
+                            <Link className="btn btn-outline-secondary" to={"/finance"}>Crypto</Link>
+                            <Link className="btn btn-outline-secondary" to={"/finance"}>Vaults</Link>
+                        </div>
+                    </div>
+                    <div className="finance-container">
+                        <Outlet />
+                    </div>
+                </div>
+            </main>
+        </div>
+    )
+}
