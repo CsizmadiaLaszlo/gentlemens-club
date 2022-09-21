@@ -1,5 +1,4 @@
 import {Footer, Header} from "../components/layout";
-import Healthcare from "./healthcare";
 
 export default function Contact() {
     return (
