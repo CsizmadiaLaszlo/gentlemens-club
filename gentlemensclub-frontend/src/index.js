@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import ErrorPage from "./error-page.jsx";
+// import ErrorPage from "./error-page.jsx";
 
 // React-route-dom imports
 import {
@@ -32,32 +32,32 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <Index/>,
-        errorElement: <ErrorPage/>,
+        // errorElement: <ErrorPage/>,
     },
     {
         path: "/restaurant",
         element: <Restaurant/>,
-        errorElement: <ErrorPage/>,
+        // errorElement: <ErrorPage/>,
     },
     {
         path: "/fitness",
         element: <Fitness/>,
-        errorElement: <ErrorPage/>,
+        // errorElement: <ErrorPage/>,
     },
     {
         path: "/healthcare",
         element: <Healthcare/>,
-        errorElement: <ErrorPage/>,
+        // errorElement: <ErrorPage/>,
     },
     {
         path: "/membership",
         element: <Membership/>,
-        errorElement: <ErrorPage/>,
+        // errorElement: <ErrorPage/>,
     },
     {
         path: "/finance",
         element: <Finance/>,
-        errorElement: <ErrorPage/>,
+        // errorElement: <ErrorPage/>,
         children: [
             {
                 path: "account",
@@ -69,12 +69,12 @@ const router = createBrowserRouter([
     {
         path: "/contact",
         element: <Contact/>,
-        errorElement: <ErrorPage/>,
+        // errorElement: <ErrorPage/>,
     },
     {
         path: "/service",
         element: <Service/>,
-        errorElement: <ErrorPage/>,
+        // errorElement: <ErrorPage/>,
     },
 ]);
 

@@ -5,9 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GentlemensClub.Controllers.ApiControllers;
 
-[Route("api/finance")]
+[Route("api/finance/bank")]
 [ApiController]
-[Authorize]
 public class BankAccountApiController : ControllerBase
 {
     private IBankService BankService { get; set; }
