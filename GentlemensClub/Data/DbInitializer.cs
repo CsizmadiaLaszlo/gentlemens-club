@@ -86,6 +86,11 @@ public class DbInitializer
         };
         context.BankAccounts.Add(bankAccount);
         context.SaveChanges();
+        List<Table> tables = CreateTablesList();
+        context.AddRange(tables);
+        context.SaveChanges();
+    }
+    
     private static List<Table> CreateTablesList()
     {
         List<Table> tables = new();
