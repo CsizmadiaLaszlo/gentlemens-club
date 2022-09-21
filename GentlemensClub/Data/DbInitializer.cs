@@ -97,32 +97,32 @@ public class DbInitializer
         context.SaveChanges();
         
         // Create Tables at Restaurant
-        List<Table> tables = CreateTablesList();
+        List<RestaurantTable> tables = CreateTablesList();
         context.AddRange(tables);
         context.SaveChanges();
     }
     
-    private static List<Table> CreateTablesList()
+    private static List<RestaurantTable> CreateTablesList()
     {
-        List<Table> tables = new();
+        List<RestaurantTable> tables = new();
         
         const string chars = " A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ";
         Random random = new Random(6969);
         for (int i = 0; i < 25; i++)
         {
-            Table newTable = new Table();
+            RestaurantTable newRestaurantTable = new RestaurantTable();
             Reservation newReservation = new Reservation();
-            newTable.Id = i + 1;
-            newTable.Description = new string(Enumerable.Repeat(chars, 50)
+            newRestaurantTable.Id = i + 1;
+            newRestaurantTable.Description = new string(Enumerable.Repeat(chars, 50)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
-            newTable.SeatCount = random.Next(2, 6);
+            newRestaurantTable.SeatCount = random.Next(2, 6);
             if (random.Next(0, 100) > 50)
             {
                 newReservation.Id = random.Next(0, 100);
                 newReservation.ReservationStartDate = DateTime.Now;
-                newTable.Reservation = newReservation;
+                newRestaurantTable.Reservation = newReservation;
             }
-            tables.Add(newTable);
+            tables.Add(newRestaurantTable);
         }
 
         return tables;

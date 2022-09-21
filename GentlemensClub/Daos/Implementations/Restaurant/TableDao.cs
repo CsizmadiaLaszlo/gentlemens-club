@@ -6,15 +6,15 @@ namespace GentlemensClub.Daos.Implementations.Restaurant;
 public class TableDao : ITableDao
 {
 
-    private List<Table> tables;
+    private List<RestaurantTable> tables;
 
     public TableDao()
     {
-        tables = new List<Table>();
         FillTablesList();
+        tables = new List<RestaurantTable>();
     }
 
-    public void Add(Table item)
+    public void Add(RestaurantTable item)
     {
         throw new NotImplementedException();
     }
@@ -24,16 +24,16 @@ public class TableDao : ITableDao
         throw new NotImplementedException();
     }
 
-    public Table? Get(int id)
+    public RestaurantTable? Get(int id)
     {
-        foreach (Table table in tables)
+        foreach (RestaurantTable table in tables)
         {
             if (table.Id == id) return table;
         }
         return null;
     }
 
-    public IEnumerable<Table> GetAll()
+    public IEnumerable<RestaurantTable> GetAll()
     {
         return tables;
     }
@@ -42,7 +42,7 @@ public class TableDao : ITableDao
     {
         var reservations = new Dictionary<int, Reservation>();
 
-        foreach (Table table in tables)
+        foreach (RestaurantTable table in tables)
         {
             reservations.Add(table.Id, table.Reservation);
         }
