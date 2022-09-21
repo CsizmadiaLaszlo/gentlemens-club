@@ -1,4 +1,4 @@
-﻿import {Footer, Header} from "../components/layout";
+import {Footer, Header} from "../components/layout";
 import bank_pic from "../assets/img/home/Bank_vertical.jpg"
 import contact_pic from "../assets/img/home/Contact_vertical.jpg"
 import fitness_pic from "../assets/img/home/Fitness_vertical.jpg"
@@ -21,7 +21,7 @@ export default function Service() {
                         <div className="col">
                             <div className="card bg-black text-light" style={{width: "18rem"}}>
                                 <img className={"card-img-top"} src={food_pic}
-                                     alt={"A picture about a medium steak, sliced into strips."}/>
+                                     alt={"Medium steak, sliced into strips."}/>
                                 <div className="card-body">
                                     <h5 className="card-title">Restaurant</h5>
                                     <p className="card-text">The finest meals in town, only for those gentlemen who
@@ -36,7 +36,7 @@ export default function Service() {
                         <div className="col">
                             <div className="card bg-black text-light" style={{width: "18rem"}}>
                                 <img className={"card-img-top"} src={fitness_pic}
-                                     alt={"A picture about a swimming pool from a wellness centre."}/>
+                                     alt={"Swimming pool from a wellness centre."}/>
                                 <div className="card-body">
                                     <h5 className="card-title">Fitness/Wellness</h5>
                                     <p className="card-text">A fitness centre and a wellness complex for physical
@@ -51,7 +51,7 @@ export default function Service() {
                         <div className="col">
                             <div className="card bg-black text-light" style={{width: "18rem"}}>
                                 <img className={"card-img-top"} src={healthcare_pic}
-                                     alt={"A picture about a doctor, reading some documentation."}/>
+                                     alt={"Doctor, reading some documentation."}/>
                                 <div className="card-body">
                                     <h5 className="card-title">Private healthcare</h5>
                                     <p className="card-text">Exclusive medical screenings and services by the
@@ -66,7 +66,7 @@ export default function Service() {
                         <div className="col">
                             <div className="card bg-black text-light" style={{width: "18rem"}}>
                                 <img className={"card-img-top"} src={membership_pic}
-                                     alt={"A picture about two man, having a handshake with each other."}/>
+                                     alt={"Two man, having a handshake with each other."}/>
                                 <div className="card-body">
                                     <h5 className="card-title">Membership</h5>
                                     <p className="card-text">A 100 years of tradition. A unique place for gentlemen,
@@ -81,14 +81,14 @@ export default function Service() {
                         <div className="col">
                             <div className="card bg-black text-light" style={{width: "18rem"}}>
                                 <img className={"card-img-top"} src={bank_pic}
-                                     alt={"A picture about a man, doing finance related work on a notebook, with a bankcard in his hand."}/>
+                                     alt={"Man, doing finance related work on a notebook, with a bankcard in his hand."}/>
 
                                 <div className="card-body">
                                     <h5 className="card-title">Finance</h5>
                                     <p className="card-text">Online banking and investment solutions, private
                                         counseling, for members only.</p>
                                     <div className="text-center">
-                                        <Link className={"btn btn-dark"} to={"/finance"}>Go to Finance</Link>
+                                        <Link className={"btn btn-dark"} to={"/finance/account"}>Go to Finance</Link>
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@ export default function Service() {
                         <div className="col">
                             <div className="card bg-black text-light" style={{width: "18rem"}}>
                                 <img className={"card-img-top"} src={contact_pic}
-                                     alt={"A picture about the location of the Gentlemen's Club, on a map."}/>
+                                     alt={"The location of the Gentlemen's Club, on a map."}/>
                                 
                                 <div className="card-body">
                                     <h5 className="card-title">Contact</h5>
