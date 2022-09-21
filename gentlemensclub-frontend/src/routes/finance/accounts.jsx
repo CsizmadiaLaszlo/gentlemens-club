@@ -6,12 +6,12 @@ import {getAllCurrency} from "../../js/finance/bank/bankApiHandler";
 
 export async function loader() {
     const currencies = await getAllCurrency();
-    if (!currencies) {
-        throw new Response("", {
-            status: 404,
-            statusText: "Not Found",
-        });
-    }
+    // if (!currencies) {
+    //     throw new Response("", {
+    //         status: 404,
+    //         statusText: "Not Found",
+    //     });
+    // }
     return currencies;
 }
 
@@ -24,22 +24,22 @@ export default function Accounts() {
                     <div className="account-details">
                         <div className="currency-container">
                             <div style={{display: "flex"}}>
-                                <p className="currency-value">N/D</p>
+                                <p className="currency-value">{currencies[0]["Value"]}</p>
                                 <p className="currency-symbol"></p>
                                 <div className="dropdown">
                                     <p className="dropdown-arrow dropdown-toggle" data-bs-toggle="dropdown"
                                        aria-expanded="false" style={{textAlign: "center"}}></p>
                                     <ul className="dropdown-menu" id="dropdown-menu">
                                         <li>
-                                            <p className="dropdown-item" data-acronym="HUF"><span></span> HUF</p>
+                                            <p className="dropdown-item" data-acronym={currencies[0]["Acronym"]}><span></span> {currencies[0]["Acronym"]}</p>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                            <p className="currency-name">N/D</p>
+                            <p className="currency-name">{currencies[0]["Name"]}</p>
                         </div>
                         <div className="flag-container">
-                            <span className="fi fi-xx flag-icon" data-country="xx"></span>
+                            <span className="fi fi-hu flag-icon" data-country="xx"></span>
                         </div>
                         <div className="account-action-container">
                             <div className="btn-group" role="group" aria-label="Basic example">
