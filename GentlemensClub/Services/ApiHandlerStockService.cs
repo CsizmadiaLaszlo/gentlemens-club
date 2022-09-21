@@ -65,4 +65,13 @@ public class ApiHandlerStockService : IStockApiService
         var weeklyInfo = stockInfo.Select(x => x);
         return weeklyInfo;
     }
+
+    public async Task<IEnumerable> YearlyStatistics(string? symbol)
+    {
+        var stockInfo =
+            (await GetDataByUrl<YearlyStatistics>(
+                $"https://api.stockdata.org/v1/data/eod?symbols={symbol}&api_token={_apiKey}")).Data;
+        var yearlyInfo = stockInfo.Select(x => x);
+        return yearlyInfo;
+    }
 }
