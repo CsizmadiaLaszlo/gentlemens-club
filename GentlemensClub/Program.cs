@@ -6,34 +6,50 @@ using GentlemensClub.Services.Interfaces.Finance.Bank;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddAuthentication("LoginCookieAuth").AddCookie("LoginCookieAuth", options =>
-{
-    options.Cookie.Name = "LoginCookieAuth";
-});
-
 builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters()
     {
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration.GetValue<string>("SecretKey"))),
-        ValidateLifetime = true,
-        ValidateAudience = false,
-        ValidateIssuer = false,
-        ClockSkew = TimeSpan.Zero,
-    };
-});
+        options.DefaultAuthenticateScheme = "JWT_OR_COOKIE";
+        options.DefaultChallengeScheme = "JWT_OR_COOKIE";
+        options.DefaultSignInScheme = "JWT_OR_COOKIE";
+    })
+    .AddCookie("LoginCookieAuth", options =>
+    {
+        options.Cookie.Name = "LoginCookieAuth";
+    })
+    .AddJwtBearer("Bearer", options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters()
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey =
+                new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration.GetValue<string>("SecretKey"))),
+            ValidateLifetime = true,
+            ValidateAudience = false,
+            ValidateIssuer = false,
+            ClockSkew = TimeSpan.Zero,
+        };
+    })
+    .AddPolicyScheme("JWT_OR_COOKIE", "JWT_OR_COOKIE", options =>
+    {
+        // Runs on each request
+        options.ForwardDefaultSelector = context =>
+        {
+            // Filter by authentication type
+            string authorization = context.Request.Headers[HeaderNames.Authorization];
+            if (!string.IsNullOrEmpty(authorization) && authorization.StartsWith("Bearer "))
+                return "Bearer";
+
+            // Otherwise always check for cookie auth
+            return "LoginCookieAuth";
+        };
+    });
 
 
 builder.Services.AddDbContext<GentlemensClubContext>(options =>
