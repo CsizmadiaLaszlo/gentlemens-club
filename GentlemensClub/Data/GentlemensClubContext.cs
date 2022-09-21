@@ -27,6 +27,9 @@ public class GentlemensClubContext : DbContext
         modelBuilder.Entity<BankAccount>().ToTable("bank_account");
         modelBuilder.Entity<BankCurrency>().ToTable("bank_currency");
         modelBuilder.Entity<BankTransaction>().ToTable("bank_transaction");
+        // Restaurant
+        modelBuilder.Entity<Table>().ToTable("restaurant_table");
+        modelBuilder.Entity<Reservation>().ToTable("reservation");
         // stb
     }
 }
