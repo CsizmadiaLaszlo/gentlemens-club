@@ -29,7 +29,6 @@ public class BankAccountApiController : ControllerBase
     public string GetAllCurrency()
     {
         var currency = BankService.GetAllBankCurrencyByBankAccount(1);
-        Console.WriteLine("sent GetAllCurrency");
         return JsonSerializer.Serialize(currency.Result.ToList());
     }
     [HttpGet]
