@@ -17,8 +17,6 @@ export async function loader() {
 
 export default function Accounts() {
     const currencies = useLoaderData();
-    // console.log("test")
-    console.log(currencies)
     return (
         <div className="account-grid-parent">
             <div className="account-grid-left">
