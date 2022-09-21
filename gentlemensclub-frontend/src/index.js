@@ -18,7 +18,7 @@ import Restaurant from "./routes/restaurant";
 import Fitness from "./routes/fitness";
 import Healthcare from "./routes/healthcare";
 import Membership from "./routes/membership";
-import Bank from "./routes/bank";
+import Finance from "./routes/finance";
 import Contact from "./routes/contact";
 import Service from "./routes/service";
 
@@ -49,8 +49,8 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage/>,
     },
     {
-        path: "/bank",
-        element: <Bank/>,
+        path: "/finance",
+        element: <Finance/>,
         errorElement: <ErrorPage/>,
     },
     {
