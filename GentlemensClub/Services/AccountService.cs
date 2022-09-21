@@ -44,18 +44,7 @@ public class AccountService : IAccountService
     /// <returns>Created ClaimsPrincipal</returns>
     public async Task<ClaimsPrincipal> CreateClaimsPrincipal(LoginCredential credential)
     {
-        if (await CredentialIsValid(credential) is false)
-        {
-            throw new ArgumentException("Credential contains invalid information.", nameof(credential));
-        }
-
-        var account = await GetAccountByUsername(credential.Username);
-        
-        var claims = new List<Claim>
-        {
-            new Claim(ClaimTypes.Name, account.Username),
-            new Claim(ClaimTypes.Email, account.Email)
-        };
+        var claims = await CreateClaims(credential);
         var identity = new ClaimsIdentity(claims, "LoginCookieAuth");
 
         return new ClaimsPrincipal(identity);
@@ -87,6 +76,24 @@ public class AccountService : IAccountService
                && await GetAccountByUsername(data.Username) is null
                // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
                && await GetAccountByEmail(data.Email) is null;
+    }
+
+    public async Task<IEnumerable<Claim>> CreateClaims(LoginCredential credential)
+    {
+        if (await CredentialIsValid(credential) is false)
+        {
+            throw new ArgumentException("Credential contains invalid information.", nameof(credential));
+        }
+
+        var account = await GetAccountByUsername(credential.Username);
+
+        var claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.Name, account.Username),
+            new Claim(ClaimTypes.Email, account.Email)
+        };
+
+        return claims;
     }
 
     private async Task<Account?> GetAccountByUsername(string username)
