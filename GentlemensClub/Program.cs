@@ -1,8 +1,11 @@
+using System.Text;
 using GentlemensClub.Data;
 using GentlemensClub.Services;
 using GentlemensClub.Services.Interfaces;
 using GentlemensClub.Services.Interfaces.Finance.Bank;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +16,25 @@ builder.Services.AddAuthentication("LoginCookieAuth").AddCookie("LoginCookieAuth
 {
     options.Cookie.Name = "LoginCookieAuth";
 });
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration.GetValue<string>("SecretKey"))),
+        ValidateLifetime = true,
+        ValidateAudience = false,
+        ValidateIssuer = false,
+        ClockSkew = TimeSpan.Zero,
+    };
+});
+
 
 builder.Services.AddDbContext<GentlemensClubContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("GentlemensClubConnectionString") ??
