@@ -1,5 +1,6 @@
 using GentlemensClub.Models.Account;
 using GentlemensClub.Models.Finance.Bank;
+using GentlemensClub.Models.Restaurant.Table;
 
 namespace GentlemensClub.Data;
 
@@ -7,15 +8,22 @@ public class DbInitializer
 {
     public static void Initialize(GentlemensClubContext context)
     {
+        // Create DB if not exist
         context.Database.EnsureCreated();
 
+        // Look for tables, if any, no action
         if (context.Accounts.Any() ||
-            context.BankAccounts.Any() || context.BankCurrencies.Any() || context.BankTransactions.Any()
+            context.BankAccounts.Any() ||
+            context.BankCurrencies.Any() ||
+            context.BankTransactions.Any() ||
+            context.Tables.Any() ||
+            context.Reservations.Any()
            )
         {
             return;
         }
 
+        // Create accounts
         Account account = new Account
         {
             Username = "test",
@@ -26,6 +34,7 @@ public class DbInitializer
         var accountEntity = context.Accounts.Add(account);
         context.SaveChanges();
 
+        // Create BankAccount
         var bankAccount = new BankAccount()
         {
             AccountId = accountEntity.Entity.Id,
@@ -86,6 +95,8 @@ public class DbInitializer
         };
         context.BankAccounts.Add(bankAccount);
         context.SaveChanges();
+        
+        // Create Tables at Restaurant
         List<Table> tables = CreateTablesList();
         context.AddRange(tables);
         context.SaveChanges();
