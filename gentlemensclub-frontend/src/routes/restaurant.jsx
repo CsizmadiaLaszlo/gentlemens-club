@@ -1,4 +1,4 @@
-﻿import {Footer, Header} from "../components/layout";
+import {Footer, Header} from "../components/layout";
 
 export default function Restaurant() {
     return (
