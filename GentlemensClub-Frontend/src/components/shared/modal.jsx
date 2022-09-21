@@ -15,7 +15,7 @@ export function Modal(props) {
                     {props.body}
                 </div>
                 <div className="modal-footer">
-                    <button className="button" onClick={props.onClose}>Close</button>
+                    <button className="button btn btn-dark" onClick={props.onClose}>Close</button>
                 </div>
             </div>
         </div>
