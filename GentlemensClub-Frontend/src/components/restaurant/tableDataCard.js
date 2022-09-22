@@ -1,6 +1,6 @@
 const TableDataCard = () => {
     return (
-        <div id="tableDataContainer" class="w-25"></div>
+        <div id="tableDataContainer" className="w-25"></div>
     )
 }
 
