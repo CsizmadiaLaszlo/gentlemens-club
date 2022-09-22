@@ -38,4 +38,22 @@ export default class Stock extends Component {
         this.setState({ stocks: stocks, maxPage: maxPage.maxPage, loading: false });
     }
 
+    static szanilPagination(page, maxPage, element) {
+        return (
+            <div>
+                <div className="pag d-flex flex-wrap justify-content-center">
+                    {page > 1
+                        ? (<a className="btn btn-dark border-light" onClick={() => element.handleClick(page - 1)}>Previous</a>)
+                        : (<a className="btn btn-dark border-light disabled" onClick={() => element.handleClick(
+                            page - 1)}>Previous</a>)}
+                    <a className="btn btn-dark border-light">{page}</a>
+                    {maxPage > page
+                        ? (<a className="btn btn-dark border-light" onClick={() => element.handleClick(page + 1)}>Next</a>)
+                        : (<a className="btn btn-dark border-light disabled" onClick={() => element.handleClick(
+                            page + 1)}>Next</a>)}
+                </div>
+            </div>
+        );
+    }
+
 }
