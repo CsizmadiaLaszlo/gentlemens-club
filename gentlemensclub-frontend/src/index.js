@@ -79,7 +79,7 @@ const router = createBrowserRouter([
     {
         path: "/restaurant/table",
         element: <Restaurant />,
-        errorElement: <ErrorPage />,
+        // errorElement: <ErrorPage />,
     }
 ]);
 
