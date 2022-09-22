@@ -24,4 +24,18 @@ export default class Stock extends Component {
         this.stocksLoader();
     }
 
+
+    async stocksLoader() {
+        const stocks = await getStocks(this.state.page);
+        const maxPage = await getMaxPage();
+        if (!stocks || !maxPage) {
+            throw new Response("",
+                {
+                    status: 404,
+                    statusText: "Not Found",
+                });
+        }
+        this.setState({ stocks: stocks, maxPage: maxPage.maxPage, loading: false });
+    }
+
 }
