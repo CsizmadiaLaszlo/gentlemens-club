@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace GentlemensClub.Controllers.Finance;
 
 [ApiController]
-[Route("finance")]
 [Route("api/finance/stock")]
 public class StockController : Controller
 {
@@ -26,7 +25,6 @@ public class StockController : Controller
     }
 
     [HttpGet]
-    [Route("stock")]
     public async Task<IActionResult> Stock([FromQuery] int? page)
     {
         return Ok(await ApiHandler.Stock(page));
@@ -54,8 +52,6 @@ public class StockController : Controller
     }
 
     [HttpGet]
-    [Route("stock/max-page")]
-    public async Task<int> MaxStockPage()
     {
         return await ApiHandler.MaxPage();
     } 
