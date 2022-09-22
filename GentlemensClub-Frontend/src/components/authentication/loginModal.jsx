@@ -24,6 +24,6 @@ export function LoginModal(props) {
     );
 
     return (
-        <Modal show={props.show} title="Login" body={modalBody} />
+        <Modal show={props.show} onClose={props.onClose} title="Login" body={modalBody} />
     );
 }
