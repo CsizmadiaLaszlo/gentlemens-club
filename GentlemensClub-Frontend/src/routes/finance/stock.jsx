@@ -75,7 +75,7 @@ export default class Stock extends Component {
                     {stocks.map(stock => {
                         return (
                             <div key={stock.symbol} className="stock card bg-dark text-white border-light">
-                                <div><Link to={`/finance/selected-stock/${stock.symbol}`}>{stock.name}</Link></div>
+                                <div><Link to={`/finance/selected-stock?symbol=${stock.symbol}`}>{stock.name}</Link></div>
                                 <div>{stock.symbol}</div>
                             </div>
                         );
