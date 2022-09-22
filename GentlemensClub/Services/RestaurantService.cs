@@ -38,4 +38,17 @@ public class RestaurantService : IRestaurantService
             Include(t => t.Reservation).
             FirstOrDefaultAsync(t => t.Id == id);
     }
+
+    /// <summary>
+    /// Gets all RestaurantTables from DB
+    /// </summary>
+    /// <returns>List of RestaurantTable objects with corresponding Reservations</returns>
+    public async Task<IEnumerable<RestaurantTable>> GetAllTables()
+    {
+        return await _context.
+            RestaurantTables.
+            Include(t => t.Reservation).
+            ToListAsync();
+    }
+
 }
