@@ -19,4 +19,11 @@ public class RestaurantService : IRestaurantService
     {
         throw new NotImplementedException();
     }
+
+    // TODO define docstring
+    public async Task Remove(int id)
+    {
+        throw new NotImplementedException();
+    }
+
 }
