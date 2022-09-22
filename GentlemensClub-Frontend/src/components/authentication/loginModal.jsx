@@ -40,7 +40,7 @@ class LoginForm extends React.Component {
         this.setState({error: null});
         const username = this.state.username;
         const password = this.state.password;
-        
+
         const response = await this.requestJwtToken(username, password)
         if (response.status === 401) {
             this.setState({error: "The username or password is incorrect. Try again!"});
@@ -50,14 +50,14 @@ class LoginForm extends React.Component {
             this.setState({error: "Something went wrong..."});
             return;
         }
-
-        this.props.onSuccess();
         const data = await response.json();
         const token = data.access_token;
         const expiresAt = data.expires_at;
 
         localStorage.setItem("jwt", token);
         localStorage.setItem("jwtExpiresAt", new Date(expiresAt).toUTCString());
+
+        this.props.onSuccess();
     }
 
     async requestJwtToken(username, password) {
