@@ -3,3 +3,8 @@ export async function getStocks(page = 1) {
     return await fetch(url).then(r => r.json());
 }
 
+export async function getSelectedStock(symbol) {
+    const url = `/api/finance/selected-stock?symbol=${symbol}`;
+    return await fetch(url).then(r => r.json());
+}
+
