@@ -23,4 +23,16 @@ export default class SelectedStock extends Component {
     }
 
 
+    async stocksLoader(symbol) {
+        const stock = await getSelectedStock(symbol);
+        if (!stock) {
+            throw new Response("",
+                {
+                    status: 404,
+                    statusText: "Not Found",
+                });
+        }
+        this.setState({ stock: stock, loading: false });
+    }
+
 }
