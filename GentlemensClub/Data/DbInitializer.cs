@@ -112,13 +112,11 @@ public class DbInitializer
         {
             RestaurantTable newRestaurantTable = new RestaurantTable();
             Reservation newReservation = new Reservation();
-            newRestaurantTable.Id = i + 1;
             newRestaurantTable.Description = new string(Enumerable.Repeat(chars, 50)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
             newRestaurantTable.SeatCount = random.Next(2, 6);
             if (random.Next(0, 100) > 50)
             {
-                newReservation.Id = random.Next(0, 100);
                 newReservation.ReservationStartDate = DateTime.UtcNow;
                 newRestaurantTable.Reservation = newReservation;
             }
