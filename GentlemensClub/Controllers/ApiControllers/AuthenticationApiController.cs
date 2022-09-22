@@ -28,10 +28,7 @@ namespace GentlemensClub.Controllers.ApiControllers
             if (await _accountService.CredentialIsValid(credential))
             {
                 // Creating the security context
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, "test"),
-                };
+                var claims = await _accountService.CreateClaims(credential);
 
                 var expiresAt = DateTime.UtcNow.AddMinutes(10);
                 return Ok(new
@@ -43,6 +40,31 @@ namespace GentlemensClub.Controllers.ApiControllers
 
             ModelState.AddModelError("Unauthorized", "You are not authorized to access the endpoint.");
             return Unauthorized(ModelState);
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegistrationData data)
+        {
+            if (await _accountService.RegistrationIsValid(data))
+            {
+                await _accountService.CreateAccount(data);
+
+                var credential = new LoginCredential()
+                {
+                    Username = data.Username,
+                    Password = data.Password
+                };
+                var claims = await _accountService.CreateClaims(credential);
+
+                var expiresAt = DateTime.UtcNow.AddMinutes(10);
+                return Ok(new
+                {
+                    access_token = CreateToken(claims, expiresAt),
+                    expires_at = expiresAt,
+                });
+            }
+
+            return Conflict();
         }
 
         private string CreateToken(IEnumerable<Claim> claims, DateTime expiresAt)

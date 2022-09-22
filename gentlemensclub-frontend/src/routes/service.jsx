@@ -88,7 +88,7 @@ export default function Service() {
                                     <p className="card-text">Online banking and investment solutions, private
                                         counseling, for members only.</p>
                                     <div className="text-center">
-                                        <Link className={"btn btn-dark"} to={"/finance/account"}>Go to Finance</Link>
+                                        <Link className={"btn btn-dark"} to={"/finance"}>Go to Finance</Link>
                                     </div>
                                 </div>
                             </div>
