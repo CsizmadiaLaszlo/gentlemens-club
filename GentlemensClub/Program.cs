@@ -3,6 +3,7 @@ using GentlemensClub.Data;
 using GentlemensClub.Services;
 using GentlemensClub.Services.Interfaces;
 using GentlemensClub.Services.Interfaces.Finance.Bank;
+using GentlemensClub.Services.Interfaces.Restaurant.Table;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -57,6 +58,7 @@ builder.Services.AddDbContext<GentlemensClubContext>(options =>
                          throw new InvalidOperationException("Connection string not found!")));
 builder.Services.AddScoped<IBankService, BankService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IRestaurantService, RestaurantService>();
 
 
 var app = builder.Build();

@@ -1,5 +1,6 @@
 using GentlemensClub.Models.Account;
 using GentlemensClub.Models.Finance.Bank;
+using GentlemensClub.Models.Restaurant.Table;
 
 namespace GentlemensClub.Data;
 
@@ -7,15 +8,22 @@ public class DbInitializer
 {
     public static void Initialize(GentlemensClubContext context)
     {
+        // Create DB if not exist
         context.Database.EnsureCreated();
 
+        // Look for tables, if any, no action
         if (context.Accounts.Any() ||
-            context.BankAccounts.Any() || context.BankCurrencies.Any() || context.BankTransactions.Any()
+            context.BankAccounts.Any() ||
+            context.BankCurrencies.Any() ||
+            context.BankTransactions.Any() ||
+            context.RestaurantTables.Any() ||
+            context.Reservations.Any()
            )
         {
             return;
         }
 
+        // Create accounts
         Account account = new Account
         {
             Username = "test",
@@ -26,6 +34,7 @@ public class DbInitializer
         var accountEntity = context.Accounts.Add(account);
         context.SaveChanges();
 
+        // Create BankAccount
         var bankAccount = new BankAccount()
         {
             AccountId = accountEntity.Entity.Id,
@@ -86,5 +95,34 @@ public class DbInitializer
         };
         context.BankAccounts.Add(bankAccount);
         context.SaveChanges();
+        
+        // Create Tables at Restaurant
+        List<RestaurantTable> tables = CreateTablesList();
+        context.AddRange(tables);
+        context.SaveChanges();
+    }
+    
+    private static List<RestaurantTable> CreateTablesList()
+    {
+        List<RestaurantTable> tables = new();
+        
+        const string chars = " A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ";
+        Random random = new Random(6969);
+        for (int i = 0; i < 25; i++)
+        {
+            RestaurantTable newRestaurantTable = new RestaurantTable();
+            Reservation newReservation = new Reservation();
+            newRestaurantTable.Description = new string(Enumerable.Repeat(chars, 50)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+            newRestaurantTable.SeatCount = random.Next(2, 6);
+            if (random.Next(0, 100) > 50)
+            {
+                newReservation.ReservationStartDate = DateTime.UtcNow;
+                newRestaurantTable.Reservation = newReservation;
+            }
+            tables.Add(newRestaurantTable);
+        }
+
+        return tables;
     }
 }

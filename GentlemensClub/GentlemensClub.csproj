@@ -8,9 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Folder Include="Daos\Implementations" />
       <Folder Include="Daos\Implementations\" />
-      <Folder Include="Daos\Implementations\Restaurant\" />
-      <Folder Include="Daos\Restaurant\" />
       <Folder Include="Services\" />
       <Compile Remove="ApiHandler\**" />
       <Content Remove="ApiHandler\**" />
