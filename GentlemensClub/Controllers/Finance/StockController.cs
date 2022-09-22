@@ -52,8 +52,10 @@ public class StockController : Controller
     }
 
     [HttpGet]
+    [Route("max-page")]
+    public async Task<IActionResult> MaxStockPage()
     {
-        return await ApiHandler.MaxPage();
+        return Ok(await ApiHandler.MaxPage());
     } 
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
