@@ -3,6 +3,7 @@ import logo from '../assets/img/shared/GC_logo.jpg';
 import {
     Link,
 } from "react-router-dom";
+import { LoginStatus } from '../components/authentication/loginStatus.jsx';
 
 export function Header() {
     return (
@@ -35,6 +36,7 @@ export function Header() {
                                 <Link className={"nav-link text-light"} to={'/contact'}>Contact</Link>
                             </li>
                         </ul>
+                        <LoginStatus />
                     </div>
                 </div>
             </nav>

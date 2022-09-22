@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace GentlemensClub.Models.Finance.Bank;
 
@@ -11,6 +12,6 @@ public class BankTransaction
     public string CurrencyAcronym { get; set; }
     public double Value { get; set; }
     public DateTime Date { get; set; }
-    
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public BankTransactionStatus Type { get; set; }
 }

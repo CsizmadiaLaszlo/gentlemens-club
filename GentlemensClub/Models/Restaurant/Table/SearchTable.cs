@@ -1,6 +1,6 @@
 ﻿namespace GentlemensClub.Models.Restaurant.Table;
 
-public class SearchTableModel
+public class SearchTable
 {
     public int MinimumSeatCount { get; set; } = 0;
 }

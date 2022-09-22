@@ -1,18 +1,21 @@
 ﻿using System.Text.Json;
-using GentlemensClub.Daos.Implementations.Restaurant;
 using GentlemensClub.Models.Restaurant.Menu;
 using GentlemensClub.Models.Restaurant.Table;
+using GentlemensClub.Services.Interfaces.Restaurant.Table;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace GentlemensClub.Controllers.ApiControllers
 {
-    [Route("api/[controller]")]
+    [Route("api/restaurant")]
     [ApiController]
     public class RestaurantApiController : ControllerBase
     {
+        private readonly IRestaurantService _restaurantService;
 
-        private TableDao _tableDaos = new TableDao();
+        public RestaurantApiController(IRestaurantService restaurantService)
+        {
+            _restaurantService = restaurantService;
+        }
 
         [HttpGet]
         [Route("get-filters")]
@@ -99,12 +102,13 @@ namespace GentlemensClub.Controllers.ApiControllers
         /// <summary>
         /// Return a list of tables and their data. Can filter by minimum amount of seats.
         /// </summary>
-        /// <returns>JSON Serialized TableModel List</returns>
+        /// <returns>JSON Serialized RestaurantTable List</returns>
         [HttpGet]
         [Route("get-all-tables")]
-        public string GetAllTables([FromQuery] int minimumSeats)
+        // TODO implement minimumSeats functionality
+        public async Task<IEnumerable<RestaurantTable>> GetAllTables([FromQuery] int minimumSeats)
         {
-            return JsonSerializer.Serialize(_tableDaos.GetAll());
+            return await _restaurantService.GetAllTables();
         }
 
         /// <summary>
@@ -114,16 +118,16 @@ namespace GentlemensClub.Controllers.ApiControllers
         /// <returns></returns>
         [HttpGet]
         [Route("get-table-data")]
-        public string GetTableData([FromQuery] int tableId)
+        public async Task<RestaurantTable?> GetTableData([FromQuery] int tableId)
         {
-            return JsonSerializer.Serialize(_tableDaos.Get(tableId));
+            return await _restaurantService.GetTableData(tableId);
         }
 
         [HttpGet]
         [Route("get-table-reservations")]
-        public string GetTableReservations()
+        public async Task<Dictionary<int, Reservation?>> GetTableReservations()
         {
-            return JsonSerializer.Serialize(_tableDaos.GetTableReservations());
+            return await _restaurantService.GetTableReservations();
         }
 
     }
