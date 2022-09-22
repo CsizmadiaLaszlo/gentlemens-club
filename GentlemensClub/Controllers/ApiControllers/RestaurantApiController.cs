@@ -1,9 +1,8 @@
 ﻿using System.Text.Json;
-using GentlemensClub.Daos.Implementations.Restaurant;
 using GentlemensClub.Models.Restaurant.Menu;
 using GentlemensClub.Models.Restaurant.Table;
+using GentlemensClub.Services.Interfaces.Restaurant.Table;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace GentlemensClub.Controllers.ApiControllers
 {
@@ -11,8 +10,12 @@ namespace GentlemensClub.Controllers.ApiControllers
     [ApiController]
     public class RestaurantApiController : ControllerBase
     {
+        private readonly IRestaurantService _restaurantService;
 
-        private TableDao _tableDaos = new TableDao();
+        public RestaurantApiController(IRestaurantService restaurantService)
+        {
+            _restaurantService = restaurantService;
+        }
 
         [HttpGet]
         [Route("get-filters")]
