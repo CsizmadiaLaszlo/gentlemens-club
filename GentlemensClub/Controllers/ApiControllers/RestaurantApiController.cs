@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GentlemensClub.Controllers.ApiControllers
 {
-    [Route("api/[controller]")]
+    [Route("api/restaurant")]
     [ApiController]
     public class RestaurantApiController : ControllerBase
     {
