@@ -118,9 +118,9 @@ namespace GentlemensClub.Controllers.ApiControllers
         /// <returns></returns>
         [HttpGet]
         [Route("get-table-data")]
-        public string GetTableData([FromQuery] int tableId)
+        public async Task<RestaurantTable?> GetTableData([FromQuery] int tableId)
         {
-            return JsonSerializer.Serialize(_tableDaos.Get(tableId));
+            return await _restaurantService.GetTableData(tableId);
         }
 
         [HttpGet]
