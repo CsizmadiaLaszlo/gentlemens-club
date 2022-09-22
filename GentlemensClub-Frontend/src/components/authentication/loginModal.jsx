@@ -45,13 +45,18 @@ class LoginForm extends React.Component {
         const response = await this.requestJwtToken(username, password)
         if (response.status === 401) {
             this.setState({error: "The username or password is incorrect. Try again!"});
+            return;
         }
         else if (response.status !== 200) {
             this.setState({error: "Something went wrong..."});
-        } else {
-            this.props.onSuccess();
+            return;
         }
-        console.log(response);
+
+        this.props.onSuccess();
+        const data = await response.json();
+        const token = data.access_token;
+
+        console.log(token);
     }
 
     async requestJwtToken(username, password) {
