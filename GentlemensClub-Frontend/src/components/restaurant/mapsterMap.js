@@ -2,8 +2,8 @@ import topview from '../../images/top-view-small.png';
 
 const MapsterMap = () => {
     return (
-        <div class="d-flex">
-            <img id="mapsterimage" src={topview} usemap="#testmap" />
+        <div className="d-flex">
+            <img id="mapsterimage" src={topview} useMap="#testmap" />
 
             <map id="testmap" name="testmap">
                 <area id="table-1" shape="rect" alt="" title="" coords="109,237,183,322" href="#" target="" />
