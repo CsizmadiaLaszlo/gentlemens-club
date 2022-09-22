@@ -15,4 +15,12 @@ export default class SelectedStock extends Component {
         };
     }
 
+    componentDidMount() {
+        const queryParams = new URLSearchParams(window.location.search);
+        const symbol = queryParams.get('symbol');
+        this.setState({ symbol: symbol });
+        this.stocksLoader(symbol);
+    }
+
+
 }
