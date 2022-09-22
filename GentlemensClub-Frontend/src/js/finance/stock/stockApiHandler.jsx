@@ -4,17 +4,17 @@ export async function getStocks(page = 1) {
 }
 
 export async function getSelectedStock(symbol) {
-    const url = `/api/finance/selected-stock?symbol=${symbol}`;
+    const url = `/api/finance/stock/selected-stock?symbol=${symbol}`;
     return await fetch(url).then(r => r.json());
 }
 
 export async function getYearlyStock(symbol) {
-    const url = `/api/finance/selected-stock/yearly-statistics?symbol=${symbol}`;
+    const url = `/api/finance/stock/selected-stock/yearly-statistics?symbol=${symbol}`;
     return await fetch(url).then(r => r.json());
 }
 
 export async function getWeeklyStock(symbol) {
-    const url = `/api/finance/selected-stock/weekly-statistics?symbol=${symbol}`;
+    const url = `/api/finance/stock/selected-stock/weekly-statistics?symbol=${symbol}`;
     return await fetch(url).then(r => r.json());
 }
 
