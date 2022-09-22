@@ -90,7 +90,8 @@ public class AccountService : IAccountService
         var claims = new List<Claim>
         {
             new Claim(ClaimTypes.Name, account.Username),
-            new Claim(ClaimTypes.Email, account.Email)
+            new Claim(ClaimTypes.Email, account.Email),
+            new Claim("UserId", account.Id.ToString()),
         };
 
         return claims;
