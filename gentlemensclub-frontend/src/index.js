@@ -27,6 +27,8 @@ import Accounts, {
     loader as accountLoader,
 } from "./routes/finance/accounts";
 
+import Stock from "./routes/finance/stock";
+
 
 const router = createBrowserRouter([
     {
@@ -63,6 +65,10 @@ const router = createBrowserRouter([
                 path: "account",
                 loader: accountLoader,
                 element: <Accounts />
+            },
+            {
+                path: "stock",
+                element: <Stock/>
             },
         ],
     },
