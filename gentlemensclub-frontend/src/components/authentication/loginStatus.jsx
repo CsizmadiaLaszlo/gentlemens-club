@@ -6,8 +6,8 @@ export function LoginStatus() {
     return (
         <ul className={"navbar-nav flex-grow-1"}>
             <li className={"nav-item"}>
-                <button className={"btn btn-link nav-link text-light"} onClick={() => setShowLogin(true)}>Login</button>
-                <LoginModal show={showLogin} />
+                <button className={"btn btn-link nav-link text-light"} onClick={() => {if (showLogin === false) {setShowLogin(true)}}}>Login</button>
+                <LoginModal show={showLogin} onClose={() => setShowLogin(false)} />
             </li>
             <li className={"nav-item"}>
                 <button className={"btn btn-link nav-link text-light"}>Register</button>
