@@ -28,6 +28,7 @@ import Accounts, {
 } from "./routes/finance/accounts";
 
 import Stock from "./routes/finance/stock";
+import SelectedStock from "./routes/finance/selectedStock";
 
 
 const router = createBrowserRouter([
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
             {
                 path: "stock",
                 element: <Stock/>
+            },
+            {
+                path: "selected-stock",
+                element: <SelectedStock />
             },
         ],
     },
