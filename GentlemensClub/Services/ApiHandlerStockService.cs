@@ -75,10 +75,12 @@ public class ApiHandlerStockService : IStockApiService
         return yearlyInfo;
     }
 
-    public async Task<int> MaxPage()
+    public async Task<IEnumerable> MaxPage()
     {
         var endpoints = (await GetDataByUrl<Stocks>($"https://api.stockdata.org/v1/entity/search?exchanges=NASDAQ&api_token={_apiKey}")).Meta;
         var maxPage = endpoints.Found / endpoints.Limit + 1;
-        return maxPage;
+        Dictionary<string, int> maxPageList = new Dictionary<string, int>();
+        maxPageList.Add("maxPage", maxPage);
+        return maxPageList;
     }
 }
