@@ -125,9 +125,9 @@ namespace GentlemensClub.Controllers.ApiControllers
 
         [HttpGet]
         [Route("get-table-reservations")]
-        public string GetTableReservations()
+        public async Task<Dictionary<int, Reservation?>> GetTableReservations()
         {
-            return JsonSerializer.Serialize(_tableDaos.GetTableReservations());
+            return await _restaurantService.GetTableReservations();
         }
 
     }
