@@ -23,9 +23,7 @@ import Contact from "./routes/contact";
 import Service from "./routes/service";
 
 // Sub-page imports
-import Accounts, {
-    loader as accountLoader,
-} from "./routes/finance/accounts";
+import Accounts from "./routes/finance/accounts";
 
 
 const router = createBrowserRouter([
@@ -61,7 +59,6 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "account",
-                loader: accountLoader,
                 element: <Accounts />
             },
         ],
