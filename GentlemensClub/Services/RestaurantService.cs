@@ -13,4 +13,10 @@ public class RestaurantService : IRestaurantService
     {
         _context = context;
     }
+    
+    // TODO define docstring
+    public async Task Add(RestaurantTable table)
+    {
+        throw new NotImplementedException();
+    }
 }
