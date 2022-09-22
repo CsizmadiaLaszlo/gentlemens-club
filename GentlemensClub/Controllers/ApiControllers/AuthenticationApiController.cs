@@ -64,7 +64,7 @@ namespace GentlemensClub.Controllers.ApiControllers
                 });
             }
 
-            return BadRequest();
+            return Conflict();
         }
 
         private string CreateToken(IEnumerable<Claim> claims, DateTime expiresAt)
