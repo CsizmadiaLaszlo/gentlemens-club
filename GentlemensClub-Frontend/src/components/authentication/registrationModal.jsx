@@ -47,8 +47,6 @@ export class RegistrationForm extends React.Component {
             "confirmPassword": confirmPassword
         };
 
-        console.log(credentials);
-
         const options = {
             method: "POST",
             headers: {
