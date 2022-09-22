@@ -18,3 +18,6 @@ export async function getWeeklyStock(symbol) {
     return await fetch(url).then(r => r.json());
 }
 
+export async function getMaxPage() {
+    return await fetch("/api/finance/stock/max-page").then(r => r.json());
+}
