@@ -4,7 +4,7 @@ import { Modal } from "../shared/modal.jsx";
 
 export function RegistrationModal(props) {
     const modalBody = (
-        <RegistrationForm onSuccess={props.onSuccess}/>
+        <RegistrationForm onSuccess={props.onSuccess} />
     );
 
     return (
@@ -31,9 +31,9 @@ export class RegistrationForm extends React.Component {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-    
+
         this.setState({
-          [name]: value
+            [name]: value
         });
     }
 
@@ -64,7 +64,7 @@ export class RegistrationForm extends React.Component {
 
     async handleSubmit(event) {
         event.preventDefault();
-        this.setState({error: null});
+        this.setState({ error: null });
         const username = this.state.username;
         const password = this.state.password;
         const email = this.state.email;
@@ -72,17 +72,17 @@ export class RegistrationForm extends React.Component {
 
         if (password !== confirmPassword) {
             const error = "Password confirmation doesn't match Password."
-            this.setState({error});
+            this.setState({ error });
             return;
         }
 
         const response = await this.requestAccountRegistration(username, email, password, confirmPassword);
         if (response.status === 409) {
-            this.setState({error: "This username or e-mail address is already taken."});
+            this.setState({ error: "This username or e-mail address is already taken." });
             return;
         }
         else if (response.status !== 200) {
-            this.setState({error: "Something went wrong..."});
+            this.setState({ error: "Something went wrong..." });
             return;
         }
         const data = await response.json();
@@ -95,33 +95,28 @@ export class RegistrationForm extends React.Component {
         this.props.onSuccess();
     }
 
-    render () {
+    render() {
         return (
             <form onSubmit={async (event) => { await this.handleSubmit(event) }}>
                 <div className='text-danger'>{this.state.error !== null && this.state.error}</div>
                 <div className={"mb-3"}>
-                    <label className={"form-label"}>
-                        Username:
-                        <input className={"form-control"} onChange={this.handleInputChange} type="text" name="username" />
-                    </label>
+                    <label className={"form-label"}>Username:</label>
+                    <input className={"form-control"} onChange={this.handleInputChange} type="text" name="username" />
+
                 </div>
                 <div className={"mb-3"}>
-                    <label className={"form-label"}>
-                        E-mail address:
-                        <input className={"form-control"} onChange={this.handleInputChange} type="email" name="email" />
-                    </label>
+                    <label className={"form-label"}>E-mail address:</label>
+                    <input className={"form-control"} onChange={this.handleInputChange} type="email" name="email" />
+
                 </div>
                 <div className={"mb-3"}>
-                    <label className={"form-label"}>
-                        Password:
-                        <input className={"form-control"} onChange={this.handleInputChange} type="password" name="password" />
-                    </label>
+                    <label className={"form-label"}>Password:</label>
+                    <input className={"form-control"} onChange={this.handleInputChange} type="password" name="password" />
+
                 </div>
                 <div className={"mb-3"}>
-                    <label className={"form-label"}>
-                        Confirm Password:
-                        <input className={"form-control"} onChange={this.handleInputChange} type="password" name="confirmPassword" />
-                    </label>
+                    <label className={"form-label"}>Confirm Password:</label>
+                    <input className={"form-control"} onChange={this.handleInputChange} type="password" name="confirmPassword" />
                 </div>
                 <div>
                     <input type="submit" className={"btn btn-dark"} value="Register" />
