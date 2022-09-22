@@ -2,7 +2,7 @@
 
 const context = [
     // "/weatherforecast",
-    "/api/finance/currencies",
+    "/api/finance/bank/currencies",
     "/api/RestaurantApi/get-table-reservations",
 ];
 
