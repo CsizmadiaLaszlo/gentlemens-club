@@ -8,5 +8,5 @@ public interface IStockApiService
     Task<IEnumerable> StockInfo(string? symbol);
     Task<IEnumerable> WeeklyStatistics(string? symbol);
     Task<IEnumerable> YearlyStatistics(string? symbol);
-    Task<int> MaxPage();
+    Task<IEnumerable> MaxPage();
 }
