@@ -105,9 +105,10 @@ namespace GentlemensClub.Controllers.ApiControllers
         /// <returns>JSON Serialized RestaurantTable List</returns>
         [HttpGet]
         [Route("get-all-tables")]
-        public string GetAllTables([FromQuery] int minimumSeats)
+        // TODO implement minimumSeats functionality
+        public async Task<IEnumerable<RestaurantTable>> GetAllTables([FromQuery] int minimumSeats)
         {
-            return JsonSerializer.Serialize(_tableDaos.GetAll());
+            return await _restaurantService.GetAllTables();
         }
 
         /// <summary>
