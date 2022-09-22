@@ -11,7 +11,7 @@ public class GentlemensClubContext : DbContext
     public DbSet<BankAccount> BankAccounts { get; set; }
     public DbSet<BankCurrency> BankCurrencies { get; set; }
     public DbSet<BankTransaction> BankTransactions { get; set; }
-    public DbSet<RestaurantTable> Tables { get; set; }
+    public DbSet<RestaurantTable> RestaurantTables { get; set; }
     public DbSet<Reservation> Reservations { get; set; }
 
     public GentlemensClubContext(DbContextOptions<GentlemensClubContext> options) : base(options)
