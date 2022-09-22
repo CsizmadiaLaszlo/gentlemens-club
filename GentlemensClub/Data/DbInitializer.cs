@@ -119,7 +119,7 @@ public class DbInitializer
             if (random.Next(0, 100) > 50)
             {
                 newReservation.Id = random.Next(0, 100);
-                newReservation.ReservationStartDate = DateTime.Now;
+                newReservation.ReservationStartDate = DateTime.UtcNow;
                 newRestaurantTable.Reservation = newReservation;
             }
             tables.Add(newRestaurantTable);
