@@ -8,3 +8,8 @@ export async function getSelectedStock(symbol) {
     return await fetch(url).then(r => r.json());
 }
 
+export async function getYearlyStock(symbol) {
+    const url = `/api/finance/selected-stock/yearly-statistics?symbol=${symbol}`;
+    return await fetch(url).then(r => r.json());
+}
+
