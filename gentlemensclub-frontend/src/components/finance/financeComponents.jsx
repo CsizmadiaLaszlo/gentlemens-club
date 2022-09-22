@@ -39,6 +39,7 @@ export function FinanceContainer() {
                             <Link className="btn btn-outline-secondary" to={"/finance/account"}>Accounts</Link>
                             <Link className="btn btn-outline-secondary" to={"/finance"}>Cards</Link>
                             <Link className="btn btn-outline-secondary" to={"/finance"}>Stocks</Link>
+                            <Link className="btn btn-outline-secondary" to={"/finance/stock"}>Stocks</Link>
                             <Link className="btn btn-outline-secondary" to={"/finance"}>Crypto</Link>
                             <Link className="btn btn-outline-secondary" to={"/finance"}>Vaults</Link>
                         </div>
