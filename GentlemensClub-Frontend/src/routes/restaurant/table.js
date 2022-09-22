@@ -1,16 +1,47 @@
 import React, { useDebugValue } from 'react';
 import SideCard from '../../components/restaurant/sideCard';
-import TableDataCard from '../../components/restaurant/tableDataCard';
 import MapsterMap from '../../components/restaurant/mapsterMap';
+import { getTableReservations, loadTableData } from '../../js/restaurant/restaurantApiHandler';
+import jQuery from 'jquery';
 
 class RestaurantTable extends React.Component {
+
+  imagemapsterimage = $('#mapsterImage');
+
   state = {
     tableCount: 25,
-    mapsterimage: $("#mapsterImage")
+    mapsterimage: this.imagemapsterimage,
+    reservationData: null,
+    areas: null,
+    loaded: false,
+    tableData: null,
+    clickedTableId: null
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.loadSelectedTableData = this.loadSelectedTableData.bind(this);
+    this.initMapster = this.initMapster.bind(this);
   }
 
   componentDidMount() {
-    this.getTableReservations();
+    getTableReservations().then((reservationData) => {
+      this.addKeysToAreas(reservationData);
+      this.initMapster();
+      this.setState({ loaded: true });
+    });
+  }
+
+  componentDidUpdate() {
+    if (this.state.clickedTableId != null ) {
+      loadTableData(this.state.clickedTableId).then((data) => {
+        this.setState({ tableData: data, clickedTableId: null });
+      });
+    }
+    if (this.state.reservationData != null ) {
+      this.initMapster();
+    }
   }
 
   addKeysToAreas(data) {
@@ -18,104 +49,101 @@ class RestaurantTable extends React.Component {
     var areas = [this.state.tableCount];
 
     document.querySelectorAll("area").forEach(element => {
-        var templateReserved = {
-            key: "reserved",
-            fillColor: "FF0000",
-            fillOpacity: 0.25,
-            selected: true,
-            isDeselectable: false
-        };
-        var templateAvailable = {
-            key: "available",
-            fillColor: "338833",
-            isSelectable: false
-        };
+      var templateReserved = {
+        key: "reserved",
+        fillColor: "FF0000",
+        fillOpacity: 0.25,
+        selected: true,
+        isDeselectable: false
+      };
+      var templateAvailable = {
+        key: "available",
+        fillColor: "338833",
+        isSelectable: false
+      };
 
-        var tableId = element.id.split('-')[1];
-        element.dataset.key = tableId;
-        if (data[tableId] == null) {
-            templateAvailable.key = tableId;
-            areas.push(templateAvailable);
-        } else {
-            templateReserved.key = tableId;
-            areas.push(templateReserved);
-        }
+      var tableId = element.id.split('-')[1];
+      element.dataset.key = tableId;
+      if (data[tableId] == null) {
+        templateAvailable.key = tableId;
+        areas.push(templateAvailable);
+      } else {
+        templateReserved.key = tableId;
+        areas.push(templateReserved);
+      }
     });
 
-    this.initMapster(areas);
+    this.setState({ areas: areas });
 
-}
+  }
 
-initMapster(generatedAreas) {
-  this.state.mapsterimage.mapster({
-        fillColor: "333333",
-        fillOpacity: 0.5,
-        areas: generatedAreas,
-        onClick: function (e) {
-            console.log(69);
-            //loadTableData(this.id);
-        }
+  initMapster() {
+    this.state.mapsterimage.mapster({
+      fillColor: "333333",
+      fillOpacity: 0.5,
+      areas: this.state.areas,
+      onClick: function (event) {
+        console.log(event);
+        //loadTableData(this.id);
+      }
     });
-}
+  }
 
-updateTableInformationModal(tableData) {
-
-    var container = document.getElementById("tableDataContainer");
-
-    container.innerHTML = "";
-
-    var modalHTML = '<div className="card bg-dark text - light border - secondary">' +
-        `<div className="card-header border-secondary">Table ${tableData.Id}'s information</div>` +
-        '<div className="card-body">';
-
-    if (tableData.Reservation == null) {
-        modalHTML += '<h5 className="card-title text-success">This table is available for reservation.</h5>';
-    } else {
-        modalHTML += '<h5 className="card-title text-danger">This table is currently reserved.</h5>';
-    }
-
-    modalHTML += `<p className="card-text">${tableData.Description}</p>` +
-        '<p className="card-text">Maximum reservation time is 24 hours.</p>' +
-        `<p className="card-text">This table has ${tableData.SeatCount} seats</p>`;
-
-    if (tableData.Reservation == null) {
-        modalHTML += `<a href="/Restaurant/Reservation?table=${tableData.Id}" className="btn btn-secondary">Reserve this table</a>`;
-    } else {
-        modalHTML += '<button className="btn btn-secondary" disabled>Reservation not available</button>';
-    }
-
-    modalHTML += "</div></div>";
-
-    container.innerHTML = modalHTML;
-
-}
-
-async loadTableData(tableId) {
-    tableId = tableId.split("-")[1];
-    var apiUrl = `/api/RestaurantApi/get-table-data?tableId=${tableId}`;
-    fetch(apiUrl).then((response) => response.json()).then((data) => {
-        this.updateTableInformationModal(data);
-    });
-}
-
-async getTableReservations() {
-    var apiUrl = '/api/RestaurantApi/get-table-reservations';
-    fetch(apiUrl).then((response) => response.json()).then((data) => {
-        this.addKeysToAreas(data);
-    });
-}
+  loadSelectedTableData(areaId) {
+    this.initMapster();
+    this.setState({clickedTableId:areaId});
+  }
 
   render() {
     return (
       <div className="d-inline-flex justify-content-around">
         <SideCard />
-        <MapsterMap />
-        <TableDataCard />
+        <MapsterMap clickHandler={this.loadSelectedTableData} />
+        <TableDataCard tableData={this.state.tableData} />
       </div>
     );
   }
 }
 
+function TableDataCard(props) {
+  return (
+    <div id="tableDataContainer" className="w-25">
+      { props.tableData == null ?
+        <></>
+        :
+        <RenderTableInformationModal tableData={props.tableData}></RenderTableInformationModal>
+      }
+    </div>
+  )
+}
+
+function RenderTableInformationModal(props) {
+  var tableData = props.tableData;
+
+  return (
+    <div className="card bg-dark text - light border - secondary">
+      <div className="card-header border-secondary">
+        Table {tableData.Id}'s information
+      </div>
+      <div className="card-body">
+        {tableData.Reservation == null ?
+          <h5 className="card-title text-success">This table is available for reservation.</h5>
+          :
+          <h5 className="card-title text-danger">This table is currently reserved.</h5>
+        }
+        <p className="card-text">{tableData.Description}</p>
+        <p className="card-text">Maximum reservation time is 24 hours.</p>
+        <p className="card-text">This table has {tableData.SeatCount} seats</p>
+        {tableData.Reservation == null ?
+          <a href="/Restaurant/Reservation?table=${tableData.Id}" className="btn btn-secondary">Reserve this table</a>
+          :
+          <button className="btn btn-secondary" disabled>Reservation not available</button>
+        }
+      </div>
+    </div>
+  )
+}
+
 export default function restaurantApp() {
-    return <RestaurantTable />;
+  return <RestaurantTable />;
 };
