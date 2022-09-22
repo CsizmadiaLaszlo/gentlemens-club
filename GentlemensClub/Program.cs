@@ -5,6 +5,7 @@ using GentlemensClub.Services.Interfaces;
 using GentlemensClub.Services.Interfaces.Finance.Bank;
 using GentlemensClub.Services.Interfaces.Restaurant.Table;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using GentlemensClub.Services.Interfaces.Finance.Stock;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Net.Http.Headers;
@@ -60,6 +61,7 @@ builder.Services.AddScoped<IBankService, BankService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IRestaurantService, RestaurantService>();
 
+builder.Services.AddSingleton<IStockApiService>(x => new ApiHandlerStockService(builder.Configuration));
 
 var app = builder.Build();
 
