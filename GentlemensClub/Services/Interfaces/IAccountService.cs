@@ -9,4 +9,5 @@ public interface IAccountService
     Task<ClaimsPrincipal> CreateClaimsPrincipal(LoginCredential credential);
     Task CreateAccount(RegistrationData data);
     Task<bool> RegistrationIsValid(RegistrationData data);
+    Task<IEnumerable<Claim>> CreateClaims(LoginCredential credential);
 }

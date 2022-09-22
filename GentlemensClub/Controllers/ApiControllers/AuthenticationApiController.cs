@@ -28,10 +28,7 @@ namespace GentlemensClub.Controllers.ApiControllers
             if (await _accountService.CredentialIsValid(credential))
             {
                 // Creating the security context
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, "test"),
-                };
+                var claims = await _accountService.CreateClaims(credential);
 
                 var expiresAt = DateTime.UtcNow.AddMinutes(10);
                 return Ok(new
