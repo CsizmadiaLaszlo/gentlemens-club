@@ -3,7 +3,7 @@ import { Modal } from "../shared/modal.jsx";
 
 export function LoginModal(props) {
     const modalBody = (
-        <LoginForm />
+        <LoginForm onSuccess={props.onSuccess}/>
     );
 
     return (
@@ -16,6 +16,7 @@ class LoginForm extends React.Component {
         super(props)
 
         this.state = {
+            error: null,
             username: "",
             password: "",
         };
@@ -34,14 +35,50 @@ class LoginForm extends React.Component {
         });
     }
     
-    handleSubmit(event) {
-        console.log(this.state.username);
+    async handleSubmit(event) {
         event.preventDefault();
+        this.setState({error: null});
+        const username = this.state.username;
+        const password = this.state.password;
+
+        console.log(username);
+        const response = await this.requestJwtToken(username, password)
+        if (response.status === 401) {
+            this.setState({error: "The username or password is incorrect. Try again!"});
+        }
+        else if (response.status !== 200) {
+            this.setState({error: "Something went wrong..."});
+        } else {
+            this.props.onSuccess();
+        }
+        console.log(response);
     }
-    
+
+    async requestJwtToken(username, password) {
+        const url = "api/authentication/authenticate";
+
+        const credentials = {
+            "username": username,
+            "password": password
+        };
+
+        const options = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(credentials),
+        };
+
+        const response = await fetch(url, options);
+
+        return response;
+    }
+
     render() {
         return(
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={async (event) => {await this.handleSubmit(event)}}>
+                <div className='text-danger'>{this.state.error !== null && this.state.error}</div>
                 <div className={"mb-3"}>
                     <label className={"form-label"}>
                         Username:

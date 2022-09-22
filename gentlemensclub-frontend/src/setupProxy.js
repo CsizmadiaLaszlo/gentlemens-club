@@ -3,6 +3,7 @@
 const context = [
     // "/weatherforecast",
     "/api/finance/bank/currencies",
+    "/api/authentication/authenticate"
 ];
 
 module.exports = function (app) {
