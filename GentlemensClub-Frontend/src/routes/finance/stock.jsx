@@ -19,4 +19,9 @@ export default class Stock extends Component {
 
         this.handleClick = this.handleClick.bind(this);
     }
+
+    componentDidMount() {
+        this.stocksLoader();
+    }
+
 }
