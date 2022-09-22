@@ -23,9 +23,10 @@ import Contact from "./routes/contact";
 import Service from "./routes/service";
 
 // Sub-page imports
-import Accounts, {
-    loader as accountLoader,
-} from "./routes/finance/accounts";
+import Accounts from "./routes/finance/accounts";
+
+import Stock from "./routes/finance/stock";
+import SelectedStock from "./routes/finance/selectedStock";
 
 
 const router = createBrowserRouter([
@@ -61,8 +62,15 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "account",
-                loader: accountLoader,
                 element: <Accounts />
+            },
+            {
+                path: "stock",
+                element: <Stock/>
+            },
+            {
+                path: "selected-stock",
+                element: <SelectedStock />
             },
         ],
     },

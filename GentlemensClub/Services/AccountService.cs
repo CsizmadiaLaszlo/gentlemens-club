@@ -90,7 +90,8 @@ public class AccountService : IAccountService
         var claims = new List<Claim>
         {
             new Claim(ClaimTypes.Name, account.Username),
-            new Claim(ClaimTypes.Email, account.Email)
+            new Claim(ClaimTypes.Email, account.Email),
+            new Claim("UserId", account.Id.ToString()),
         };
 
         return claims;
@@ -103,6 +104,6 @@ public class AccountService : IAccountService
 
     private async Task<Account?> GetAccountByEmail(string email)
     {
-        return await _context.Accounts.FirstOrDefaultAsync(a => a.Username == email);
+        return await _context.Accounts.FirstOrDefaultAsync(a => a.Email == email);
     }
 }
