@@ -7,4 +7,10 @@ namespace GentlemensClub.Services;
 
 public class RestaurantService : IRestaurantService
 {
+    private readonly GentlemensClubContext _context;
+
+    public RestaurantService(GentlemensClubContext context)
+    {
+        _context = context;
+    }
 }
