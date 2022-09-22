@@ -51,4 +51,21 @@ public class RestaurantService : IRestaurantService
             ToListAsync();
     }
 
+    /// <summary>
+    /// Gets all TableReservations from DB connected to RestaurantTables id
+    /// </summary>
+    /// <returns>Dictionary of RestaurantTable Id with corresponding Reservation objects</returns>
+    public async Task<Dictionary<int, Reservation?>> GetTableReservations()
+    {
+        var tables = await GetAllTables();
+        
+        var reservations = new Dictionary<int, Reservation?>();
+
+        foreach (RestaurantTable table in tables)
+        {
+            reservations.Add(table.Id, table.Reservation);
+        }
+
+        return reservations;
+    }
 }
