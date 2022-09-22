@@ -38,6 +38,12 @@ export default class Stock extends Component {
         this.setState({ stocks: stocks, maxPage: maxPage.maxPage, loading: false });
     }
 
+    async handleClick(page) {
+        await this.setState({ prev: page - 1, page: page, next: page + 1 });
+        console.log(this.state.page);
+        await this.stocksLoader();
+    }
+
     static szanilPagination(page, maxPage, element) {
         return (
             <div>
