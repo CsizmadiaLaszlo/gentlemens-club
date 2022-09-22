@@ -6,8 +6,8 @@ public interface IRestaurantService : IReservationService
 {
     Task Add(RestaurantTable table);
     Task Remove(int id);
-    Task<RestaurantTable?> Get(int id);
-    Task<IEnumerable<RestaurantTable>> GetAll();
+    Task<RestaurantTable?> GetTableData(int id);
+    Task<IEnumerable<RestaurantTable>> GetAllTables();
     
     Task<Dictionary<int, Reservation?>> GetTableReservations();
 }
