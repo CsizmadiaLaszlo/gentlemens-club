@@ -1,14 +1,11 @@
 import {Footer, Header} from "../components/layout";
+import TablePage from './restaurant/table';
 
 export default function Restaurant() {
     return (
         <div>
             <Header></Header>
-            <div className={"container"}>
-                <main role={"main"} className={"pb-3"}>
-                    <h1>restaurant</h1>
-                </main>
-            </div>
+            <TablePage></TablePage>
             <Footer></Footer>
         </div>
     );
