@@ -3,6 +3,7 @@
 const context = [
     // "/weatherforecast",
     "/api/finance/currencies",
+    "/api/RestaurantApi/get-table-reservations",
 ];
 
 module.exports = function (app) {
