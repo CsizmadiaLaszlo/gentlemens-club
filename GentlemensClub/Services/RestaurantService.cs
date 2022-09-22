@@ -26,4 +26,16 @@ public class RestaurantService : IRestaurantService
         throw new NotImplementedException();
     }
 
+    /// <summary>
+    /// Gets a RestaurantTable from DB by its id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns>RestaurantTable object with corresponding Reservation</returns>
+    public async Task<RestaurantTable?> GetTableData(int id)
+    {
+        return await _context.
+            RestaurantTables.
+            Include(t => t.Reservation).
+            FirstOrDefaultAsync(t => t.Id == id);
+    }
 }
