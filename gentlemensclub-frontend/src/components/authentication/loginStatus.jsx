@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { LoginModal } from "./loginModal.jsx";
+import { RegistrationModal } from "./registrationModal.jsx";
 
 export function LoginStatus() {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -12,6 +13,11 @@ export function LoginStatus() {
 
     const loginSuccessHandler = () => {
         setShowLogin(false);
+        setLoggedIn(true);
+    }
+
+    const registerSuccessHandler = () => {
+        setShowRegistration(false);
         setLoggedIn(true);
     } 
 
@@ -28,6 +34,8 @@ export function LoginStatus() {
     }
 
     const [showLogin, setShowLogin] = useState(false);
+    const [showRegistration, setShowRegistration] = useState(false);
+
     if (loggedIn) {
         return (
             <ul className={"navbar-nav flex-grow-1"}>
@@ -47,7 +55,8 @@ export function LoginStatus() {
                     <LoginModal show={showLogin} onClose={() => setShowLogin(false)} onSuccess={loginSuccessHandler} />
                 </li>
                 <li className={"nav-item"}>
-                    <button className={"btn btn-link nav-link text-light"}>Register</button>
+                    <button className={"btn btn-link nav-link text-light"} onClick={() => {if (showRegistration === false) {setShowRegistration(true)}}}>Register</button>
+                    <RegistrationModal show={showRegistration} onClose={() => setShowRegistration(false)} onSuccess={registerSuccessHandler} />
                 </li>
             </ul>
         );

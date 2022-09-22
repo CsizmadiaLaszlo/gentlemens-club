@@ -3,7 +3,7 @@ import { Modal } from "../shared/modal.jsx";
 
 export function LoginModal(props) {
     const modalBody = (
-        <LoginForm onSuccess={props.onSuccess}/>
+        <LoginForm onSuccess={props.onSuccess} />
     );
 
     return (
@@ -29,25 +29,25 @@ class LoginForm extends React.Component {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-    
+
         this.setState({
-          [name]: value
+            [name]: value
         });
     }
-    
+
     async handleSubmit(event) {
         event.preventDefault();
-        this.setState({error: null});
+        this.setState({ error: null });
         const username = this.state.username;
         const password = this.state.password;
 
         const response = await this.requestJwtToken(username, password)
         if (response.status === 401) {
-            this.setState({error: "The username or password is incorrect. Try again!"});
+            this.setState({ error: "The username or password is incorrect. Try again!" });
             return;
         }
         else if (response.status !== 200) {
-            this.setState({error: "Something went wrong..."});
+            this.setState({ error: "Something went wrong..." });
             return;
         }
         const data = await response.json();
@@ -82,20 +82,16 @@ class LoginForm extends React.Component {
     }
 
     render() {
-        return(
-            <form onSubmit={async (event) => {await this.handleSubmit(event)}}>
+        return (
+            <form onSubmit={async (event) => { await this.handleSubmit(event) }}>
                 <div className='text-danger'>{this.state.error !== null && this.state.error}</div>
                 <div className={"mb-3"}>
-                    <label className={"form-label"}>
-                        Username:
-                        <input className={"form-control"} onChange={this.handleInputChange} type="text" name="username" />
-                    </label>
+                    <label className={"form-label"}>Username:</label>
+                    <input className={"form-control"} onChange={this.handleInputChange} type="text" name="username" />
                 </div>
                 <div className={"mb-3"}>
-                    <label className={"form-label"} asp-for="Password">
-                        Password:
-                        <input className={"form-control"} onChange={this.handleInputChange} type="password" name="password" />
-                    </label>
+                    <label className={"form-label"} asp-for="Password">Password:</label>
+                    <input className={"form-control"} onChange={this.handleInputChange} type="password" name="password" />
                 </div>
                 <div>
                     <input type="submit" className={"btn btn-dark"} value="Login" />

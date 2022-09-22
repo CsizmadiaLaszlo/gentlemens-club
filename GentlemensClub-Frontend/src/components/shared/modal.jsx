@@ -7,7 +7,7 @@ export function Modal(props) {
 
     return (
         <div className="modal">
-            <div className="modal-content">
+            <div className="modal-content" style={{width: "24rem"}}>
                 <div className="modal-header">
                     <h4 className="modal-title">{props.title}</h4>
                 </div>
