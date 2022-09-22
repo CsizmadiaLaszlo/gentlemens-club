@@ -39,7 +39,7 @@ export default class Stock extends Component {
     }
 
     async handleClick(page) {
-        await this.setState({ prev: page - 1, page: page, next: page + 1 });
+        await this.setState({ prev: page - 1, page: page, next: page + 1, loading: true });
         console.log(this.state.page);
         await this.stocksLoader();
     }
@@ -62,4 +62,41 @@ export default class Stock extends Component {
         );
     }
 
+
+    static renderStocks(stocks, page, maxPage, element) {
+        let pagination = Stock.szanilPagination(page, maxPage, element);
+
+        return (
+            <div>
+                <div className="text-white d-flex flex-wrap justify-content-center">
+                    <h1>Stocks</h1>
+                </div>
+                <div className="d-flex flex-wrap">
+                    {stocks.map(stock => {
+                        return (
+                            <div key={stock.symbol} className="stock card bg-dark text-white border-light">
+                                <div>{stock.name}</div>
+                                <div>{stock.symbol}</div>
+                            </div>
+                        );
+                    })}
+                </div>
+                <div className="pag d-flex flex-wrap justify-content-center">
+                    {pagination}
+                </div>
+            </div>
+        );
+    }
+
+    render() {
+        let contents = this.state.loading
+            ? <p><em>Loading...</em></p>
+            : Stock.renderStocks(this.state.stocks, this.state.page, this.state.maxPage, this);
+
+        return (
+            <div>
+                {contents}
+            </div>
+        );
+    }
 }
