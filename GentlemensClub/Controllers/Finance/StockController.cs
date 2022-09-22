@@ -12,6 +12,7 @@ namespace GentlemensClub.Controllers.Finance;
 
 [ApiController]
 [Route("finance")]
+[Route("api/finance/stock")]
 public class StockController : Controller
 {
     private readonly ILogger<HomeController> _logger;
