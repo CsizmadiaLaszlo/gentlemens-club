@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Modal } from "../shared/modal.jsx";
 
-export function LoginModal(props) {
+const LoginModal = ({ show, onSuccess, onClose }) => {
     const modalBody = (
-        <LoginForm onSuccess={props.onSuccess} />
+        <LoginForm onSuccess={onSuccess} />
     );
 
     return (
-        <Modal show={props.show} onClose={props.onClose} title="Login" body={modalBody} />
+        <Modal show={show} onClose={onClose} title="Login" body={modalBody} />
     );
 }
 
@@ -100,3 +100,5 @@ class LoginForm extends React.Component {
         );
     }
 }
+
+export default LoginModal;

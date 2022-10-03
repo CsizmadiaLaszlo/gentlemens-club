@@ -3,7 +3,7 @@ import logo from '../assets/img/shared/GC_logo.jpg';
 import {
     Link, Outlet,
 } from "react-router-dom";
-import {LoginStatus} from '../components/authentication/loginStatus.jsx';
+import LoginStatus from '../components/authentication/loginStatus';
 
 const Header = () => {
     return (

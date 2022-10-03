@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { LoginModal } from "./loginModal.jsx";
-import { RegistrationModal } from "./registrationModal.jsx";
+import LoginModal from "./loginModal";
+import RegistrationModal from "./registrationModal";
 
-export function LoginStatus() {
+const LoginStatus = () => {
     const [loggedIn, setLoggedIn] = useState(false);
 
     useEffect(() => {
@@ -70,3 +70,5 @@ function parseJwt (token) {
         return null;
       }
 }
+
+export default LoginStatus;

@@ -2,17 +2,17 @@ import React from "react";
 import { Modal } from "../shared/modal.jsx";
 
 
-export function RegistrationModal(props) {
+const RegistrationModal = ({ show, onSuccess, onClose }) => {
     const modalBody = (
-        <RegistrationForm onSuccess={props.onSuccess} />
+        <RegistrationForm onSuccess={onSuccess} />
     );
 
     return (
-        <Modal show={props.show} onClose={props.onClose} title="Login" body={modalBody} />
+        <Modal show={show} onClose={onClose} title="Login" body={modalBody} />
     );
 }
 
-export class RegistrationForm extends React.Component {
+class RegistrationForm extends React.Component {
     constructor(props) {
         super(props);
 
@@ -123,3 +123,5 @@ export class RegistrationForm extends React.Component {
         );
     }
 }
+
+export default RegistrationModal;
