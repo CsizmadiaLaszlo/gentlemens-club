@@ -42,3 +42,15 @@ export async function requestAccountRegistration(username, email, password, conf
 
     return response;
 }
+
+
+export function saveJwtToken(token, expiresAt) {
+    localStorage.setItem("jwt", token);
+    localStorage.setItem("jwtExpiresAt", new Date(expiresAt).toUTCString());
+}
+
+
+export function deleteJwtToken() {
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("jwtExpiresAt");
+}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal } from "../shared/modal.jsx";
-import { requestJwtToken } from '../../js/authentication/authenticationUtils.js';
+import { requestJwtToken, saveJwtToken } from '../../js/authentication/authenticationUtils.js';
 
 const LoginModal = ({ show, onSuccess, onClose }) => {
     const modalBody = (
@@ -34,8 +34,7 @@ const LoginForm = ({ onSuccess }) => {
         const token = data.access_token;
         const expiresAt = data.expires_at;
 
-        localStorage.setItem("jwt", token);
-        localStorage.setItem("jwtExpiresAt", new Date(expiresAt).toUTCString());
+        saveJwtToken(token, expiresAt);
 
         onSuccess();
     }
