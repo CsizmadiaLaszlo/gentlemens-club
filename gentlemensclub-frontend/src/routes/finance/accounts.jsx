@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {getAllCurrency, getAllTransaction} from "../../js/finance/bank/bankApiHandler";
-import LoadingSpinner from "../../components/shared";
+import {GoogleMap, LoadingSpinner} from "../../components/shared";
 
 
 export default class Accounts extends React.Component {
@@ -200,19 +200,4 @@ function TransactionDetails(props) {
                 </div>
             </div>
     )
-}
-
-function GoogleMap(props) {
-    const src = `https://maps.google.com/maps?q=${props.address}&t=&z=17&ie=UTF8&iwloc=&output=embed`
-    return (
-
-        <div className={"mapouter"} style={{textAlign: "center", alignContent: "center"}}>
-            <div className={"gmap_canvas"}>
-                <iframe width={"400"} height={"300"}
-                        src={src}>
-                </iframe>
-            </div>
-        </div>
-
-    );
 }

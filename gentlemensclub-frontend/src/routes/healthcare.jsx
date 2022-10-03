@@ -1,15 +1,9 @@
-import {Footer, Header} from "../components/layout";
-
-export default function Healthcare() {
+const Healthcare = () => {
     return (
-        <div>
-            <Header></Header>
-            <div className={"container"}>
-                <main role={"main"} className={"pb-3"}>
-                    <h1>healthcare</h1>
-                </main>
-            </div>
-            <Footer></Footer>
-        </div>
+        <>
+            <h1>healthcare</h1>
+        </>
     );
 }
+
+export default Healthcare;
