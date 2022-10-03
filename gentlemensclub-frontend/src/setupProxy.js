@@ -7,8 +7,8 @@ const context = [
     "/api/authentication/register",
     "/api/finance/stock",
     "/api/finance/selected-stock",
-    "/api/RestaurantApi/get-table-reservations",
-    "/api/RestaurantApi/get-table-data"
+    "/api/restaurant/get-table-reservations",
+    "/api/restaurant/get-table-data"
 ];
 
 module.exports = function (app) {

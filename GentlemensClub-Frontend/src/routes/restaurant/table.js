@@ -123,18 +123,18 @@ function RenderTableInformationModal(props) {
   return (
     <div className="card bg-dark text - light border - secondary">
       <div className="card-header border-secondary">
-        Table {tableData.Id}'s information
+        Table {tableData.id}'s information
       </div>
       <div className="card-body">
-        {tableData.Reservation == null ?
+        {tableData.reservation == null ?
           <h5 className="card-title text-success">This table is available for reservation.</h5>
           :
           <h5 className="card-title text-danger">This table is currently reserved.</h5>
         }
-        <p className="card-text">{tableData.Description}</p>
+        <p className="card-text">{tableData.description}</p>
         <p className="card-text">Maximum reservation time is 24 hours.</p>
-        <p className="card-text">This table has {tableData.SeatCount} seats</p>
-        {tableData.Reservation == null ?
+        <p className="card-text">This table has {tableData.seatCount} seats</p>
+        {tableData.reservation == null ?
           <a href="/Restaurant/Reservation?table=${tableData.Id}" className="btn btn-secondary">Reserve this table</a>
           :
           <button className="btn btn-secondary" disabled>Reservation not available</button>
