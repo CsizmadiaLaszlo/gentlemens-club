@@ -1,11 +1,11 @@
 import logo from '../assets/img/shared/GC_logo.jpg';
 
 import {
-    Link,
+    Link, Outlet,
 } from "react-router-dom";
-import { LoginStatus } from '../components/authentication/loginStatus.jsx';
+import {LoginStatus} from '../components/authentication/loginStatus.jsx';
 
-export function Header() {
+const Header = () => {
     return (
         <header>
             <nav
@@ -36,7 +36,7 @@ export function Header() {
                                 <Link className={"nav-link text-light"} to={'/contact'}>Contact</Link>
                             </li>
                         </ul>
-                        <LoginStatus />
+                        <LoginStatus/>
                     </div>
                 </div>
             </nav>
@@ -44,7 +44,7 @@ export function Header() {
     )
 }
 
-export function Footer() {
+export const Footer = () => {
     return (
         <footer className="border-top footer">
             <div className="container">
@@ -53,3 +53,19 @@ export function Footer() {
         </footer>
     )
 }
+
+const Layout = () => {
+    return (
+        <div>
+            <Header></Header>
+            <div className={"container"}>
+                <main role={"main"} className={"pb-3"}>
+                    <Outlet />
+                </main>
+            </div>
+            <Footer></Footer>
+        </div>
+    )
+}
+
+export default Layout;
