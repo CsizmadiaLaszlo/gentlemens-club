@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-// import ErrorPage from "./error-page.jsx";
+import ErrorPage from "./error-page.jsx";
 
 // React-route-dom imports
 import {
@@ -13,6 +13,7 @@ import {
 } from "react-router-dom";
 
 // Component import for main route pages
+import Layout from "./components/layout";
 import Index from "./routes/index.jsx";
 import Restaurant from "./routes/restaurant";
 import Fitness from "./routes/fitness";
@@ -32,33 +33,46 @@ import SelectedStock from "./routes/finance/selectedStock";
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Index/>,
-        // errorElement: <ErrorPage/>,
-    },
-    {
-        path: "/restaurant",
-        element: <Restaurant/>,
-        // errorElement: <ErrorPage/>,
-    },
-    {
-        path: "/fitness",
-        element: <Fitness/>,
-        // errorElement: <ErrorPage/>,
-    },
-    {
-        path: "/healthcare",
-        element: <Healthcare/>,
-        // errorElement: <ErrorPage/>,
-    },
-    {
-        path: "/membership",
-        element: <Membership/>,
-        // errorElement: <ErrorPage/>,
+        element: <Layout/>,
+        errorElement: <ErrorPage/>,
+        children: [
+            {index: true, element: <Index/>},
+            {
+                path: "/restaurant",
+                element: <Restaurant/>,
+                errorElement: <ErrorPage/>,
+            },
+            {
+                path: "/fitness",
+                element: <Fitness/>,
+                errorElement: <ErrorPage/>,
+            },
+            {
+                path: "/healthcare",
+                element: <Healthcare/>,
+                errorElement: <ErrorPage/>,
+            },
+            {
+                path: "/membership",
+                element: <Membership/>,
+                errorElement: <ErrorPage/>,
+            },
+            {
+                path: "/contact",
+                element: <Contact/>,
+                errorElement: <ErrorPage/>,
+            },
+            {
+                path: "/service",
+                element: <Service/>,
+                errorElement: <ErrorPage/>,
+            },
+        ],
     },
     {
         path: "/finance",
         element: <Finance/>,
-        // errorElement: <ErrorPage/>,
+        errorElement: <ErrorPage/>,
         children: [
             {
                 path: "account",
@@ -75,19 +89,9 @@ const router = createBrowserRouter([
         ],
     },
     {
-        path: "/contact",
-        element: <Contact/>,
-        // errorElement: <ErrorPage/>,
-    },
-    {
-        path: "/service",
-        element: <Service/>,
-        // errorElement: <ErrorPage/>,
-    },
-    {
         path: "/restaurant/table",
         element: <Restaurant />,
-        // errorElement: <ErrorPage />,
+        errorElement: <ErrorPage />,
     }
 ]);
 
