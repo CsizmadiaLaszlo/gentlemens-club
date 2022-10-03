@@ -7,4 +7,12 @@ namespace GentlemensClub.Controllers.ApiControllers;
 [ApiController]
 public class ContactApiController : ControllerBase
 {
+    private readonly IContactService _contactService;
+
+    public ContactApiController(IContactService contactService)
+    {
+        _contactService = contactService;
+    }
+    
+    
 }
