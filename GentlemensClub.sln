@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GentlemensClub", "GentlemensClub\GentlemensClub.csproj", "{0CAAB6CA-8291-4DFF-936C-91182B09A886}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GentlemensClub-Backend", "GentlemensClub-Backend\GentlemensClub-Backend.csproj", "{0CAAB6CA-8291-4DFF-936C-91182B09A886}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "GentlemensClub-Frontend", "GentlemensClub-Frontend\GentlemensClub-Frontend.esproj", "{8A187A3E-5612-4AA9-9092-6D29C09C2010}"
 EndProject
