@@ -1,4 +1,4 @@
-using GentlemensClub.Models.Account;
+using GentlemensClub.Models.Authentication;
 using GentlemensClub.Models.Finance.Bank;
 using GentlemensClub.Models.Restaurant.Table;
 using Microsoft.EntityFrameworkCore;

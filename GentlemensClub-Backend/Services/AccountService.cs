@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 using GentlemensClub.Data;
-using GentlemensClub.Models.Account;
+using GentlemensClub.Models.Authentication;
 using GentlemensClub.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

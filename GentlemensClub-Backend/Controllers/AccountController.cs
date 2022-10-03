@@ -1,4 +1,4 @@
-﻿using GentlemensClub.Models.Account;
+﻿using GentlemensClub.Models.Authentication;
 using GentlemensClub.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;

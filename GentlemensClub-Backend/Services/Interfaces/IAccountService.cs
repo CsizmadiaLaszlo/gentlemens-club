@@ -1,5 +1,5 @@
 using System.Security.Claims;
-using GentlemensClub.Models.Account;
+using GentlemensClub.Models.Authentication;
 
 namespace GentlemensClub.Services.Interfaces;
 
