@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import { Modal } from "../shared/modal.jsx";
-import { requestAccountRegistration } from "../../js/authentication/authenticationUtils.js";
+import { requestAccountRegistration, saveJwtToken } from "../../js/authentication/authenticationUtils.js";
 
 
 const RegistrationModal = ({ show, onSuccess, onClose }) => {
@@ -59,8 +59,7 @@ const RegistrationForm = ({ onSuccess }) => {
         const token = data.access_token;
         const expiresAt = data.expires_at;
 
-        localStorage.setItem("jwt", token);
-        localStorage.setItem("jwtExpiresAt", new Date(expiresAt).toUTCString());
+        saveJwtToken(token, expiresAt);
 
         onSuccess();
     };
