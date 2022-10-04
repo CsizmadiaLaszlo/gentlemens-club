@@ -1,95 +1,75 @@
-import React from 'react';
-
-import {getAllCurrency, getAllTransaction} from "../../services/finance/bank/bankApiHandler";
+import React, {createContext, useContext, useEffect, useState} from 'react';
+import {bankAccountLoader} from "../../services/finance/bank/bankApiHandler";
 import {GoogleMap, LoadingSpinner} from "../../components/shared";
 
+const CurrencyContext = createContext();
+const TransactionContext = createContext();
 
-export default class Accounts extends React.Component {
-    state = {
-        currenciesData: null,
-        currentCurrency: "USD",
-        transactionData: null,
-        currentTransaction: null,
-    }
+const Accounts = () => {
+    const [currenciesData, setCurrenciesData] = useState(null);
+    const [activeAcronym, setActiveAcronym] = useState("USD");
+    const [transactionData, setTransactionData] = useState(null);
+    const [currentTransaction, setCurrentTransaction] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    constructor(props) {
-        super(props);
+    useEffect(() => {
+        setLoading(true);
+        bankAccountLoader()
+            .then((data) => {
+                setCurrenciesData(data.currencies);
+                setTransactionData(data.transactions);
+            })
+            .finally(() => setLoading(false));
+    },[]);
 
-        this.handleDropDownClick = this.handleDropDownClick.bind(this);
-        this.loading = this.loading.bind(this);
-        this.setCurrentTransaction = this.setCurrentTransaction.bind(this);
-    }
-
-
-    componentDidMount() {
-        getAllCurrency()
-            .then((currenciesData) =>
-                this.setState({currenciesData}));
-        getAllTransaction()
-            .then((transactionData) =>
-                this.setState({transactionData}))
-    }
-
-    loading() {
-        return (
-            this.state.currenciesData == null ||
-            this.state.transactionData == null
-        )
-    }
-
-    handleDropDownClick(newCurrency) {
-        this.setState({currentCurrency: newCurrency})
-    }
-
-    setCurrentTransaction(transactionId) {
+    const changeCurrentTransaction = (transactionId) => {
         if (transactionId === undefined) {
-            this.setState({currentTransaction: null})
+            setCurrentTransaction(null);
             return;
         }
-        const active = this.state.transactionData.find(x => x["Id"] === transactionId)
-        this.setState({currentTransaction: active})
+        const active = transactionData.find(x => x["Id"] === transactionId);
+        setCurrentTransaction(active);
     }
-
-    render() {
-        const {currenciesData, currentCurrency, transactionData, currentTransaction} = this.state;
-
-        return (
-            <div className={"account-grid-parent"}>
-                <div className={"account-grid-left"}>
-                    <div className="account-container">
-                        {
-                            this.loading() ?
-                                <div className={"text-center"} style={{paddingTop: "100px"}}>
-                                    <LoadingSpinner></LoadingSpinner>
+    
+    return (
+        <div className={"account-grid-parent"}>
+            <div className={"account-grid-left"}>
+                <div className="account-container">
+                    {
+                        loading ?
+                            <div className={"text-center"} style={{paddingTop: "100px"}}>
+                                <LoadingSpinner></LoadingSpinner>
+                            </div>
+                            :
+                            <>
+                                <div className="account-details">
+                                    <CurrencyContext.Provider value={{activeAcronym, setActiveAcronym, currenciesData}}>
+                                        <CurrencyContainer></CurrencyContainer>
+                                    </CurrencyContext.Provider>
+                                    <AccountActions></AccountActions>
                                 </div>
-                                :
-                                <>
-                                    <div className="account-details">
-                                        <CurrencyContainer activeAcronym={currentCurrency}
-                                                           currencies={currenciesData}
-                                                           handler={this.handleDropDownClick}>
-                                        </CurrencyContainer>
-                                        <AccountActions></AccountActions>
-                                    </div>
-                                    <h4>Transaction history</h4>
-                                    <TransactionHistoryContainer transactions={transactionData}
-                                                                 handler={this.setCurrentTransaction}>
-                                    </TransactionHistoryContainer>
-                                </>
-                        }
-                    </div>
+                                <h4>Transaction history</h4>
+                                <TransactionContext.Provider value={{transactionData, changeCurrentTransaction}}>
+                                    <TransactionHistoryContainer></TransactionHistoryContainer>
+                                </TransactionContext.Provider>
+                            </>
+                    }
                 </div>
-                <TransactionDetails handler={this.setCurrentTransaction}
-                                    transaction={currentTransaction}></TransactionDetails>
             </div>
-        )
-    }
+            <TransactionDetails transaction={currentTransaction} handler={changeCurrentTransaction}></TransactionDetails>
+        </div>
+    )
 }
 
-function CurrencyContainer(props) {
-    const active = props.currencies.find(x => x["Acronym"] === props.activeAcronym)
+export default Accounts;
+
+
+const CurrencyContainer = () => {
+    const {activeAcronym, currenciesData} = useContext(CurrencyContext)
+
+    const active = currenciesData.find(x => x["Acronym"] === activeAcronym)
     let currencies = []
-    for (const currency of props.currencies) {
+    for (const currency of currenciesData) {
         if (currency["Acronym"] !== active["Acronym"]) {
             currencies.push(currency)
         }
@@ -103,7 +83,7 @@ function CurrencyContainer(props) {
                     <div className="dropdown">
                         <p className="dropdown-arrow dropdown-toggle" data-bs-toggle="dropdown"
                            aria-expanded="false" style={{textAlign: "center"}}></p>
-                        <CurrenciesDropdown currencies={currencies} handler={props.handler}></CurrenciesDropdown>
+                        <CurrenciesDropdown currencies={currencies}></CurrenciesDropdown>
                     </div>
                 </div>
                 <p className="currency-name">{active["Name"]}</p>
@@ -115,13 +95,15 @@ function CurrencyContainer(props) {
     )
 }
 
-function CurrenciesDropdown(props) {
+const CurrenciesDropdown = (props) => {
+    const {setActiveAcronym} = useContext(CurrencyContext)
+
     const currencies = props.currencies.map((currency) =>
 
         <li key={currency["Acronym"]}>
             <p className="dropdown-item">
                 <span
-                    onClick={() => props.handler(currency["Acronym"])}>{currency["Acronym"]} {currency["Value"]} </span>
+                    onClick={() => setActiveAcronym(currency["Acronym"])}>{currency["Acronym"]} {currency["Value"]} </span>
             </p>
         </li>
     )
@@ -132,7 +114,7 @@ function CurrenciesDropdown(props) {
     )
 }
 
-function AccountActions() {
+const AccountActions = () => {
     return (
         <div className={"account-action-container"}>
             <div className={"account-action-container"}>
@@ -152,7 +134,8 @@ function AccountActions() {
     )
 }
 
-function TransactionCard(props) {
+const TransactionCard = (props) => {
+
     const transaction = props.transaction;
     // const transactionDate = Date.parse(transaction["Date"].toString())
     const transactionDate = new Date(transaction["Date"])
@@ -167,10 +150,12 @@ function TransactionCard(props) {
     )
 }
 
-function TransactionHistoryContainer(props) {
-    const transactions = props.transactions.map((transaction) =>
+const TransactionHistoryContainer = () => {
+    const {transactionData, changeCurrentTransaction} = useContext(TransactionContext);
+    
+    const transactions = transactionData.map((transaction) =>
         <div key={transaction['Id']}
-             onClick={() => props.handler(transaction['Id'])}
+             onClick={() => changeCurrentTransaction(transaction['Id'])}
              className={"card transaction-card btn-outline-secondary"}
              style={{backgroundColor: ""}}>
             <TransactionCard transaction={transaction}></TransactionCard>
@@ -184,7 +169,7 @@ function TransactionHistoryContainer(props) {
     )
 }
 
-function TransactionDetails(props) {
+const TransactionDetails = (props) => {
     return (
         props.transaction == null ?
             <></>
@@ -192,7 +177,7 @@ function TransactionDetails(props) {
             <div className={"account-grid-right"}>
                 <i style={{cursor: "pointer"}} onClick={() => props.handler()} className={"fa-solid fa-x"}></i>
                 <div style={{textAlign: "center"}}>
-                    <GoogleMap address={props.transaction["Address"]}></GoogleMap>
+                    {GoogleMap(props.transaction["Address"])}
                     <p>Address: {props.transaction["Address"]}</p>
                     <p>Comapany: {props.transaction["Company"]}</p>
                     <p>Value: {props.transaction["Value"]} {props.transaction["CurrencyAcronym"]}</p>
