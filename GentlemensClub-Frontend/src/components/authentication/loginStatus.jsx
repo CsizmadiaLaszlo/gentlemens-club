@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { LoginModal } from "./loginModal.jsx";
-import { RegistrationModal } from "./registrationModal.jsx";
+import { deleteJwtToken } from '../../services/authentication/authenticationUtils';
+import LoginModal from "./loginModal";
+import RegistrationModal from "./registrationModal";
 
-export function LoginStatus() {
+const LoginStatus = () => {
     const [loggedIn, setLoggedIn] = useState(false);
 
     useEffect(() => {
@@ -28,8 +29,7 @@ export function LoginStatus() {
     }
 
     const logOut = () => {
-        localStorage.removeItem("jwt");
-        localStorage.removeItem("jwtExpiresAt");
+        deleteJwtToken();
         setLoggedIn(false);
     }
 
@@ -70,3 +70,5 @@ function parseJwt (token) {
         return null;
       }
 }
+
+export default LoginStatus;
