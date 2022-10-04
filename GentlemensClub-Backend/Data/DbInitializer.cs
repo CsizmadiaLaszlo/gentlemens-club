@@ -17,7 +17,8 @@ public class DbInitializer
             context.BankCurrencies.Any() ||
             context.BankTransactions.Any() ||
             context.RestaurantTables.Any() ||
-            context.Reservations.Any()
+            context.Reservations.Any() ||
+            context.ContactForms.Any()
            )
         {
             return;
