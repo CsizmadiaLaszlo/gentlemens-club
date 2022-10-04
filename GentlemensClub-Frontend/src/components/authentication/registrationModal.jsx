@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import { Modal } from "../shared/modal.jsx";
-import { requestAccountRegistration, saveJwtToken } from "../../js/authentication/authenticationUtils.js";
+import { requestAccountRegistration, saveJwtToken } from "../../services/authentication/authenticationUtils.js";
 
 
 const RegistrationModal = ({ show, onSuccess, onClose }) => {
