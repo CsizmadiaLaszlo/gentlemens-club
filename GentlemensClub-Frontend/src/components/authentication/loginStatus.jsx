@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { deleteJwtToken } from '../../js/authentication/authenticationUtils';
+import { deleteJwtToken } from '../../services/authentication/authenticationUtils';
 import LoginModal from "./loginModal";
 import RegistrationModal from "./registrationModal";
 
