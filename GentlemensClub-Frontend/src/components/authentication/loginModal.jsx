@@ -1,102 +1,60 @@
 import React, { useState } from 'react';
 import { Modal } from "../shared/modal.jsx";
+import { requestJwtToken, saveJwtToken } from '../../js/authentication/authenticationUtils.js';
 
-export function LoginModal(props) {
+const LoginModal = ({ show, onSuccess, onClose }) => {
     const modalBody = (
-        <LoginForm onSuccess={props.onSuccess} />
+        <LoginForm onSuccess={onSuccess} />
     );
 
     return (
-        <Modal show={props.show} onClose={props.onClose} title="Login" body={modalBody} />
+        <Modal show={show} onClose={onClose} title="Login" body={modalBody} />
     );
-}
+};
 
-class LoginForm extends React.Component {
-    constructor(props) {
-        super(props)
+const LoginForm = ({ onSuccess }) => {
+    const [error, setError] = useState(null);
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
 
-        this.state = {
-            error: null,
-            username: "",
-            password: "",
-        };
-
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleInputChange(event) {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-
-        this.setState({
-            [name]: value
-        });
-    }
-
-    async handleSubmit(event) {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        this.setState({ error: null });
-        const username = this.state.username;
-        const password = this.state.password;
+        setError(null);
 
-        const response = await this.requestJwtToken(username, password)
+        const response = await requestJwtToken(username, password)
         if (response.status === 401) {
-            this.setState({ error: "The username or password is incorrect. Try again!" });
+            setError("The username or password is incorrect. Try again!");
             return;
         }
         else if (response.status !== 200) {
-            this.setState({ error: "Something went wrong..." });
+            setError("Something went wrong...");
             return;
         }
         const data = await response.json();
         const token = data.access_token;
         const expiresAt = data.expires_at;
 
-        localStorage.setItem("jwt", token);
-        localStorage.setItem("jwtExpiresAt", new Date(expiresAt).toUTCString());
+        saveJwtToken(token, expiresAt);
 
-        this.props.onSuccess();
+        onSuccess();
     }
 
-    async requestJwtToken(username, password) {
-        const url = "api/authentication/authenticate";
+    return (
+        <form onSubmit={async (event) => { await handleSubmit(event) }}>
+            <div className='text-danger'>{error !== null && error}</div>
+            <div className={"mb-3"}>
+                <label className={"form-label"}>Username:</label>
+                <input className={"form-control"} onChange={e => setUsername(e.target.value)} type="text" name="username" />
+            </div>
+            <div className={"mb-3"}>
+                <label className={"form-label"} asp-for="Password">Password:</label>
+                <input className={"form-control"} onChange={e => setPassword(e.target.value)} type="password" name="password" />
+            </div>
+            <div>
+                <input type="submit" className={"btn btn-dark"} value="Login" />
+            </div>
+        </form>
+    );
+};
 
-        const credentials = {
-            "username": username,
-            "password": password
-        };
-
-        const options = {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(credentials),
-        };
-
-        const response = await fetch(url, options);
-
-        return response;
-    }
-
-    render() {
-        return (
-            <form onSubmit={async (event) => { await this.handleSubmit(event) }}>
-                <div className='text-danger'>{this.state.error !== null && this.state.error}</div>
-                <div className={"mb-3"}>
-                    <label className={"form-label"}>Username:</label>
-                    <input className={"form-control"} onChange={this.handleInputChange} type="text" name="username" />
-                </div>
-                <div className={"mb-3"}>
-                    <label className={"form-label"} asp-for="Password">Password:</label>
-                    <input className={"form-control"} onChange={this.handleInputChange} type="password" name="password" />
-                </div>
-                <div>
-                    <input type="submit" className={"btn btn-dark"} value="Login" />
-                </div>
-            </form>
-        );
-    }
-}
+export default LoginModal;
