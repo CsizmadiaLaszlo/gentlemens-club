@@ -134,6 +134,6 @@ function RenderTableInformationModal(props) {
   )
 }
 
-export default function restaurantApp() {
+export default function RestaurantApp() {
   return <RestaurantTable />;
 };
