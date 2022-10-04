@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {getAllCurrency, getAllTransaction} from "../../js/finance/bank/bankApiHandler";
+import {getAllCurrency, getAllTransaction} from "../../services/finance/bank/bankApiHandler";
 import {GoogleMap, LoadingSpinner} from "../../components/shared";
 
 

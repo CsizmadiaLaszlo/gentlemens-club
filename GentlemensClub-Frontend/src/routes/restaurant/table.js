@@ -1,7 +1,7 @@
 import React, { useDebugValue } from 'react';
 import SideCard from '../../components/restaurant/sideCard';
 import MapsterMap from '../../components/restaurant/mapsterMap';
-import { getTableReservations, loadTableData } from '../../js/restaurant/restaurantApiHandler';
+import { getTableReservations, loadTableData } from '../../services/restaurant/restaurantApiHandler';
 import jQuery from 'jquery';
 
 class RestaurantTable extends React.Component {
