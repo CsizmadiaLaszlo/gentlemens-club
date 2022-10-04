@@ -1,10 +1,17 @@
-import TablePage from './restaurant/table';
+import { Footer } from '../components/layout';
+import { RestaurantHeader } from '../components/restaurant/restaurantLayoutComponents';
+import RestaurantApp from '../routes/restaurant/table';
 
-const Restaurant = () => {
+export default function RestaurantHome() {
     return (
-        <>
-            <TablePage></TablePage>
-        </>
+        <div>
+            <RestaurantHeader />
+            <div className={"container"}>
+                <main role={"main"}>
+                    <RestaurantApp />
+                </main>
+            </div>
+            <Footer />
+        </div>
     );
 }
-export default Restaurant;
