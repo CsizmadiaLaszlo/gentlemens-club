@@ -3,6 +3,7 @@ import SideCard from '../../components/restaurant/sideCard';
 import MapsterMap from '../../components/restaurant/mapsterMap';
 import { getTableReservations, loadTableData } from '../../js/restaurant/restaurantApiHandler';
 import $ from 'jquery';
+import ImageMap from "image-map";
 
 function RestaurantTable() {
 
@@ -67,16 +68,17 @@ function RestaurantTable() {
 
   }
 
-  initMapster() {
-    this.state.mapsterimage.mapster({
-      fillColor: "333333",
-      fillOpacity: 0.5,
-      areas: this.state.areas,
-      onClick: function (event) {
-        console.log(event);
-        //loadTableData(this.id);
-      }
-    });
+  const initMapster = () => {
+    // mapsterimage.mapster({
+    //   fillColor: "333333",
+    //   fillOpacity: 0.5,
+    //   areas: mapsterAreas,
+    //   onClick: function (event) {
+    //     console.log(event);
+    //     //loadTableData(this.id);
+    //   }
+    // });
+    ImageMap('#mapsterImage');
   }
 
   const loadSelectedTableData = (areaId) => {
