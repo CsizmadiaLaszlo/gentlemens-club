@@ -1,14 +1,16 @@
+var baseUrl = '/api/restaurant/';
+
 export async function getTableReservations() {
-    var apiUrl = '/api/restaurant/get-table-reservations';
-    return await fetch(apiUrl).then((response) => response.json());
+    var apiUrl = 'get-table-reservations';
+    return await fetch(baseUrl + apiUrl).then((response) => response.json());
 }
 
 export async function loadTableData(selectedTableId) {
-    var apiUrl = `/api/restaurant/get-table-data?tableId=${selectedTableId}`;
-    return await fetch(apiUrl).then((response) => response.json());
+    var apiUrl = `get-table-data?tableId=${selectedTableId}`;
+    return await fetch(baseUrl + apiUrl).then((response) => response.json());
 }
 
-export async function getAllCategories() {
-    var apiUrl = '/api/restaurant/get-all-categories';
-    return await fetch(apiUrl).then((response) => response.json());
+export async function getFilters() {
+    var apiUrl = 'get-filters';
+    return await fetch(baseUrl + apiUrl).then((response) => response.json());
 }
