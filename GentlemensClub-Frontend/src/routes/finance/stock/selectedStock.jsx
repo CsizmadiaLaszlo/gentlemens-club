@@ -89,5 +89,20 @@ const SelectedStock = () => {
                 </div>
             </div>);
     }
+
+    return (
+    <div>
+        {
+            loading
+                ?
+                <div className={"text-center"} style={{ paddingTop: "100px" }}>
+                    <LoadingSpinner></LoadingSpinner>
+                </div>
+                :
+                <div>{renderStock()}</div>
+        }
+    </div>
+    );
 }
+
 export default SelectedStock;
