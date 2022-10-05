@@ -83,8 +83,9 @@ const router = createBrowserRouter([
                 element: <Stock/>
             },
             {
-                path: "selected-stock",
-                element: <SelectedStock />
+                path: "selected-stock/:symbol",
+                element: <SelectedStock />,
+            },
             },
         ],
     },
