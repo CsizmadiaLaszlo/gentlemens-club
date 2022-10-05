@@ -28,7 +28,7 @@ import Accounts from "./routes/finance/accounts";
 
 import Stock from "./routes/finance/stock";
 import SelectedStock from "./routes/finance/selectedStock";
-import { RestaurantHome, RestaurantMenu, RestaurantTable } from './components/restaurant/restaurantLayoutComponents';
+import { RestaurantHome, RestaurantMenu, RestaurantTable } from './routes/restaurant';
 
 
 const router = createBrowserRouter([
@@ -87,17 +87,17 @@ const router = createBrowserRouter([
     {
         path: "/restaurant",
         element: <RestaurantHome />,
-        errorElement: <ErrorPage/>,
-        children: [
-            {
-                path: "menu",
-                element: <RestaurantMenu />
-            },
-            {
-                path: "tables",
-                element: <RestaurantTable/>
-            }
-        ]
+        errorElement: <ErrorPage/>
+    },
+    {
+        path: "/restaurant/menu",
+        element: <RestaurantMenu />,
+        errorElement: <ErrorPage/>
+    },
+    {
+        path: "/restaurant/tables",
+        element: <RestaurantTable />,
+        errorElement: <ErrorPage/>
     }
 ]);
 
