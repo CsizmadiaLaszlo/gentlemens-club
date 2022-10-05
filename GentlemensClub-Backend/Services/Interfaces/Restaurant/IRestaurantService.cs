@@ -14,4 +14,5 @@ public interface IRestaurantService : IReservationService
     Task<IEnumerable<MenuItem>> GetAllMenuItems();
     Task<IEnumerable<MenuItem>> GetMenuItemsInCategory(MenuSearchCategory category);
     Task<IEnumerable<MenuItem>> GetMenuItemsInSubCategory(MenuSearchCategory category);
+    List<string> GetAllCategories();
 }
