@@ -9,15 +9,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Services\" />
       <Compile Remove="ApiHandler\**" />
       <Content Remove="ApiHandler\**" />
       <EmbeddedResource Remove="ApiHandler\**" />
       <None Remove="ApiHandler\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Services\" />
     </ItemGroup>
 
     <ItemGroup>
