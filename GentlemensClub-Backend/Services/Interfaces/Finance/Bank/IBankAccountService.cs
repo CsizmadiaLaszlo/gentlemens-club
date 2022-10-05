@@ -1,4 +1,4 @@
-﻿using GentlemensClub.Models.Account;
+﻿using GentlemensClub.Models.Authentication;
 using GentlemensClub.Models.Finance.Bank;
 
 namespace GentlemensClub.Services.Interfaces.Finance.Bank;

@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 using GentlemensClub.Data;
-using GentlemensClub.Models.Account;
+using GentlemensClub.Models.Authentication;
 using GentlemensClub.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -95,6 +95,11 @@ public class AccountService : IAccountService
         };
 
         return claims;
+    }
+
+    public async Task<Account?> GetAccountByAccountId(int accountId)
+    {
+        return await _context.Accounts.FirstOrDefaultAsync(account => account.Id == accountId);
     }
 
     private async Task<Account?> GetAccountByUsername(string username)

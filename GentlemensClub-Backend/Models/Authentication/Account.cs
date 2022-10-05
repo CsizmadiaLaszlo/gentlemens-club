@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GentlemensClub.Models.Account;
+namespace GentlemensClub.Models.Authentication;
 
 public class Account
 {

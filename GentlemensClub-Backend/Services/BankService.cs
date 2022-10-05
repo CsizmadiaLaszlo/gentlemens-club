@@ -1,5 +1,5 @@
 ﻿using GentlemensClub.Data;
-using GentlemensClub.Models.Account;
+using GentlemensClub.Models.Authentication;
 using GentlemensClub.Models.Finance.Bank;
 using GentlemensClub.Services.Interfaces.Finance.Bank;
 using Microsoft.EntityFrameworkCore;
