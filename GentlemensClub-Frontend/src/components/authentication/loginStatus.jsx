@@ -1,46 +1,35 @@
-import { useEffect, useState } from 'react';
-import { LoginModal } from "./loginModal.jsx";
-import { RegistrationModal } from "./registrationModal.jsx";
+import { useState, useContext } from 'react';
+import { deleteJwtToken, getUser, getUserFromJwt } from '../../services/authentication/authenticationUtils';
+import UserContext from '../../services/authentication/userContext';
+import LoginModal from "./loginModal";
+import RegistrationModal from "./registrationModal";
 
-export function LoginStatus() {
-    const [loggedIn, setLoggedIn] = useState(false);
-
-    useEffect(() => {
-        if (localStorage.getItem("jwt") !== null) {
-            setLoggedIn(true);
-        }
-    });
+const LoginStatus = () => {
+    const { user, setUser } = useContext(UserContext);
 
     const loginSuccessHandler = () => {
         setShowLogin(false);
-        setLoggedIn(true);
+        setUser(getUserFromJwt());
     }
 
     const registerSuccessHandler = () => {
         setShowRegistration(false);
-        setLoggedIn(true);
+        setUser(getUserFromJwt());
     } 
 
-    const getName = () => {
-        const nameHeader = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name";
-        const tokenData = parseJwt(localStorage.getItem("jwt"));
-        return tokenData[nameHeader];
-    }
-
     const logOut = () => {
-        localStorage.removeItem("jwt");
-        localStorage.removeItem("jwtExpiresAt");
-        setLoggedIn(false);
+        deleteJwtToken();
+        setUser(null);
     }
 
     const [showLogin, setShowLogin] = useState(false);
     const [showRegistration, setShowRegistration] = useState(false);
 
-    if (loggedIn) {
+    if (user !== null) {
         return (
             <ul className={"navbar-nav flex-grow-1"}>
                 <li className={"navbar-text"}>
-                    <span>Logged in as {getName()}</span>
+                    <span>Logged in as {user.name}</span>
                 </li>
                 <li className={"nav-item"}>
                     <button className={"btn btn-link nav-link text-light"} onClick={logOut}>Logout</button>
@@ -63,10 +52,4 @@ export function LoginStatus() {
     }
 }
 
-function parseJwt (token) {
-    try {
-        return JSON.parse(atob(token.split('.')[1]));
-      } catch (e) {
-        return null;
-      }
-}
+export default LoginStatus;

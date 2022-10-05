@@ -1,6 +1,6 @@
 // IMAGINE THIS FILE IS CALLED MAIN.JS --..--
 
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
@@ -30,6 +30,12 @@ import Stock from "./routes/finance/stock/stocks";
 import SelectedStock from "./routes/finance/stock/selectedStock";
 import WeeklyStatistics from "./routes/finance/stock/weeklyStatistics";
 import YearlyStatistics from "./routes/finance/stock/yearlyStatistics";
+
+// Contexts
+import UserContext from './services/authentication/userContext';
+
+// Login util
+import { getUserFromJwt } from './services/authentication/authenticationUtils';
 
 
 const router = createBrowserRouter([
@@ -105,9 +111,19 @@ const router = createBrowserRouter([
     }
 ]);
 
+const App = () => {
+    const [user, setUser] = useState(getUserFromJwt());
+
+    return (
+        <UserContext.Provider value={{ user, setUser }}>
+            <RouterProvider router={router}/>
+        </UserContext.Provider>
+    );
+}
+
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-        <RouterProvider router={router}/>
+        <App />
     </React.StrictMode>
 );
 
