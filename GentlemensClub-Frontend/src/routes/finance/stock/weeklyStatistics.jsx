@@ -21,6 +21,11 @@ const WeeklyStatistics = () => {
         setWeeklyStatistic(statistic);
         setLoading(false);
     }
+
+    useEffect(() => {
+        weeklyStatisticLoader();
+    }, []);
+
 }
 
 export default WeeklyStatistics;
