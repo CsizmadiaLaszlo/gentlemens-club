@@ -97,6 +97,11 @@ public class AccountService : IAccountService
         return claims;
     }
 
+    public async Task<Account?> GetAccountByAccountId(int accountId)
+    {
+        return await _context.Accounts.FirstOrDefaultAsync(account => account.Id == accountId);
+    }
+
     private async Task<Account?> GetAccountByUsername(string username)
     {
         return await _context.Accounts.FirstOrDefaultAsync(a => a.Username == username);
