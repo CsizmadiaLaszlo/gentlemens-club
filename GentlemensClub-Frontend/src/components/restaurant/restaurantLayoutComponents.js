@@ -1,10 +1,11 @@
 import logo from './../../assets/img/shared/GC_logo.jpg';
-import RestaurantApp from '../../routes/restaurant';
 
 import {
     Link, Outlet
 } from "react-router-dom";
 import Restaurant from '../../routes/restaurant';
+import RestaurantMenuApp from '../../routes/restaurant/menu';
+import RestaurantApp from '../../routes/restaurant/table';
 
 export function RestaurantHeader() {
     return (
@@ -17,8 +18,14 @@ export function RestaurantHeader() {
                     </Link>
                     <div className={"navbar-collapse collapse d-sm-inline-flex justify-content-between"}>
                         <ul className={"navbar-nav flex-grow-1"}>
-                            <li key={"header-nav-item-1"} className={"nav-item"}>
+                            <li className={"nav-item"}>
                                 <Link className={"nav-link text-light"} to={'/restaurant'}>Home</Link>
+                            </li>
+                            <li className={"nav-item"}>
+                                <Link className={"nav-link text-light"} to={'/restaurant/menu'}>Menu</Link>
+                            </li>
+                            <li className={"nav-item"}>
+                                <Link className={"nav-link text-light"} to={'/restaurant/tables'}>Tables</Link>
                             </li>
                         </ul>
                     </div>
@@ -28,19 +35,19 @@ export function RestaurantHeader() {
     )
 }
 
-export function RestaurantHome() {
+export function RestaurantHomeContainer() {
     return (
         <RestaurantApp />
     );
 }
 
-export function RestaurantMenu() {
+export function RestaurantMenuContainer() {
     return (
-        <RestaurantApp />
+        <RestaurantMenuApp />
     );
 }
 
-export function RestaurantTable() {
+export function RestaurantTableContainer() {
     return (
         <RestaurantApp />
     );
