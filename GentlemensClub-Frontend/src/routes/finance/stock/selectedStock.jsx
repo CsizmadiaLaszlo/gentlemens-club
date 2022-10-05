@@ -5,6 +5,11 @@ import { getSelectedStock } from "../../../js/finance/stock/stockApiHandler";
 import placeholder from "../../../assets/img/stock/placeholder_chart.jpg"
 
 const SelectedStock = () => {
+
+    const [stock, setStock] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const { symbol } = useParams();
+
     const stocksLoader = async () => {
         const stock = await getSelectedStock(symbol);
         if (!stock) {
