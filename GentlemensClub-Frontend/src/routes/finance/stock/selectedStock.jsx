@@ -39,6 +39,33 @@ const SelectedStock = () => {
                                     <h1>{st.name
                         } statistics</h1></div>)
                     })}
+                <div className="d-flex flex-wrap">
+                    {stock.map(st => {
+                        return (
+                            <div>
+                                <div className="selected-stock card bg-dark text-white border-light">
+                                    <div>
+                                        <h2>Price: {st.price}</h2></div>
+                                    <div>
+                                        <h2>Currency: {st.currency}</h2></div>
+                                    <div>
+                                        <h2>Exchange: {st.exchange_Long} / {st.exchange_Short}</h2></div>
+                                    <div>
+                                        <h2>Mic code: {st.mic_Code}</h2></div>
+                                    <div>Previous close price time: {st.previous_Close_Price_Time}</div>
+                                    <div>Previous close price: {st.previous_Close_Price}</div>
+                                    <div>Last trade time: {st.last_trade_time}</div>
+                                    <div>Day high: {st.day_High}</div>
+                                    <div>Day low: {st.day_Low}</div>
+                                    <div>Day open: {st.day_Open}</div>
+                                    <div>Day change: {st.day_Change}</div>
+                                    <div>Volume: {st.volume}</div>
+                                    <div>Market cap: {st.market_Cap}</div>
+                                </div>
+                        );
+                    })}
+                </div>
             </div>);
+    }
 }
 export default SelectedStock;
