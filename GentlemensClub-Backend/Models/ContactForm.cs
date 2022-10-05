@@ -9,5 +9,5 @@ public class ContactForm
     public int Id { get; set; }
     public string Message { get; set; }
     public string EmailAddress { get; set; }
-    public Account Account { get; set; }
+    public Account? Account { get; set; }
 }
