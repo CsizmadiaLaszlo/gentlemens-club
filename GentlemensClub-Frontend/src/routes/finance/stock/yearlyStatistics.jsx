@@ -21,6 +21,11 @@ const YearlyStatistics = () => {
         setYearlyStatistic(statistic);
         setLoading(false);
     }
+
+    useEffect(() => {
+        yearlyStatisticLoader();
+    }, []);
+
 }
 
 export default YearlyStatistics;
