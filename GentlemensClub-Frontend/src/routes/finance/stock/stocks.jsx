@@ -30,6 +30,11 @@ const Stock = () => {
         stocksLoader();
     }, [page]);
 
+
+    const handleClick = (newPage) => {
+        setPage(newPage);
+    }
+
 }
 
 export default Stock;
