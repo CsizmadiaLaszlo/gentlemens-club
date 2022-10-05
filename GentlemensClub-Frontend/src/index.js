@@ -26,8 +26,8 @@ import Service from "./routes/service";
 // Sub-page imports
 import Accounts from "./routes/finance/accounts";
 
-import Stock from "./routes/finance/stock";
 import SelectedStock from "./routes/finance/selectedStock";
+import Stock from "./routes/finance/stock/stocks";
 
 
 const router = createBrowserRouter([
