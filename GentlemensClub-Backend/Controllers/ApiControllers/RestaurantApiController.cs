@@ -43,28 +43,7 @@ namespace GentlemensClub.Controllers.ApiControllers
         [Route("get-all-categories")]
         public string GetAllCategories([FromQuery] SpecialFoodCategories[] filter)
         {
-            var categories = new Dictionary<string, int>();
-
-            if (filter.Length is 0)
-            {
-                categories = new Dictionary<string, int>
-                {
-                    { "Food", 12 },
-                    { "Drinks", 4 },
-                    { "Desserts", 2 }
-                };
-            }
-            else
-            {
-                categories = new Dictionary<string, int>
-                {
-                    { filter.Length.ToString(), 69 },
-                    { "Drinks", 55 },
-                    { "Desserts", 69 }
-                };
-            }
-
-            return JsonSerializer.Serialize(categories);
+            return JsonSerializer.Serialize(filter);
         }
 
         /// <summary>
