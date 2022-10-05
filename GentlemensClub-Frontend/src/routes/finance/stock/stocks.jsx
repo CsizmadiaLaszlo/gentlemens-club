@@ -25,6 +25,11 @@ const Stock = () => {
         setLoading(false);
     }
 
+    useEffect(() => {
+        setLoading(true);
+        stocksLoader();
+    }, [page]);
+
 }
 
 export default Stock;
