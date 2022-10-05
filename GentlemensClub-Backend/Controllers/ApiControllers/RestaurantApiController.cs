@@ -111,5 +111,26 @@ namespace GentlemensClub.Controllers.ApiControllers
             return await _restaurantService.GetTableReservations();
         }
 
+        [HttpGet]
+        [Route("get-all-menu-items")]
+        public async Task<IEnumerable<MenuItem>> GetAllMenuItems()
+        {
+            return await _restaurantService.GetAllMenuItems();
+        }
+
+        [HttpPost]
+        [Route("get-all-menu-items-in-category")]
+        public async Task<IEnumerable<MenuItem>> GetAllMenuItemsInCategory([FromBody] MenuSearchCategory category)
+        {
+            return await _restaurantService.GetMenuItemsInCategory(category);
+        }
+
+        [HttpPost]
+        [Route("get-all-menu-items-in-subcategory")]
+        public async Task<IEnumerable<MenuItem>> GetAllMenuItemsInSubCategory([FromBody] MenuSearchCategory category)
+        {
+            return await _restaurantService.GetMenuItemsInSubCategory(category);
+        }
+
     }
 }
