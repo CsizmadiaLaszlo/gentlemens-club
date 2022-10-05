@@ -1,5 +1,6 @@
 using GentlemensClub.Models.Account;
 using GentlemensClub.Models.Finance.Bank;
+using GentlemensClub.Models.Restaurant.Menu;
 using GentlemensClub.Models.Restaurant.Table;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +14,7 @@ public class GentlemensClubContext : DbContext
     public DbSet<BankTransaction> BankTransactions { get; set; }
     public DbSet<RestaurantTable> RestaurantTables { get; set; }
     public DbSet<Reservation> Reservations { get; set; }
+    public DbSet<MenuItem> MenuItems { get; set; }
 
     public GentlemensClubContext(DbContextOptions<GentlemensClubContext> options) : base(options)
     {
@@ -30,6 +32,7 @@ public class GentlemensClubContext : DbContext
         // Restaurant
         modelBuilder.Entity<RestaurantTable>().ToTable("restaurant_table");
         modelBuilder.Entity<Reservation>().ToTable("reservation");
+        modelBuilder.Entity<MenuItem>().ToTable("menu_items");
         // stb
     }
 }
