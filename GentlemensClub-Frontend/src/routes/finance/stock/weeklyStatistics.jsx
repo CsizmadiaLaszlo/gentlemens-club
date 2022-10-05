@@ -56,6 +56,19 @@ const WeeklyStatistics = () => {
     }
 
 
+
+    return (
+        <div>
+            {
+                loading
+                    ?
+                    <div className={"text-center"} style={{ paddingTop: "100px" }}>
+                        <LoadingSpinner></LoadingSpinner></div>
+                    :
+                    <div>{renderStatistics()}</div>
+        }
+        </div>
+    );
 }
 
 export default WeeklyStatistics;
