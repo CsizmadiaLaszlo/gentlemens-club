@@ -35,6 +35,23 @@ const Stock = () => {
         setPage(newPage);
     }
 
+    const pagination = () => {
+        return (
+            <div>
+                <div className="pag d-flex flex-wrap justify-content-center">
+                    {page > 1
+                        ? (<a className="btn btn-dark border-light" onClick={() => handleClick(page - 1)}>Previous</a>)
+                        : (<a className="btn btn-dark border-light disabled" onClick={() => handleClick(
+                            page - 1)}>Previous</a>)}
+                    <a className="btn btn-dark border-light">{page}</a>
+                    {maxPage > page
+                        ? (<a className="btn btn-dark border-light" onClick={() => handleClick(page + 1)}>Next</a>)
+                        : (<a className="btn btn-dark border-light disabled" onClick={() => handleClick(
+                            page + 1)}>Next</a>)}
+                </div>
+            </div>
+        );
+    }
 }
 
 export default Stock;
