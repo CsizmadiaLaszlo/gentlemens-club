@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect, createContext, useContext } from 'react';
 import { LoadingSpinner } from "../../../components/shared";
-import { getStocks, getMaxPage } from "../../../js/finance/stock/stockApiHandler";
+import { getStocks, getMaxPage } from "../../../services/finance/stock/stockApiHandler";
 
 const Stock = () => {
 
