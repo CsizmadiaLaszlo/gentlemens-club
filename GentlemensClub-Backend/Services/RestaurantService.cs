@@ -1,6 +1,7 @@
 using GentlemensClub.Data;
+using GentlemensClub.Models.Restaurant.Menu;
 using GentlemensClub.Models.Restaurant.Table;
-using GentlemensClub.Services.Interfaces.Restaurant.Table;
+using GentlemensClub.Services.Interfaces.Restaurant;
 using Microsoft.EntityFrameworkCore;
 
 namespace GentlemensClub.Services;
@@ -67,5 +68,44 @@ public class RestaurantService : IRestaurantService
         }
 
         return reservations;
+    }
+
+    public async Task<IEnumerable<MenuItem>> GetAllMenuItems()
+    {
+        return await _context.MenuItems.ToListAsync();
+    }
+
+    public async Task<IEnumerable<MenuItem>> GetMenuItemsInCategory(MenuSearchCategory category)
+    {
+        if (!category.SpecialFoodCategory.Equals(null))
+        {
+            return await _context.MenuItems.
+                Where(item => item.SpecialCategories.Equals(category.SpecialFoodCategory)).
+                Where(item => item.Category.Equals(category.MenuItemCategory)).
+                ToListAsync();
+        }
+        else
+        {
+            return await _context.MenuItems.
+                Where(item => item.Category.Equals(category.MenuItemCategory)).
+                ToListAsync();
+        }
+    }
+
+    public async Task<IEnumerable<MenuItem>> GetMenuItemsInSubCategory(MenuSearchCategory category)
+    {
+        if (category.SpecialFoodCategory.Equals(null))
+        {
+            return await _context.MenuItems.
+                Where(item => item.SubCategory.Equals(category.MenuItemSubCategory)).
+                ToListAsync();
+        }
+        else
+        {
+            return await _context.MenuItems.
+                Where(item => item.SpecialCategories.Equals(category.SpecialFoodCategory)).
+                Where(item => item.SubCategory.Equals(category.MenuItemSubCategory)).
+                ToListAsync();
+        }
     }
 }
