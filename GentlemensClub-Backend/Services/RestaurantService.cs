@@ -108,4 +108,9 @@ public class RestaurantService : IRestaurantService
                 ToListAsync();
         }
     }
+
+    public List<string> GetAllCategories()
+    {
+        return Enum.GetValues(typeof(MenuItemCategory)).Cast<MenuItemCategory>().Select(c => c.ToString()).ToList();
+    }
 }
