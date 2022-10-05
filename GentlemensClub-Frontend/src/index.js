@@ -26,8 +26,10 @@ import Service from "./routes/service";
 // Sub-page imports
 import Accounts from "./routes/finance/accounts";
 
-import Stock from "./routes/finance/stock";
-import SelectedStock from "./routes/finance/selectedStock";
+import Stock from "./routes/finance/stock/stocks";
+import SelectedStock from "./routes/finance/stock/selectedStock";
+import WeeklyStatistics from "./routes/finance/stock/weeklyStatistics";
+import YearlyStatistics from "./routes/finance/stock/yearlyStatistics";
 
 // Contexts
 import UserContext from './services/authentication/userContext';
@@ -89,8 +91,16 @@ const router = createBrowserRouter([
                 element: <Stock/>
             },
             {
-                path: "selected-stock",
-                element: <SelectedStock />
+                path: "selected-stock/:symbol",
+                element: <SelectedStock />,
+            },
+            {
+                path: "selected-stock/weekly-statistics/:symbol",
+                element: <WeeklyStatistics />,
+            },
+            {
+                path: "selected-stock/yearly-statistics/:symbol",
+                element: <YearlyStatistics />,
             },
         ],
     },
