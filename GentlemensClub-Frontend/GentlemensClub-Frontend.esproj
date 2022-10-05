@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/0.5.26-alpha">
+﻿<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/0.5.26-alpha">
   <PropertyGroup Label="Globals">
     <ProjectGuid>8a187a3e-5612-4aa9-9092-6d29c09c2010</ProjectGuid>
   </PropertyGroup>
@@ -83,5 +83,11 @@
     <Folder Include="src\routes\healthcare" />
     <Folder Include="src\routes\membership" />
     <Folder Include="src\routes\restaurant" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="src\assets\img\stock\placeholder_chart.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
   </ItemGroup>
 </Project>
