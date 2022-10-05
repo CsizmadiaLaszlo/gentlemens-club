@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using GentlemensClub.Models.Finance.Bank;
 using GentlemensClub.Services.Interfaces.Finance.Bank;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -36,5 +37,12 @@ public class BankAccountApiController : ControllerBase
     {
         var transactions = BankService.GetAllBankTransactionByBankAccount(1);
         return JsonSerializer.Serialize(transactions.Result.ToList());
+    }
+    
+    [HttpPost]
+    [Route("exchange")]
+    public async Task ExchangeCurrency([FromBody] ExchangeDto exchangeData)
+    { 
+        await BankService.SaveExchange(1, exchangeData);
     }
 }

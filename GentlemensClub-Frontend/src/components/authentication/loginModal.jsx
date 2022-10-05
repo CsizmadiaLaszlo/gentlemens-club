@@ -51,7 +51,7 @@ const LoginForm = ({ onSuccess }) => {
                 <input className={"form-control"} onChange={e => setPassword(e.target.value)} type="password" name="password" />
             </div>
             <div>
-                <input type="submit" className={"btn btn-dark"} value="Login" />
+                <input type="submit" className={"btn btn-outline-secondary"} value="Login" />
             </div>
         </form>
     );

@@ -15,7 +15,7 @@ export const CurrencyContainer = () => {
         <>
             <div className="currency-container">
                 <div style={{display: "flex"}}>
-                    <p className="currency-value">{active["Value"]}</p>
+                    <p className="currency-value">{active["Value"].toFixed(2)}</p>
                     <p className="currency-symbol">{active["Symbol"]}</p>
                     <div className="dropdown">
                         <p className="dropdown-arrow dropdown-toggle" data-bs-toggle="dropdown"
@@ -40,7 +40,7 @@ const CurrenciesDropdown = (props) => {
         <li key={currency["Acronym"]}>
             <p className="dropdown-item">
                 <span
-                    onClick={() => setActiveAcronym(currency["Acronym"])}>{currency["Acronym"]} {currency["Value"]} </span>
+                    onClick={() => setActiveAcronym(currency["Acronym"])}>{currency["Acronym"]} {currency["Value"].toFixed(2)} </span>
             </p>
         </li>
     )
