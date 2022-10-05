@@ -9,6 +9,18 @@ const WeeklyStatistics = () => {
     const [loading, setLoading] = useState(true);
     const { symbol } = useParams();
 
+    const weeklyStatisticLoader = async () => {
+        const statistic = await getWeeklyStock(symbol);
+        if (!statistic) {
+            throw new Response("",
+                {
+                    status: 404,
+                    statusText: "Not Found",
+                });
+        }
+        setWeeklyStatistic(statistic);
+        setLoading(false);
+    }
 }
 
 export default WeeklyStatistics;
