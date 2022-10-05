@@ -28,6 +28,7 @@ import Accounts from "./routes/finance/accounts";
 
 import Stock from "./routes/finance/stock/stocks";
 import SelectedStock from "./routes/finance/stock/selectedStock";
+import WeeklyStatistics from "./routes/finance/stock/weeklyStatistics";
 
 
 const router = createBrowserRouter([
@@ -85,6 +86,10 @@ const router = createBrowserRouter([
             {
                 path: "selected-stock/:symbol",
                 element: <SelectedStock />,
+            },
+            {
+                path: "selected-stock/weekly-statistics/:symbol",
+                element: <WeeklyStatistics />,
             },
             },
         ],
