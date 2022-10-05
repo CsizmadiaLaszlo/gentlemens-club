@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using GentlemensClub.Models.Restaurant.Menu;
 using GentlemensClub.Models.Restaurant.Table;
-using GentlemensClub.Services.Interfaces.Restaurant.Table;
+using GentlemensClub.Services.Interfaces.Restaurant;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GentlemensClub.Controllers.ApiControllers
@@ -68,35 +68,16 @@ namespace GentlemensClub.Controllers.ApiControllers
         }
 
         /// <summary>
-        /// Returns in a JSON Serialized Dictionary all the menu items in a given search category. Can filter by specialty.
+        /// Returns in an IEnumerable of MenuItem of all the menu items in all, or in a given search category. Can filter by providing MenuSearchCategory.
         /// </summary>
         /// <param name="category"></param>
-        /// <returns>JSON Serialized MenuItemModel List</returns>
+        /// <returns>IEnumerable of MenuItems</returns>
         [HttpPost]
         [Route("get-items-of-category")]
-        public string GetItemsInCategory([FromBody] SearchCategoryModel category)
+        public async Task<IEnumerable<MenuItem>> GetItemsInCategory([FromBody] MenuSearchCategory category)
         {
 
-            var items = new List<MenuItemModel>
-            {
-                new MenuItemModel
-                {
-                    Id = 1,
-                    Ingredients = new List<string> { "Tomato", "Bread" },
-                    Name = category.Name,
-                    SpecialCategories = category.Categories,
-                    isChefFavorite = false
-                },
-                new MenuItemModel
-                {
-                    Id = 2,
-                    Ingredients = new List<string> { "Steak", "Bread" },
-                    Name = "Bread with a huge steak",
-                    isChefFavorite = true
-                }
-            };
-
-            return JsonSerializer.Serialize(items);
+            return await _restaurantService.GetMenuItemsInCategory(category);
         }
 
         /// <summary>
