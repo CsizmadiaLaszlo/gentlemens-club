@@ -22,5 +22,10 @@ const SelectedStock = () => {
         setStock(stock);
         setLoading(false);
     }
+
+    useEffect(() => {
+        stocksLoader();
+    }, []);
+
 }
 export default SelectedStock;
