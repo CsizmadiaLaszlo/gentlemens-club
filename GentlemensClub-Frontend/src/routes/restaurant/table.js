@@ -17,6 +17,7 @@ function RestaurantTable() {
 
   useEffect(() => {
     getTableReservations().then((reservationData) => {
+      console.log(reservationData);
       addKeysToAreas(reservationData);
       initMapster();
       setLoaded(true);
@@ -134,6 +135,6 @@ function RenderTableInformationModal(props) {
   )
 }
 
-export default function RestaurantApp() {
+export default function RestaurantTableApp() {
   return <RestaurantTable />;
 };
