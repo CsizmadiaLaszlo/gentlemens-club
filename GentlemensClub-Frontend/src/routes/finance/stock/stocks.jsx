@@ -76,6 +76,19 @@ const Stock = () => {
             </div>
         );
     }
+
+    return (
+        <div>
+            {
+                loading ?
+                    <div className={"text-center"} style={{ paddingTop: "100px" }}>
+                        <LoadingSpinner></LoadingSpinner>
+                    </div>
+                    :
+                    <div>{renderStocks()}</div>
+            }
+        </div>
+    );
 }
 
 export default Stock;
