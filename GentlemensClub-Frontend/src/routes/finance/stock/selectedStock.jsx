@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useState, useEffect, createContext, useContext } from 'react';
 import { LoadingSpinner } from "../../../components/shared";
 import { getSelectedStock } from "../../../services/finance/stock/stockApiHandler";
+import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 import placeholder from "../../../assets/img/stock/placeholder_chart.jpg"
 
 const SelectedStock = () => {
@@ -22,7 +23,7 @@ const SelectedStock = () => {
         setStock(stock);
         setLoading(false);
     }
-
+    
     useEffect(() => {
         stocksLoader();
     }, []);
@@ -39,9 +40,12 @@ const SelectedStock = () => {
                     }
                 </div>
                 <div className="d-flex flex-wrap">
-                    {stock.map(st => {
+                    {stock.map((st, index) => {
                         return (
-                            <div>
+                            <div key={index}>
+                                <div className="text-white d-flex flex-wrap justify-content-center">
+                                    <h1>{st.name
+                                    } statistics</h1></div>
                                 <div className="selected-stock card bg-dark text-white border-light">
                                     <div>
                                         <h2>Price: {st.price}</h2></div>
