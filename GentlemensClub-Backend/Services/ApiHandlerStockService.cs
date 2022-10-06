@@ -15,10 +15,12 @@ namespace GentlemensClub.Services;
 public class ApiHandlerStockService : IStockApiService
 {
     private readonly string _apiKey;
+    private readonly string _stockApiUrl;
 
     public ApiHandlerStockService(IConfiguration configuration)
     {
         _apiKey = configuration.GetValue<string>("ApiKey");
+        _stockApiUrl = configuration.GetValue<string>("StockApiUrl");
     }
     private async Task<T> GetDataByUrl<T>(string apiURL)
     {
@@ -43,7 +45,7 @@ public class ApiHandlerStockService : IStockApiService
     public async Task<IEnumerable> Stock(int? page = 1)
     {
         var stocks =
-            await GetDataByUrl<Stocks>($"https://api.stockdata.org/v1/entity/search?exchanges=NASDAQ&page={page}&api_token={_apiKey}");
+            await GetDataByUrl<Stocks>($"{_stockApiUrl}/entity/search?exchanges=NASDAQ&page={page}&api_token={_apiKey}");
         var stockList = stocks.Data;
         return stockList;
     }
@@ -52,7 +54,7 @@ public class ApiHandlerStockService : IStockApiService
     {
         var stockInfo =
             (await GetDataByUrl<TodayStatistic>(
-                $"https://api.stockdata.org/v1/data/quote?symbols={symbol}&api_token={_apiKey}")).Data;
+                $"{_stockApiUrl}/data/quote?symbols={symbol}&api_token={_apiKey}")).Data;
         var todayInfo = stockInfo.Select(x => x);
         return todayInfo;
     }
@@ -61,7 +63,7 @@ public class ApiHandlerStockService : IStockApiService
     {
         var stockInfo =
             (await GetDataByUrl<WeeklyStatistics>(
-                $"https://api.stockdata.org/v1/data/intraday?symbols={symbol}&api_token={_apiKey}")).Data;
+                $"{_stockApiUrl}/data/intraday?symbols={symbol}&api_token={_apiKey}")).Data;
         var weeklyInfo = stockInfo.Select(x => x);
         return weeklyInfo;
     }
@@ -70,14 +72,14 @@ public class ApiHandlerStockService : IStockApiService
     {
         var stockInfo =
             (await GetDataByUrl<YearlyStatistics>(
-                $"https://api.stockdata.org/v1/data/eod?symbols={symbol}&api_token={_apiKey}")).Data;
+                $"{_stockApiUrl}/data/eod?symbols={symbol}&api_token={_apiKey}")).Data;
         var yearlyInfo = stockInfo.Select(x => x);
         return yearlyInfo;
     }
 
     public async Task<IEnumerable> MaxPage()
     {
-        var endpoints = (await GetDataByUrl<Stocks>($"https://api.stockdata.org/v1/entity/search?exchanges=NASDAQ&api_token={_apiKey}")).Meta;
+        var endpoints = (await GetDataByUrl<Stocks>($"{_stockApiUrl}/entity/search?exchanges=NASDAQ&api_token={_apiKey}")).Meta;
         var maxPage = endpoints.Found / endpoints.Limit + 1;
         Dictionary<string, int> maxPageList = new Dictionary<string, int>();
         maxPageList.Add("maxPage", maxPage);
