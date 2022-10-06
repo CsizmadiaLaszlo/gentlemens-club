@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import MenuItemList from '../../components/restaurant/menuItemList';
 import { getFilters } from '../../services/restaurant/restaurantApiHandler';
 
 function Menu() {
@@ -8,7 +9,6 @@ function Menu() {
 
     useEffect(() => {
         getFilters().then((filters) => {
-            console.log(filters);
             setFilters(filters);
             setLoaded(true);
         });
@@ -20,8 +20,8 @@ function Menu() {
         let i = 0;
 
         for (let filter in filters) {
-            content.push(<input key={i + filter} type="radio" className="btn-check" name="btnradio" id={"btnradio" + i} autoComplete="off" />)
-            content.push(<label key={i} className="btn btn-outline-primary" htmlFor={"btnradio" + i}>{filter}</label>);
+            content.push(<input key={i + filter} type="radio" className="btn-check border-secondary" name="btnradio" id={"btnradio" + i} autoComplete="off" />)
+            content.push(<label key={i} className="btn btn-outline-secondary" htmlFor={"btnradio" + i}>{filter}</label>);
             i++;
         }
 
@@ -31,13 +31,23 @@ function Menu() {
     
 
     return (
-        <div>
-            <div className="btn-group" role="group" aria-label="Basic radio toggle button group">
-                <input type="radio" className="btn-check" name="btnradio" id="btnradio" autoComplete="off" defaultChecked/>
-                <label className="btn btn-outline-primary" htmlFor="btnradio">All</label>
-                {
-                    filters != null ? getFilterButtons(filters) : <></>
-                }
+        <div className='container row'>
+            <div className='col col-lg-2'>
+                <div className='position-absolute'>
+                    <div className="card bg-dark border-secondary">
+                        <div className="card-header border-secondary">
+                            Filter
+                        </div>
+                        <div className="btn-group-vertical card-body d-flex flex-column">
+                            <input type="radio" className="btn-check" name="btnradio" id="btnradio" autoComplete="off" defaultChecked />
+                            <label className="btn btn-outline-secondary" htmlFor="btnradio">All</label>
+                            {filters != null ? getFilterButtons(filters) : <></>}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className='col'>
+                <MenuItemList />
             </div>
         </div>
     ); 
