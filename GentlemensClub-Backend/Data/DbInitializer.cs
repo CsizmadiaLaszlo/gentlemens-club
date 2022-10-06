@@ -1,4 +1,4 @@
-using GentlemensClub.Models.Account;
+using GentlemensClub.Models.Authentication;
 using GentlemensClub.Models.Finance.Bank;
 using GentlemensClub.Models.Restaurant.Table;
 
@@ -17,7 +17,8 @@ public class DbInitializer
             context.BankCurrencies.Any() ||
             context.BankTransactions.Any() ||
             context.RestaurantTables.Any() ||
-            context.Reservations.Any()
+            context.Reservations.Any() ||
+            context.ContactForms.Any()
            )
         {
             return;

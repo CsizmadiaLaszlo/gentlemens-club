@@ -60,6 +60,7 @@ builder.Services.AddDbContext<GentlemensClubContext>(options =>
 builder.Services.AddScoped<IBankService, BankService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IRestaurantService, RestaurantService>();
+builder.Services.AddScoped<IContactService, ContactService>();
 
 builder.Services.AddSingleton<IStockApiService>(x => new ApiHandlerStockService(builder.Configuration));
 

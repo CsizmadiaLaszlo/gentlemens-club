@@ -11,10 +11,10 @@ export const TransactionDetails = (props) => {
                 <i style={{cursor: "pointer"}} onClick={() => props.handler()} className={"fa-solid fa-x"}></i>
                 <div style={{textAlign: "center"}}>
                     {GoogleMap(props.transaction["Address"])}
-                    <p>Address: {props.transaction["Address"]}</p>
-                    <p>Comapany: {props.transaction["Company"]}</p>
-                    <p>Value: {props.transaction["Value"]} {props.transaction["CurrencyAcronym"]}</p>
-                    <p>Status: {props.transaction["Type"]}</p>
+                    <p>{props.transaction["Address"]}</p>
+                    <p>{props.transaction["Company"]}</p>
+                    <p>{props.transaction["Value"]} {props.transaction["CurrencyAcronym"]}</p>
+                    <p>{props.transaction["Type"]}</p>
                 </div>
             </div>
     )
@@ -49,7 +49,7 @@ const TransactionCard = (props) => {
             <div className="transaction-card-body-icon"><i className="fa-solid fa-bag-shopping"></i></div>
             <div className="transaction-card-body-company">{transaction["Company"]}</div>
             <div className="transaction-card-body-date">{transactionDate.toDateString()}</div>
-            <div className="transaction-card-body-value">{transaction["Value"]} {transaction["CurrencyAcronym"]}</div>
+            <div className="transaction-card-body-value">{transaction["Value"].toFixed(2)} {transaction["CurrencyAcronym"]}</div>
         </div>
     )
 }

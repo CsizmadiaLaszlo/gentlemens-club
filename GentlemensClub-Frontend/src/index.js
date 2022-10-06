@@ -1,6 +1,6 @@
 // IMAGINE THIS FILE IS CALLED MAIN.JS --..--
 
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
@@ -26,8 +26,16 @@ import Service from "./routes/service";
 // Sub-page imports
 import Accounts from "./routes/finance/accounts";
 
-import Stock from "./routes/finance/stock";
-import SelectedStock from "./routes/finance/selectedStock";
+import Stock from "./routes/finance/stock/stocks";
+import SelectedStock from "./routes/finance/stock/selectedStock";
+import WeeklyStatistics from "./routes/finance/stock/weeklyStatistics";
+import YearlyStatistics from "./routes/finance/stock/yearlyStatistics";
+
+// Contexts
+import UserContext from './services/authentication/userContext';
+
+// Login util
+import { getUserFromJwt } from './services/authentication/authenticationUtils';
 import { RestaurantHome, RestaurantMenu, RestaurantTable } from './routes/restaurant';
 
 
@@ -79,8 +87,16 @@ const router = createBrowserRouter([
                 element: <Stock/>
             },
             {
-                path: "selected-stock",
-                element: <SelectedStock />
+                path: "selected-stock/:symbol",
+                element: <SelectedStock />,
+            },
+            {
+                path: "selected-stock/weekly-statistics/:symbol",
+                element: <WeeklyStatistics />,
+            },
+            {
+                path: "selected-stock/yearly-statistics/:symbol",
+                element: <YearlyStatistics />,
             },
         ],
     },
@@ -101,9 +117,19 @@ const router = createBrowserRouter([
     }
 ]);
 
+const App = () => {
+    const [user, setUser] = useState(getUserFromJwt());
+
+    return (
+        <UserContext.Provider value={{ user, setUser }}>
+            <RouterProvider router={router}/>
+        </UserContext.Provider>
+    );
+}
+
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-        <RouterProvider router={router}/>
+        <App />
     </React.StrictMode>
 );
 

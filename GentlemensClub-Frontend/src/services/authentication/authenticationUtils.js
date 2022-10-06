@@ -54,3 +54,34 @@ export function deleteJwtToken() {
     localStorage.removeItem("jwt");
     localStorage.removeItem("jwtExpiresAt");
 }
+
+
+const isLoggedIn = () => {
+    return localStorage.getItem("jwt") !== null;
+}
+
+
+export const getJwtToken = () => {
+    return localStorage.getItem("jwt");
+}
+
+
+export const getUserFromJwt = () => {
+    if (isLoggedIn() !== true) {
+        return null;
+    }
+
+    const nameHeader = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name";
+    const idHeader = "UserId";
+    const tokenData = parseJwt(localStorage.getItem("jwt"));
+    return { name: tokenData[nameHeader], id: tokenData[idHeader] };
+}
+
+
+function parseJwt(token) {
+    try {
+        return JSON.parse(atob(token.split('.')[1]));
+    } catch (e) {
+        return null;
+    }
+}

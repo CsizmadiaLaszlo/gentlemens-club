@@ -8,5 +8,5 @@ public interface IBankTransactionService
     Task RemoveBankTransaction(int bankTransactionId);
     Task UpdateBankTransaction(BankTransaction bankTransaction);
     Task<BankTransaction> GetBankTransaction(int bankAccountId, int bankTransactionId);
-    Task<HashSet<BankTransaction>> GetAllBankTransactionByBankAccount(int bankAccountId);
+    Task<IOrderedEnumerable<BankTransaction>> GetAllBankTransactionByBankAccount(int bankAccountId);
 }

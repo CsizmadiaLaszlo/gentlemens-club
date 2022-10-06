@@ -7,15 +7,13 @@ export function Modal(props) {
 
     return (
         <div className="modal">
-            <div className="modal-content" style={{width: "24rem"}}>
+            <div className="modal-content bg-dark text-light" style={{width: "24rem"}}>
                 <div className="modal-header">
                     <h4 className="modal-title">{props.title}</h4>
+                    <i style={{cursor: "pointer"}} onClick={props.onClose} className={"fa-solid fa-x"}></i>
                 </div>
                 <div className="modal-body">
                     {props.body}
-                </div>
-                <div className="modal-footer">
-                    <button className="button btn btn-dark" onClick={props.onClose}>Close</button>
                 </div>
             </div>
         </div>
