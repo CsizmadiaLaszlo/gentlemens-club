@@ -1,5 +1,5 @@
 using System.Security.Claims;
-using GentlemensClub.Models.Account;
+using GentlemensClub.Models.Authentication;
 
 namespace GentlemensClub.Services.Interfaces;
 
@@ -10,4 +10,5 @@ public interface IAccountService
     Task CreateAccount(RegistrationData data);
     Task<bool> RegistrationIsValid(RegistrationData data);
     Task<IEnumerable<Claim>> CreateClaims(LoginCredential credential);
+    Task<Account?> GetAccountByAccountId(int accountId);
 }

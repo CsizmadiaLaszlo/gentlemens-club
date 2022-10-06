@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GentlemensClub.Models.Account;
+namespace GentlemensClub.Models.Authentication;
 
 public class LoginCredential
 {

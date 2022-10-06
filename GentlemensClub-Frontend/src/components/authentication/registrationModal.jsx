@@ -87,7 +87,7 @@ const RegistrationForm = ({ onSuccess }) => {
                 <input className={"form-control"} onChange={handleInputChange} type="password" name="confirmPassword" />
             </div>
             <div>
-                <input type="submit" className={"btn btn-dark"} value="Register" />
+                <input type="submit" className={"btn btn-outline-secondary"} value="Register" />
             </div>
         </form>
     );

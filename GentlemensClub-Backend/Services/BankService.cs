@@ -1,5 +1,5 @@
 ﻿using GentlemensClub.Data;
-using GentlemensClub.Models.Account;
+using GentlemensClub.Models.Authentication;
 using GentlemensClub.Models.Finance.Bank;
 using GentlemensClub.Services.Interfaces.Finance.Bank;
 using Microsoft.EntityFrameworkCore;
@@ -66,7 +66,7 @@ public class BankService : IBankService
     {
         return (await _context.BankCurrencies.FirstOrDefaultAsync(currency => currency.Id == bankCurrencyId))!;
     }
-    
+
     public async Task<BankCurrency> GetBankCurrency(int bankAccountId, string acronym)
     {
         var bankAccount = await _context.BankAccounts
@@ -109,15 +109,40 @@ public class BankService : IBankService
         return bankAccount!.BankTransactions.First(transaction => transaction.Id == transactionId);
     }
 
-    public async Task<HashSet<BankTransaction>> GetAllBankTransactionByBankAccount(int bankAccountId)
+    public async Task<IOrderedEnumerable<BankTransaction>> GetAllBankTransactionByBankAccount(int bankAccountId)
     {
         var bankAccount = await _context.BankAccounts
             .Include(account => account.BankTransactions)
-            .AsNoTracking()
             .FirstOrDefaultAsync(account => account.Id == bankAccountId);
-        return bankAccount!.BankTransactions;
+        return bankAccount!.BankTransactions.OrderByDescending(transaction => transaction.Id);
     }
-    
+
+    public async Task SaveExchange(int bankAccountId, ExchangeDto exchangeData)
+    {
+        var bankAccount = await _context.BankAccounts
+            .Include(account => account.BankTransactions)
+            .Include(account => account.Currencies)
+            .FirstOrDefaultAsync(account => account.Id == bankAccountId);
+        
+        var fromCurrency = bankAccount!.Currencies.First(currency => currency.Acronym == exchangeData.FromAcronym);
+        fromCurrency.Value -= exchangeData.FromValue;
+        
+        var toCurrency = bankAccount.Currencies.First(currency => currency.Acronym == exchangeData.ToAcronym);
+        toCurrency.Value += exchangeData.ToValue;
+        
+        var transaction = new BankTransaction()
+        {
+            Company = $"Sold {fromCurrency.Acronym} for {toCurrency.Acronym}",
+            CurrencyAcronym = fromCurrency.Acronym,
+            Value = -exchangeData.FromValue,
+            Address = "",
+            Date = DateTime.UtcNow,
+            Type = BankTransactionStatus.Approved,
+        };
+        bankAccount.BankTransactions.Add(transaction);
+        await _context.SaveChangesAsync();
+    }
+
     private BankAccount CreateDefaultBankAccount(int userAccountId)
     {
         return new BankAccount()
