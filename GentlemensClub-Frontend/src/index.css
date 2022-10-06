@@ -225,7 +225,9 @@ p.dropdown-item{
   margin: 5px;
 }
 
-.exchange-acronym { 
+.exchange-acronym {
+  display: flex;
+  max-height: 10px;
   grid-area: exchange-acronym; 
 }
 
@@ -243,6 +245,54 @@ p.dropdown-item{
 .exchange-info {
   text-align: right;
   grid-area: exchange-info; 
+}
+
+.exchange-spinner {
+  justify-content: center;
+  display: flex;
+}
+
+.exchange-modal-content {
+  width: 24rem;
+}
+
+.exchange-close-icon {
+  cursor: pointer;
+  justify-self: right;
+}
+
+.exchange-rate-container {
+  color: #6c757d;
+}
+
+.fa-solid.fa-x {
+  cursor: pointer;
+}
+
+.exchange-modal-body {
+  padding: 5px;
+}
+
+.top-currency-container .bottom-currency-container{
+  border: 1px solid #eee;
+  border-radius: 4px;
+  margin: 10px;
+}
+
+.exchange-dropdown-arrow {
+  padding: 3px !important;
+}
+
+.exchange-button-container {
+  margin: 10px;
+}
+
+.exchange-button {
+  width: 100%;
+}
+
+.exchange-dropdown-flag {
+  font-size: 15px;
 }
 
 /*
