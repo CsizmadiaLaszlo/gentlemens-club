@@ -3,5 +3,5 @@
 public class SearchCategoryModel
 {
     public string Name { get; set; }
-    public List<SpecialFoodCategories> Categories { get; set; } = new List<SpecialFoodCategories>();
+    public List<SpecialFoodCategory> Categories { get; set; } = new List<SpecialFoodCategory>();
 }
