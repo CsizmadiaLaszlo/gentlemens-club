@@ -30,15 +30,14 @@ const SelectedStock = () => {
     const renderStock = () => {
         return (
             <div>
-                {Object.keys(stock).length === 0
-                    ? (
-                        <div className="text-white d-flex flex-wrap justify-content-center">
-                            <h2>No available data!</h2></div>)
-                    : stock.map(st => {
-                        return (<div class="text-white d-flex flex-wrap justify-content-center">
-                                    <h1>{st.name
-                        } statistics</h1></div>)
-                    })}
+                <div>
+                    {Object.keys(stock).length === 0
+                        ? 
+                            <div className="text-white d-flex flex-wrap justify-content-center">
+                                <h2>No available data!</h2></div>
+                        : <></>
+                    }
+                </div>
                 <div className="d-flex flex-wrap">
                     {stock.map(st => {
                         return (
