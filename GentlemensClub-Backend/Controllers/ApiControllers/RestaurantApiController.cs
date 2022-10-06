@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using GentlemensClub.Models.Restaurant.Menu;
 using GentlemensClub.Models.Restaurant.Table;
-using GentlemensClub.Services.Interfaces.Restaurant.Table;
+using GentlemensClub.Services.Interfaces.Restaurant;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GentlemensClub.Controllers.ApiControllers
@@ -43,60 +43,20 @@ namespace GentlemensClub.Controllers.ApiControllers
         [Route("get-all-categories")]
         public string GetAllCategories([FromQuery] SpecialFoodCategories[] filter)
         {
-            var categories = new Dictionary<string, int>();
-
-            if (filter.Length is 0)
-            {
-                categories = new Dictionary<string, int>
-                {
-                    { "Food", 12 },
-                    { "Drinks", 4 },
-                    { "Desserts", 2 }
-                };
-            }
-            else
-            {
-                categories = new Dictionary<string, int>
-                {
-                    { filter.Length.ToString(), 69 },
-                    { "Drinks", 55 },
-                    { "Desserts", 69 }
-                };
-            }
-
-            return JsonSerializer.Serialize(categories);
+            return JsonSerializer.Serialize(filter);
         }
 
         /// <summary>
-        /// Returns in a JSON Serialized Dictionary all the menu items in a given search category. Can filter by specialty.
+        /// Returns in an IEnumerable of MenuItem of all the menu items in all, or in a given search category. Can filter by providing MenuSearchCategory.
         /// </summary>
         /// <param name="category"></param>
-        /// <returns>JSON Serialized MenuItemModel List</returns>
+        /// <returns>IEnumerable of MenuItems</returns>
         [HttpPost]
         [Route("get-items-of-category")]
-        public string GetItemsInCategory([FromBody] SearchCategoryModel category)
+        public async Task<IEnumerable<MenuItem>> GetItemsInCategory([FromBody] MenuSearchCategory category)
         {
 
-            var items = new List<MenuItemModel>
-            {
-                new MenuItemModel
-                {
-                    Id = 1,
-                    Ingredients = new List<string> { "Tomato", "Bread" },
-                    Name = category.Name,
-                    SpecialCategories = category.Categories,
-                    isChefFavorite = false
-                },
-                new MenuItemModel
-                {
-                    Id = 2,
-                    Ingredients = new List<string> { "Steak", "Bread" },
-                    Name = "Bread with a huge steak",
-                    isChefFavorite = true
-                }
-            };
-
-            return JsonSerializer.Serialize(items);
+            return await _restaurantService.GetMenuItemsInCategory(category);
         }
 
         /// <summary>
@@ -128,6 +88,27 @@ namespace GentlemensClub.Controllers.ApiControllers
         public async Task<Dictionary<int, Reservation?>> GetTableReservations()
         {
             return await _restaurantService.GetTableReservations();
+        }
+
+        [HttpGet]
+        [Route("get-all-menu-items")]
+        public async Task<IEnumerable<MenuItem>> GetAllMenuItems()
+        {
+            return await _restaurantService.GetAllMenuItems();
+        }
+
+        [HttpPost]
+        [Route("get-all-menu-items-in-category")]
+        public async Task<IEnumerable<MenuItem>> GetAllMenuItemsInCategory([FromBody] MenuSearchCategory category)
+        {
+            return await _restaurantService.GetMenuItemsInCategory(category);
+        }
+
+        [HttpPost]
+        [Route("get-all-menu-items-in-subcategory")]
+        public async Task<IEnumerable<MenuItem>> GetAllMenuItemsInSubCategory([FromBody] MenuSearchCategory category)
+        {
+            return await _restaurantService.GetMenuItemsInSubCategory(category);
         }
 
     }

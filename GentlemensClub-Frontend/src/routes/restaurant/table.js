@@ -1,52 +1,44 @@
-import React, { useDebugValue } from 'react';
+import React, { useEffect, useState } from 'react';
 import SideCard from '../../components/restaurant/sideCard';
 import MapsterMap from '../../components/restaurant/mapsterMap';
 import { getTableReservations, loadTableData } from '../../services/restaurant/restaurantApiHandler';
-import jQuery from 'jquery';
+import $ from 'jquery';
+import ImageMap from "image-map";
 
-class RestaurantTable extends React.Component {
+function RestaurantTable() {
 
-  imagemapsterimage = $('#mapsterImage');
+  const [tableCount, setTableCount] = useState(25);
+  const [mapsterimage, setMapsterimage] = useState($('#mapsterImage'));
+  const [reservationData, setReservationData] = useState(null);
+  const [mapsterAreas, setMapsterAreas] = useState(null);
+  const [loaded, setLoaded] = useState(null);
+  const [tableData, setTableData] = useState(null);
+  const [clickedTableId, setClickedTableId] = useState(null);
 
-  state = {
-    tableCount: 25,
-    mapsterimage: this.imagemapsterimage,
-    reservationData: null,
-    areas: null,
-    loaded: false,
-    tableData: null,
-    clickedTableId: null
-  }
-
-  constructor(props) {
-    super(props);
-
-    this.loadSelectedTableData = this.loadSelectedTableData.bind(this);
-    this.initMapster = this.initMapster.bind(this);
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     getTableReservations().then((reservationData) => {
-      this.addKeysToAreas(reservationData);
-      this.initMapster();
-      this.setState({ loaded: true });
+      console.log(reservationData);
+      addKeysToAreas(reservationData);
+      initMapster();
+      setLoaded(true);
     });
-  }
+  }, []);
 
-  componentDidUpdate() {
-    if (this.state.clickedTableId != null ) {
-      loadTableData(this.state.clickedTableId).then((data) => {
-        this.setState({ tableData: data, clickedTableId: null });
+  useEffect(() => {
+    if (clickedTableId != null ) {
+      loadTableData(clickedTableId).then((data) => {
+        setTableData(data);
+        setClickedTableId(null);
       });
     }
-    if (this.state.reservationData != null ) {
-      this.initMapster();
+    if (reservationData != null ) {
+      initMapster();
     }
-  }
+  }, [clickedTableId]);
 
-  addKeysToAreas(data) {
+  const addKeysToAreas = (data) => {
 
-    var areas = [this.state.tableCount];
+    var areas = [tableCount];
 
     document.querySelectorAll("area").forEach(element => {
       var templateReserved = {
@@ -73,36 +65,35 @@ class RestaurantTable extends React.Component {
       }
     });
 
-    this.setState({ areas: areas });
+    setMapsterAreas(areas);
 
   }
 
-  initMapster() {
-    this.state.mapsterimage.mapster({
-      fillColor: "333333",
-      fillOpacity: 0.5,
-      areas: this.state.areas,
-      onClick: function (event) {
-        console.log(event);
-        //loadTableData(this.id);
-      }
-    });
+  const initMapster = () => {
+    // mapsterimage.mapster({
+    //   fillColor: "333333",
+    //   fillOpacity: 0.5,
+    //   areas: mapsterAreas,
+    //   onClick: function (event) {
+    //     console.log(event);
+    //     //loadTableData(this.id);
+    //   }
+    // });
+    ImageMap('#mapsterImage');
   }
 
-  loadSelectedTableData(areaId) {
-    this.initMapster();
-    this.setState({clickedTableId:areaId});
+  const loadSelectedTableData = (areaId) => {
+    initMapster();
+    setClickedTableId(areaId);
   }
 
-  render() {
-    return (
-      <div className="d-inline-flex justify-content-around">
-        <SideCard />
-        <MapsterMap clickHandler={this.loadSelectedTableData} />
-        <TableDataCard tableData={this.state.tableData} />
-      </div>
-    );
-  }
+  return (
+    <div className="d-inline-flex justify-content-around">
+      <SideCard />
+      <MapsterMap clickHandler={loadSelectedTableData} />
+      <TableDataCard tableData={tableData} />
+    </div>
+  );
 }
 
 function TableDataCard(props) {
@@ -144,6 +135,6 @@ function RenderTableInformationModal(props) {
   )
 }
 
-export default function restaurantApp() {
+export default function RestaurantTableApp() {
   return <RestaurantTable />;
 };

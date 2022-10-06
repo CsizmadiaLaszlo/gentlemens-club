@@ -1,4 +1,4 @@
-import topview from '../../images/top-view-small.png';
+import topview from '../../assets/img/restaurant/top-view-small.png';
 
 const MapsterMap = (props) => {
     return (
