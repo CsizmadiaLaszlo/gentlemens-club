@@ -3,7 +3,7 @@ import {getJwtToken} from "../../authentication/authenticationUtils";
 export async function getAllCurrency() {
     const options = {
         headers: {
-            'Authentication': "Bearer " + getJwtToken()
+            'Authorization': "Bearer " + getJwtToken()
         },
     };
     return await fetch("/api/finance/bank/currencies", options).then(r => r.json());
@@ -12,7 +12,7 @@ export async function getAllCurrency() {
 export async function getAllTransaction() {
     const options = {
         headers: {
-            'Authentication': "Bearer " + getJwtToken()
+            'Authorization': "Bearer " + getJwtToken()
         },
     };
     return await fetch("/api/finance/bank/transaction", options).then(r => r.json());
@@ -30,7 +30,7 @@ export async function sendExchange(exchange){
     const options = {
         method: "POST",
         headers: {
-            'Authentication': "Bearer " + getJwtToken(),
+            'Authorization': "Bearer " + getJwtToken(),
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(exchange),
