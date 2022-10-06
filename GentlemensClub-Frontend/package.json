@@ -9,6 +9,7 @@
     "bootstrap": "^5.2.1",
     "es6-promise": "^4.2.8",
     "http-proxy-middleware": "^2.0.6",
+    "image-map": "^2.0.1",
     "imagemapster": "^1.5.4",
     "jquery": "^2.2.4",
     "localforage": "^1.10.0",

@@ -9,7 +9,8 @@ const context = [
     "/api/finance/stock",
     "/api/finance/selected-stock",
     "/api/restaurant/get-table-reservations",
-    "/api/restaurant/get-table-data"
+    "/api/restaurant/get-table-data",
+    "/api/restaurant/get-filters"
 ];
 
 module.exports = function (app) {

@@ -36,6 +36,7 @@ import UserContext from './services/authentication/userContext';
 
 // Login util
 import { getUserFromJwt } from './services/authentication/authenticationUtils';
+import { RestaurantHome, RestaurantMenu, RestaurantTable } from './routes/restaurant';
 
 
 const router = createBrowserRouter([
@@ -45,11 +46,6 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage/>,
         children: [
             {index: true, element: <Index/>},
-            {
-                path: "/restaurant",
-                element: <Restaurant/>,
-                errorElement: <ErrorPage/>,
-            },
             {
                 path: "/fitness",
                 element: <Fitness/>,
@@ -105,9 +101,19 @@ const router = createBrowserRouter([
         ],
     },
     {
-        path: "/restaurant/table",
-        element: <Restaurant />,
-        errorElement: <ErrorPage />,
+        path: "/restaurant",
+        element: <RestaurantHome />,
+        errorElement: <ErrorPage/>
+    },
+    {
+        path: "/restaurant/menu",
+        element: <RestaurantMenu />,
+        errorElement: <ErrorPage/>
+    },
+    {
+        path: "/restaurant/tables",
+        element: <RestaurantTable />,
+        errorElement: <ErrorPage/>
     }
 ]);
 
