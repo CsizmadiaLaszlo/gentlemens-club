@@ -33,6 +33,7 @@ public class GentlemensClubContext : DbContext
         modelBuilder.Entity<RestaurantTable>().ToTable("restaurant_table");
         modelBuilder.Entity<Reservation>().ToTable("reservation");
         modelBuilder.Entity<ContactForm>().ToTable("contact_form");
+        modelBuilder.Entity<MenuItem>().ToTable("menu_item");
         // stb
     }
 }
