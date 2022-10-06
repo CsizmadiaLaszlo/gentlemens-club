@@ -23,7 +23,7 @@ namespace GentlemensClub.Controllers.ApiControllers
         {
             var filters = new Dictionary<string, int>();
 
-            foreach (var category in Enum.GetValues(typeof(SpecialFoodCategories)))
+            foreach (var category in Enum.GetValues(typeof(SpecialFoodCategory)))
             {
                 var categoryName = System.Text.RegularExpressions.Regex.Replace(
                     category.ToString(), "[A-Z]", " $0").TrimStart();
@@ -41,9 +41,18 @@ namespace GentlemensClub.Controllers.ApiControllers
         /// <returns>JSON Serialized string,int Dictionary</returns>
         [HttpGet]
         [Route("get-all-categories")]
-        public string GetAllCategories([FromQuery] SpecialFoodCategories[] filter)
+        public string GetAllCategories([FromQuery] SpecialFoodCategory? category)
         {
-            return JsonSerializer.Serialize(filter);
+            if (!category.Equals(null))
+            {
+                MenuSearchCategory cat = new MenuSearchCategory { SpecialFoodCategory = category };
+                return JsonSerializer.Serialize(_restaurantService.GetMenuItemsInCategory(cat));
+            }
+            else
+            {
+                return JsonSerializer.Serialize(_restaurantService.GetAllCategories());
+            }
+            
         }
 
         /// <summary>
