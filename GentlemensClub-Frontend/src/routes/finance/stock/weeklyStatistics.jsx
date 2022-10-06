@@ -26,7 +26,6 @@ const WeeklyStatistics = () => {
         weeklyStatisticLoader();
     }, []);
 
-
     const renderStatistics = () => {
         return (
             <div>
@@ -39,9 +38,9 @@ const WeeklyStatistics = () => {
                     }
                 </div>
                 <div className="d-flex flex-wrap">
-                    {weeklyStatistic.map(st => {
+                    {weeklyStatistic.map((st, index)=> {
                         return (
-                            <div className="stock card bg-dark text-white border-light">
+                            <div key={index} className="stock card bg-dark text-white border-light">
                                 <div>{st.date}</div>
                                 <div>High: {st.data.high}</div>
                                 <div>Low: {st.data.low}</div>
@@ -54,8 +53,6 @@ const WeeklyStatistics = () => {
             </div>
         );
     }
-
-
 
     return (
         <div>

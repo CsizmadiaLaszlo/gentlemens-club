@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useState, useEffect, createContext, useContext } from 'react';
 import { LoadingSpinner } from "../../../components/shared";
 import { getSelectedStock } from "../../../services/finance/stock/stockApiHandler";
+import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 import placeholder from "../../../assets/img/stock/placeholder_chart.jpg"
 
 const SelectedStock = () => {
@@ -22,7 +23,7 @@ const SelectedStock = () => {
         setStock(stock);
         setLoading(false);
     }
-
+    
     useEffect(() => {
         stocksLoader();
     }, []);
@@ -30,19 +31,21 @@ const SelectedStock = () => {
     const renderStock = () => {
         return (
             <div>
-                {Object.keys(stock).length === 0
-                    ? (
-                        <div className="text-white d-flex flex-wrap justify-content-center">
-                            <h2>No available data!</h2></div>)
-                    : stock.map(st => {
-                        return (<div class="text-white d-flex flex-wrap justify-content-center">
-                                    <h1>{st.name
-                        } statistics</h1></div>)
-                    })}
+                <div>
+                    {Object.keys(stock).length === 0
+                        ? 
+                            <div className="text-white d-flex flex-wrap justify-content-center">
+                                <h2>No available data!</h2></div>
+                        : <></>
+                    }
+                </div>
                 <div className="d-flex flex-wrap">
-                    {stock.map(st => {
+                    {stock.map((st, index) => {
                         return (
-                            <div>
+                            <div key={index}>
+                                <div className="text-white d-flex flex-wrap justify-content-center">
+                                    <h1>{st.name
+                                    } statistics</h1></div>
                                 <div className="selected-stock card bg-dark text-white border-light">
                                     <div>
                                         <h2>Price: {st.price}</h2></div>
@@ -64,23 +67,18 @@ const SelectedStock = () => {
                                 </div>
                                 <div className="graph-box">
                                     <div className="text-white d-flex flex-wrap justify-content-center">
-                                        <h1>{st.name} weekly graph statistics</h1>
+                                        <h1>{st.name} statistics chart</h1>
                                     </div>
-                                    <div className="d-flex flex-wrap justify-content-center"><img src={placeholder} alt="Placeholder for real chart" width="90%" height="30%"/>
-                                        <div className="text-white d-flex flex-wrap justify-content-center">
-                                            <Link to={`/finance/selected-stock/weekly-statistics/${symbol}`}>{
-                                                st.name} weekly statistics in data</Link>
-                                        </div>
+                                    <div className="d-flex flex-wrap justify-content-center">
+                                        <AdvancedRealTimeChart theme="dark" symbol={"NASDAQ:" + symbol}></AdvancedRealTimeChart>
                                     </div>
-                                </div>
-                                <div className="graph-box">
                                     <div className="text-white d-flex flex-wrap justify-content-center">
-                                        <h1>{st.name} yearly graph statistics</h1></div>
-                                    <div className="d-flex flex-wrap justify-content-center"><img src={placeholder} alt="Placeholder for real chart" width="90%" height="30%"/>
-                                        <div className="text-white d-flex flex-wrap justify-content-center">
-                                            <Link to={`/finance/selected-stock/yearly-statistics/${symbol}`}>{
-                                                st.name} yearly statistics in data</Link>
-                                        </div>
+                                        <Link to={`/finance/selected-stock/weekly-statistics/${symbol}`}>
+                                            {st.name} weekly statistics in data</Link>
+                                    </div>
+                                    <div className="text-white d-flex flex-wrap justify-content-center">
+                                        <Link to={`/finance/selected-stock/yearly-statistics/${symbol}`}>
+                                            {st.name} yearly statistics in data</Link>
                                     </div>
                                 </div>
                             </div>
