@@ -64,23 +64,9 @@ const SelectedStock = () => {
                                 </div>
                                 <div className="graph-box">
                                     <div className="text-white d-flex flex-wrap justify-content-center">
-                                        <h1>{st.name} weekly graph statistics</h1>
                                     </div>
-                                    <div className="d-flex flex-wrap justify-content-center"><img src={placeholder} alt="Placeholder for real chart" width="90%" height="30%"/>
-                                        <div className="text-white d-flex flex-wrap justify-content-center">
-                                            <Link to={`/finance/selected-stock/weekly-statistics/${symbol}`}>{
-                                                st.name} weekly statistics in data</Link>
-                                        </div>
                                     </div>
-                                </div>
-                                <div className="graph-box">
                                     <div className="text-white d-flex flex-wrap justify-content-center">
-                                        <h1>{st.name} yearly graph statistics</h1></div>
-                                    <div className="d-flex flex-wrap justify-content-center"><img src={placeholder} alt="Placeholder for real chart" width="90%" height="30%"/>
-                                        <div className="text-white d-flex flex-wrap justify-content-center">
-                                            <Link to={`/finance/selected-stock/yearly-statistics/${symbol}`}>{
-                                                st.name} yearly statistics in data</Link>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
