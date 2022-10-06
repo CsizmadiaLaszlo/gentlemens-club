@@ -1,19 +1,10 @@
+import {GoogleMap} from "../components/shared.jsx";
+
 const Contact = () => {
     return (
         <>
             <div id="cotact-map" style={{display: "flex", justifyContent: "center", paddingBottom: "40px"}}>
-                {/*TODO get a react google map loader*/}
-                {/*<div className="mapouter">*/}
-                {/*    <div className="gmap_canvas">*/}
-                {/*        <iframe width="657" height="761" id={"gmap_canvas"}*/}
-                {/*                src="https://maps.google.com/maps?q=150W%2059th%20street,%20New%20York&t=k&z=17&ie=UTF8&iwloc=&output=embed">*/}
-                {/*        </iframe>*/}
-                {/*        <br>*/}
-                {/*            <style>.mapouter{position:relative;text-align:right;height:761px;width:657px;}</style>*/}
-                {/*            <a href="https://www.embedgooglemap.net">embedgooglemap.net</a>*/}
-                {/*            <style>.gmap_canvas {overflow:hidden;background:none!important;height:761px;width:657px;}</style>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
+                {GoogleMap("150W%2059th%20street", 600, 600)}
             </div>
 
             <h5 className="text-center">If you have questions, please fill the form at the bottom:</h5>
