@@ -111,7 +111,7 @@ function RenderTableInformationModal(props) {
   var tableData = props.tableData;
 
   return (
-    <div className="card bg-dark text - light border - secondary">
+    <div className="card bg-dark text-light border-secondary">
       <div className="card-header border-secondary">
         Table {tableData.id}'s information
       </div>
