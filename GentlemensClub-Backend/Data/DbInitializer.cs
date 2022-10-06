@@ -1,5 +1,6 @@
 using GentlemensClub.Models.Authentication;
 using GentlemensClub.Models.Finance.Bank;
+using GentlemensClub.Models.Restaurant.Menu;
 using GentlemensClub.Models.Restaurant.Table;
 
 namespace GentlemensClub.Data;
@@ -101,8 +102,256 @@ public class DbInitializer
         List<RestaurantTable> tables = CreateTablesList();
         context.AddRange(tables);
         context.SaveChanges();
+
+        // Create menu items for the Restaurant menu
+        context.MenuItems.AddRange(CreateMenuItems());
+        context.SaveChanges();
     }
-    
+
+    private static List<MenuItem> CreateMenuItems()
+    {
+        List<MenuItem> items = new List<MenuItem>();
+
+        List<MenuItem> dishes = new List<MenuItem>
+        {
+            new MenuItem
+            {
+                Name = "Steak",
+                Image = "steak",
+                Category = MenuItemCategory.Dishes,
+                Ingredients = new List<string>
+                {
+                    "Steak",
+                    "More Steak"
+                },
+                isChefFavorite = false
+            },
+            new MenuItem
+            {
+                Name = "Salmon",
+                Image = "salmon",
+                Category = MenuItemCategory.Dishes,
+                Ingredients = new List<string>
+                {
+                    "Some fish",
+                    "Maybe a broken fishing rod"
+                },
+                SpecialCategories = new List<SpecialFoodCategory>
+                {
+                    SpecialFoodCategory.LowCalorie,
+                    SpecialFoodCategory.LactoseFree
+                },
+                isChefFavorite = true
+            },
+            new MenuItem
+            {
+                Name = "Broccoli and Chicken Stir-Fry",
+                Image = "broccoli-and-chicken-stir-fry",
+                Category = MenuItemCategory.Dishes,
+                Ingredients = new List<string>
+                {
+                    "Broccoli",
+                    "Chicken",
+                    "Sauce"
+                },
+                SpecialCategories = new List<SpecialFoodCategory>
+                {
+                    SpecialFoodCategory.LowCalorie
+                },
+                isChefFavorite = false
+            },
+            new MenuItem
+            {
+                Name = "Pasta Salad",
+                Image = "pasta-salad",
+                Category = MenuItemCategory.Dishes,
+                Ingredients = new List<string>
+                {
+                    "Pasta",
+                    "Salad",
+                    "Magical Sauce"
+                },
+                SpecialCategories = new List<SpecialFoodCategory>
+                {
+                    SpecialFoodCategory.LowCalorie,
+                    SpecialFoodCategory.Vegan
+                },
+                isChefFavorite = false
+            },
+            new MenuItem
+            {
+                Name = "Ginger Veggie Stir-Fry ",
+                Image = "ginger-veggie-stir-fry",
+                Category = MenuItemCategory.Dishes,
+                Ingredients = new List<string>
+                {
+                    "Vegetables"
+                },
+                SpecialCategories = new List<SpecialFoodCategory>
+                {
+                    SpecialFoodCategory.LowCalorie,
+                    SpecialFoodCategory.LactoseFree,
+                    SpecialFoodCategory.Vegan
+                },
+                isChefFavorite = false
+            }
+        };
+
+        List<MenuItem> drinks = new List<MenuItem>
+        {
+            new MenuItem
+            {
+                Name = "Coca Cola",
+                Image = "cocacola",
+                Category = MenuItemCategory.Drinks,
+                Ingredients = new List<string>
+                {
+                    "Coca Cola"
+                },
+                SpecialCategories = new List<SpecialFoodCategory>
+                {
+                    SpecialFoodCategory.Vegan,
+                    SpecialFoodCategory.LactoseFree
+                },
+                isChefFavorite = false
+            },
+            new MenuItem
+            {
+                Name = "Pepsi",
+                Image = "pepsi",
+                Category = MenuItemCategory.Drinks,
+                Ingredients = new List<string>
+                {
+                    "Pepsi"
+                },
+                SpecialCategories = new List<SpecialFoodCategory>
+                {
+                    SpecialFoodCategory.Vegan,
+                    SpecialFoodCategory.LactoseFree
+                },
+                isChefFavorite = true
+            },
+            new MenuItem
+            {
+                Name = "Pepsi Zero",
+                Image = "pepsi-zero",
+                Category = MenuItemCategory.Drinks,
+                Ingredients = new List<string>
+                {
+                    "Pepsi Zero"
+                },
+                SpecialCategories = new List<SpecialFoodCategory>
+                {
+                    SpecialFoodCategory.LowCalorie,
+                    SpecialFoodCategory.LactoseFree,
+                    SpecialFoodCategory.Vegan
+                },
+                isChefFavorite = false
+            },
+            new MenuItem
+            {
+                Name = "Ice Tea",
+                Image = "icetea",
+                Category = MenuItemCategory.Drinks,
+                Ingredients = new List<string>
+                {
+                    "Ice",
+                    "Tea"
+                },
+                SpecialCategories = new List<SpecialFoodCategory>
+                {
+                    SpecialFoodCategory.LowCalorie,
+                    SpecialFoodCategory.LactoseFree,
+                    SpecialFoodCategory.Vegan
+                },
+                isChefFavorite = false
+            },
+            new MenuItem
+            {
+                Name = "Whiskey",
+                Image = "whiskey",
+                Category = MenuItemCategory.Drinks,
+                Ingredients = new List<string>
+                {
+                    "Whis",
+                    "Key"
+                },
+                SpecialCategories = new List<SpecialFoodCategory>
+                {
+                    SpecialFoodCategory.Vegan,
+                    SpecialFoodCategory.LactoseFree
+                },
+                isChefFavorite = true
+            },
+            new MenuItem
+            {
+                Name = "Cocktail",
+                Image = "cocktail",
+                Category = MenuItemCategory.Drinks,
+                Ingredients = new List<string>
+                {
+                    "Alcoholic juice",
+                    "Ice",
+                    "Cock",
+                    "Tail"
+                },
+                SpecialCategories = new List<SpecialFoodCategory>
+                {
+                    SpecialFoodCategory.Vegan,
+                    SpecialFoodCategory.LactoseFree
+                },
+                isChefFavorite = false
+            },
+            new MenuItem
+            {
+                Name = "Mojito",
+                Image = "mojito",
+                Category = MenuItemCategory.Drinks,
+                Ingredients = new List<string>
+                {
+                    "Lime",
+                    "Water",
+                    "Crushed Ice",
+                    "Sugar"
+                },
+                SpecialCategories = new List<SpecialFoodCategory>
+                {
+                    SpecialFoodCategory.Vegan,
+                    SpecialFoodCategory.LactoseFree
+                },
+                isChefFavorite = true
+            },
+        };
+
+        List<MenuItem> desserts = new List<MenuItem>
+        {
+            new MenuItem
+            {
+                Name = "Macaron",
+                Image = "macaron",
+                Category = MenuItemCategory.Desserts,
+                Ingredients = new List<string>
+                {
+                    "Sugar",
+                    "Chocolate cream"
+                },
+                SpecialCategories = new List<SpecialFoodCategory>
+                {
+                    SpecialFoodCategory.Vegan,
+                    SpecialFoodCategory.LactoseFree
+                },
+                isChefFavorite = true
+            }
+        };
+
+        items.AddRange(dishes);
+        items.AddRange(drinks);
+        items.AddRange(desserts);
+
+        return items;
+
+    }
+
     private static List<RestaurantTable> CreateTablesList()
     {
         List<RestaurantTable> tables = new();

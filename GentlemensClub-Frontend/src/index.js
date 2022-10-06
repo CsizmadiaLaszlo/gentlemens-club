@@ -15,7 +15,7 @@ import {
 // Component import for main route pages
 import Layout from "./components/layout";
 import Index from "./routes/index.jsx";
-import Restaurant from "./routes/restaurant";
+import Restaurant, { RestaurantLayout } from "./routes/restaurant";
 import Fitness from "./routes/fitness";
 import Healthcare from "./routes/healthcare";
 import Membership from "./routes/membership";
@@ -103,18 +103,21 @@ const router = createBrowserRouter([
     },
     {
         path: "/restaurant",
-        element: <RestaurantHome />,
-        errorElement: <ErrorPage/>
-    },
-    {
-        path: "/restaurant/menu",
-        element: <RestaurantMenu />,
-        errorElement: <ErrorPage/>
-    },
-    {
-        path: "/restaurant/tables",
-        element: <RestaurantTable />,
-        errorElement: <ErrorPage/>
+        element: <RestaurantLayout />,
+        errorElement: <ErrorPage/>,
+        children: [
+            {index: true, element: <RestaurantHome/>},
+            {
+                path: "/restaurant/menu",
+                element: <RestaurantMenu />,
+                errorElement: <ErrorPage/>
+            },
+            {
+                path: "/restaurant/tables",
+                element: <RestaurantTable />,
+                errorElement: <ErrorPage/>
+            }
+        ]
     }
 ]);
 

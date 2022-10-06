@@ -3,7 +3,6 @@ import SideCard from '../../components/restaurant/sideCard';
 import MapsterMap from '../../components/restaurant/mapsterMap';
 import { getTableReservations, loadTableData } from '../../services/restaurant/restaurantApiHandler';
 import $ from 'jquery';
-import ImageMap from "image-map";
 
 function RestaurantTable() {
 
@@ -79,7 +78,7 @@ function RestaurantTable() {
     //     //loadTableData(this.id);
     //   }
     // });
-    ImageMap('#mapsterImage');
+    // ImageMap('#mapsterImage');
   }
 
   const loadSelectedTableData = (areaId) => {

@@ -1,6 +1,6 @@
 ﻿namespace GentlemensClub.Models.Restaurant.Menu;
 
-public enum SpecialFoodCategories
+public enum SpecialFoodCategory
 {
     Vegan,
     LactoseFree,
