@@ -26,7 +26,6 @@ const WeeklyStatistics = () => {
         weeklyStatisticLoader();
     }, []);
 
-
     const renderStatistics = () => {
         return (
             <div>
@@ -54,8 +53,6 @@ const WeeklyStatistics = () => {
             </div>
         );
     }
-
-
 
     return (
         <div>
