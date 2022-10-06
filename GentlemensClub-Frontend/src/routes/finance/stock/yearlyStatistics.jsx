@@ -34,7 +34,7 @@ const YearlyStatistics = () => {
                         ? <div className="text-white d-flex flex-wrap justify-content-center">
                             <h2>No available data!</h2></div>
                         : <div className="text-white d-flex flex-wrap justify-content-center">
-                            <h1>Past week statistics</h1></div>
+                            <h1>Past year statistics</h1></div>
                     }
                 </div>
                 <div className="d-flex flex-wrap">
