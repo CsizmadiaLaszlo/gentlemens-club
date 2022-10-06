@@ -30,6 +30,8 @@ const ContactForm = () => {
             Message: message,
             EmailAddress: email
         }
+        
+        alert("Your message has been sent.")
 
         return fetch("/api/contact/save", {
             method: 'POST',
