@@ -37,6 +37,7 @@ import UserContext from './services/authentication/userContext';
 // Login util
 import { getUserFromJwt } from './services/authentication/authenticationUtils';
 import { RestaurantHome, RestaurantMenu, RestaurantTable } from './routes/restaurant';
+import {FinanceContainer} from "./components/finance/financeComponents";
 
 
 const router = createBrowserRouter([
@@ -71,32 +72,32 @@ const router = createBrowserRouter([
                 element: <Service/>,
                 errorElement: <ErrorPage/>,
             },
-        ],
-    },
-    {
-        path: "/finance",
-        element: <Finance/>,
-        errorElement: <ErrorPage/>,
-        children: [
             {
-                path: "account",
-                element: <Accounts />
-            },
-            {
-                path: "stock",
-                element: <Stock/>
-            },
-            {
-                path: "selected-stock/:symbol",
-                element: <SelectedStock />,
-            },
-            {
-                path: "selected-stock/weekly-statistics/:symbol",
-                element: <WeeklyStatistics />,
-            },
-            {
-                path: "selected-stock/yearly-statistics/:symbol",
-                element: <YearlyStatistics />,
+                path: "/finance",
+                element: <FinanceContainer/>,
+                errorElement: <ErrorPage/>,
+                children: [
+                    {
+                        path: "account",
+                        element: <Accounts />
+                    },
+                    {
+                        path: "stock",
+                        element: <Stock/>
+                    },
+                    {
+                        path: "selected-stock/:symbol",
+                        element: <SelectedStock />,
+                    },
+                    {
+                        path: "selected-stock/weekly-statistics/:symbol",
+                        element: <WeeklyStatistics />,
+                    },
+                    {
+                        path: "selected-stock/yearly-statistics/:symbol",
+                        element: <YearlyStatistics />,
+                    },
+                ],
             },
         ],
     },

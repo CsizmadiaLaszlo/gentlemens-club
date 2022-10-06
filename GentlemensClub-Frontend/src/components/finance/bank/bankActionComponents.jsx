@@ -64,8 +64,9 @@ const ExchangeModal = ({show, onClose}) => {
     }, [activeAcronym, toAcronym]);
 
     const handleTopChange = (event) => {
-        setTopValue(Math.min(event.target.value, topCurrencyData["Value"].toFixed(2)));
-        setBottomValue((topValue * exchangeRate).toFixed(2));
+        const newValue = Math.min(event.target.value, topCurrencyData["Value"].toFixed(2))
+        setTopValue(newValue);
+        setBottomValue((newValue * exchangeRate));
     }
     const closeModal = () => {
         onClose();
@@ -127,8 +128,8 @@ const ExchangeModal = ({show, onClose}) => {
                                         <div className="exchange-amount">
                                             <div className="input-group input-group-sm mb-3">
                                                 <span className="input-group-text">{topCurrencyData["Symbol"]}</span>
-                                                <input type="number" max={topCurrencyData["Value"]} value={topValue}
-                                                       onChange={handleTopChange}
+                                                <input type="number" min={0} max={topCurrencyData["Value"]} value={topValue}
+                                                       onInput={handleTopChange}
                                                        className="form-control shadow-none"></input>
                                             </div>
                                         </div>

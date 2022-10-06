@@ -11,7 +11,8 @@ const context = [
     "/api/restaurant/get-table-reservations",
     "/api/restaurant/get-table-data",
     "/api/restaurant/get-filters",
-    "/api/restaurant/get-all-categories"
+    "/api/restaurant/get-all-categories",
+    "/api/contact/save"
 ];
 
 module.exports = function (app) {
