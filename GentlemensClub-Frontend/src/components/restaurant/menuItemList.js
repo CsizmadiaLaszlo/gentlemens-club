@@ -10,7 +10,53 @@ const MenuItemList = () => {
             </nav>
             <div className="tab-content border-secondary" id="nav-tabContent">
                 <div className="tab-pane fade show active" id="nav-dishes" role="tabpanel" aria-labelledby="nav-dishes-tab" tabIndex="0">
-                    Dishes here
+                    <div className="row row-cols-1 row-cols-md-3 g-4">
+                        <div className="col">
+                            <div className="card m-3 bg-dark border-secondary">
+                                <img src={require("../../assets/img/restaurant/foods/steak.png")} className="card-img-top" alt="..." />
+                                <div className="card-body">
+                                    <h5 className="card-title">Steak</h5>
+                                    <p className="card-text">A food.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="card m-3 bg-dark border-secondary">
+                                <img src={require("../../assets/img/restaurant/foods/salmon.png")} className="card-img-top" alt="..." />
+                                <div className="card-body">
+                                    <h5 className="card-title">Salmon</h5>
+                                    <p className="card-text">A food.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="card m-3 bg-dark border-secondary">
+                                <img src={require("../../assets/img/restaurant/foods/broccoli-and-chicken-stir-fry.png")} className="card-img-top" alt="..." />
+                                <div className="card-body">
+                                    <h5 className="card-title">Broccoli and Chicken Stir-Fry</h5>
+                                    <p className="card-text">A food.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="card m-3 bg-dark border-secondary">
+                                <img src={require("../../assets/img/restaurant/foods/pasta-salad.png")} className="card-img-top" alt="..." />
+                                <div className="card-body">
+                                    <h5 className="card-title">Pasta Salad</h5>
+                                    <p className="card-text">A food.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="card m-3 bg-dark border-secondary">
+                                <img src={require("../../assets/img/restaurant/foods/ginger-veggie-stir-fry.png")} className="card-img-top" alt="..." />
+                                <div className="card-body">
+                                    <h5 className="card-title">Ginger Veggie Stir-Fry </h5>
+                                    <p className="card-text">A food.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className="tab-pane fade" id="nav-drinks" role="tabpanel" aria-labelledby="nav-drinks-tab" tabIndex="1">
                     <div className="row row-cols-1 row-cols-md-3 g-4">
@@ -44,16 +90,44 @@ const MenuItemList = () => {
                         <div className="col">
                             <div className="card m-3 bg-dark border-secondary">
                                 <img src={require("../../assets/img/restaurant/foods/whiskey.png")} className="card-img-top" alt="..." />
-                            <div className="card-body">
-                                    <h5 className="card-title">Whiskey</h5>
-                                    <p className="card-text">Another drink.</p>
+                                <div className="card-body">
+                                        <h5 className="card-title">Whiskey</h5>
+                                        <p className="card-text">Another drink.</p>
+                                </div>
                             </div>
                         </div>
+                        <div className="col">
+                            <div className="card m-3 bg-dark border-secondary">
+                                <img src={require("../../assets/img/restaurant/foods/cocktail.png")} className="card-img-top" alt="..." />
+                                <div className="card-body">
+                                        <h5 className="card-title">Cocktail</h5>
+                                        <p className="card-text">Another drink.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="card m-3 bg-dark border-secondary">
+                                <img src={require("../../assets/img/restaurant/foods/mojito.png")} className="card-img-top" alt="..." />
+                                <div className="card-body">
+                                        <h5 className="card-title">Mojito</h5>
+                                        <p className="card-text">Another drink.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div className="tab-pane fade" id="nav-desserts" role="tabpanel" aria-labelledby="nav-desserts-tab" tabIndex="2">
-                    Desserts here
+                <div className="row row-cols-1 row-cols-md-3 g-4">
+                        <div className="col">
+                            <div className="card m-3 bg-dark border-secondary">
+                                <img src={require("../../assets/img/restaurant/foods/macaron.png")} className="card-img-top" alt="..." />
+                                <div className="card-body">
+                                    <h5 className="card-title">Macaron</h5>
+                                    <p className="card-text">A food.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
