@@ -3,30 +3,21 @@ import SideCard from '../../components/restaurant/sideCard';
 import MapsterMap from '../../components/restaurant/mapsterMap';
 import { getTableReservations, loadTableData } from '../../services/restaurant/restaurantApiHandler';
 import $ from 'jquery';
+import ImageMap from "image-map";
 
-class RestaurantTable extends React.Component {
+function RestaurantTable() {
 
-  imagemapsterimage = $('#mapsterImage');
+  const [tableCount, setTableCount] = useState(25);
+  const [mapsterimage, setMapsterimage] = useState($('#mapsterImage'));
+  const [reservationData, setReservationData] = useState(null);
+  const [mapsterAreas, setMapsterAreas] = useState(null);
+  const [loaded, setLoaded] = useState(null);
+  const [tableData, setTableData] = useState(null);
+  const [clickedTableId, setClickedTableId] = useState(null);
 
-  state = {
-    tableCount: 25,
-    mapsterimage: this.imagemapsterimage,
-    reservationData: null,
-    areas: null,
-    loaded: false,
-    tableData: null,
-    clickedTableId: null
-  }
-
-  constructor(props) {
-    super(props);
-
-    this.loadSelectedTableData = this.loadSelectedTableData.bind(this);
-    this.initMapster = this.initMapster.bind(this);
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     getTableReservations().then((reservationData) => {
+      console.log(reservationData);
       addKeysToAreas(reservationData);
       initMapster();
       setLoaded(true);
@@ -88,7 +79,7 @@ class RestaurantTable extends React.Component {
     //     //loadTableData(this.id);
     //   }
     // });
-    // ImageMap('#mapsterImage');
+    ImageMap('#mapsterImage');
   }
 
   const loadSelectedTableData = (areaId) => {

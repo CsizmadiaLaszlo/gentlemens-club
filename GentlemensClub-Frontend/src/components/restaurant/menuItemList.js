@@ -44,11 +44,11 @@ const MenuItemList = () => {
                         <div className="col">
                             <div className="card m-3 bg-dark border-secondary">
                                 <img src={require("../../assets/img/restaurant/foods/whiskey.png")} className="card-img-top" alt="..." />
-                                <div className="card-body">
+                            <div className="card-body">
                                     <h5 className="card-title">Whiskey</h5>
                                     <p className="card-text">Another drink.</p>
-                                </div>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>

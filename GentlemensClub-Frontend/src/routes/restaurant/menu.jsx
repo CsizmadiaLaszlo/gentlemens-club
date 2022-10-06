@@ -9,7 +9,6 @@ function Menu() {
 
     useEffect(() => {
         getFilters().then((filters) => {
-            console.log(filters);
             setFilters(filters);
             setLoaded(true);
         });
