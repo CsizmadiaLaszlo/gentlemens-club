@@ -39,9 +39,9 @@ const YearlyStatistics = () => {
                     }
                 </div>
                 <div className="d-flex flex-wrap">
-                    {yearlyStatistic.map(st => {
+                    {yearlyStatistic.map((st, index) => {
                         return (
-                            <div className="stock card bg-dark text-white border-light">
+                            <div key={index} className="stock card bg-dark text-white border-light">
                                 <div>{st.date}</div>
                                 <div>High: {st.high}</div>
                                 <div>Low: {st.low}</div>
