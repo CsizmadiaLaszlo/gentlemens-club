@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { Footer } from '../components/layout';
 import { RestaurantHeader } from '../components/restaurant/restaurantLayoutComponents';
 import RestaurantHomeApp from './restaurant/home';
@@ -38,8 +38,17 @@ export function RestaurantTable() {
     );
 }
 
-export function REstaurantReservation() {
+export function RestaurantReservation() {
     return (
         <RestaurantReservationApp />
+    );
+}
+
+export function RestaurantReservationSuccess() {
+    return (
+        <div className='text-center'>
+            <h1 className='text-success'>Reservation Successful!</h1>
+            <Link className={"btn btn-secondary"} to={'/restaurant/menu'}>Check the menu</Link>
+        </div>
     );
 }
