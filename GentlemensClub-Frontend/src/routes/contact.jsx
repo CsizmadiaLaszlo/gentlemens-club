@@ -1,48 +1,79 @@
+import React, {useState} from "react";
+import {GoogleMap} from "../components/shared.jsx";
+import {getJwtToken} from "../services/authentication/authenticationUtils";
+
 const Contact = () => {
     return (
         <>
-            <div id="cotact-map" style={{display: "flex", justifyContent: "center", paddingBottom: "40px"}}>
-                {/*TODO get a react google map loader*/}
-                {/*<div className="mapouter">*/}
-                {/*    <div className="gmap_canvas">*/}
-                {/*        <iframe width="657" height="761" id={"gmap_canvas"}*/}
-                {/*                src="https://maps.google.com/maps?q=150W%2059th%20street,%20New%20York&t=k&z=17&ie=UTF8&iwloc=&output=embed">*/}
-                {/*        </iframe>*/}
-                {/*        <br>*/}
-                {/*            <style>.mapouter{position:relative;text-align:right;height:761px;width:657px;}</style>*/}
-                {/*            <a href="https://www.embedgooglemap.net">embedgooglemap.net</a>*/}
-                {/*            <style>.gmap_canvas {overflow:hidden;background:none!important;height:761px;width:657px;}</style>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
-            </div>
+            <GoogleMapsEmbed/>
+            <ContactForm/>
+        </>
+    );
+}
 
+const GoogleMapsEmbed = () => {
+    return (
+        <div id="cotact-map" style={{display: "flex", justifyContent: "center", paddingBottom: "40px"}}>
+            {GoogleMap("150W%2059th%20street", 600, 600)}
+        </div>
+    )
+}
+
+const ContactForm = () => {
+    const [message, setMessage] = useState("");
+    const [email, setEmail] = useState("");
+    
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const formData = {
+            Message: message,
+            EmailAddress: email
+        }
+
+        return fetch("/api/contact/save", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authentication': "Bearer " + getJwtToken(),
+            },
+            body: JSON.stringify(formData)
+        })
+    }
+
+    return (
+        <>
             <h5 className="text-center">If you have questions, please fill the form at the bottom:</h5>
-
             <div id="contact-form" className="d-flex justify-content-center" style={{paddingTop: "10px"}}>
                 <div className="card bg-black text-light text-center" style={{width: "33rem"}}>
-                    <form>
+
+                    <form onSubmit={async (event) => {
+                        await handleSubmit(event)
+                    }}>
                         <div className="card-body">
                             <div className="form-group">
                                 <label htmlFor="contactMessage">Message:</label>
-                                <textarea className="form-control" placeholder="Please add your message here."
-                                          id="contactMessage" name="contactMessage"></textarea>
+                                <input type="text" className="form-control" placeholder="Please add your message here."
+                                          id="contactMessage" name="contactMessage"
+                                          onChange={e => setMessage(e.target.value)}/>
                             </div>
                             <br/>
                             <div className="form-group">
                                 <label htmlFor="contactEmail">Your e-mail address:</label>
                                 <input type="email" className="form-control" id="contactEmail"
                                        name="contactEmail"
-                                       pattern={"^[a-zA-Z0-9._+-]+@(\"@\")[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,9}$"}
-                                       placeholder="example@domain.com"/>
+                                       placeholder="example@domain.com"
+                                       onChange={e => setEmail(e.target.value)}/>
                             </div>
                             <br/>
-                            <button type="submit" className="btn btn-dark">Submit</button>
+                            <input type="submit" className="btn btn-dark" value="Submit" />
                         </div>
                     </form>
+
                 </div>
             </div>
         </>
-    );
+    )
 }
 
 export default Contact;
