@@ -14,3 +14,8 @@ export async function getFilters() {
     var apiUrl = 'get-filters';
     return await fetch(baseUrl + apiUrl).then((response) => response.json());
 }
+
+export async function getCategories() {
+    var apiUrl = 'get-categories';
+    return await fetch(baseUrl + apiUrl).then((response) => response.json());
+}
