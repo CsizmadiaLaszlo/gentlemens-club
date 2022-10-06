@@ -30,7 +30,6 @@ const Stock = () => {
         stocksLoader();
     }, [page]);
 
-
     const handleClick = (newPage) => {
         setPage(newPage);
     }
@@ -52,7 +51,6 @@ const Stock = () => {
             </div>
         );
     }
-
 
     const renderStocks = () => {
         return (
