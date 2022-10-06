@@ -3,6 +3,7 @@ import { Footer } from '../components/layout';
 import { RestaurantHeader } from '../components/restaurant/restaurantLayoutComponents';
 import RestaurantHomeApp from './restaurant/home';
 import RestaurantMenuApp from './restaurant/menu';
+import RestaurantReservationApp from './restaurant/reservation';
 import RestaurantTableApp from './restaurant/table';
 
 export function RestaurantLayout() {
@@ -34,5 +35,11 @@ export function RestaurantMenu() {
 export function RestaurantTable() {
     return (
         <RestaurantTableApp />
+    );
+}
+
+export function REstaurantReservation() {
+    return (
+        <RestaurantReservationApp />
     );
 }
