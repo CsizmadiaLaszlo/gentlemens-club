@@ -26,7 +26,6 @@ const YearlyStatistics = () => {
         yearlyStatisticLoader();
     }, []);
 
-
     const renderStatistics = () => {
         return (
             <div>
@@ -54,8 +53,6 @@ const YearlyStatistics = () => {
             </div>
         );
     }
-
-
 
     return (
         <div>
