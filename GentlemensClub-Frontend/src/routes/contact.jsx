@@ -14,7 +14,7 @@ const Contact = () => {
 const GoogleMapsEmbed = () => {
     return (
         <div id="cotact-map" style={{display: "flex", justifyContent: "center", paddingBottom: "40px"}}>
-            {GoogleMap("150W%2059th%20street", 600, 600)}
+            {GoogleMap("150 central park s new york ny 10019", 600, 600)}
         </div>
     )
 }
@@ -35,7 +35,7 @@ const ContactForm = () => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authentication': "Bearer " + getJwtToken(),
+                'Authorization': "Bearer " + getJwtToken(),
             },
             body: JSON.stringify(formData)
         })

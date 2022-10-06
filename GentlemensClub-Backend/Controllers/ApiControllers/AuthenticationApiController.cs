@@ -30,7 +30,7 @@ namespace GentlemensClub.Controllers.ApiControllers
                 // Creating the security context
                 var claims = await _accountService.CreateClaims(credential);
 
-                var expiresAt = DateTime.UtcNow.AddMinutes(10);
+                var expiresAt = DateTime.UtcNow.AddDays(1);
                 return Ok(new
                 {
                     access_token = CreateToken(claims, expiresAt),

@@ -1,9 +1,21 @@
+import {getJwtToken} from "../../authentication/authenticationUtils";
+
 export async function getAllCurrency() {
-    return await fetch("/api/finance/bank/currencies").then(r => r.json());
+    const options = {
+        headers: {
+            'Authorization': "Bearer " + getJwtToken()
+        },
+    };
+    return await fetch("/api/finance/bank/currencies", options).then(r => r.json());
 }
 
 export async function getAllTransaction() {
-    return await fetch("/api/finance/bank/transaction").then(r => r.json());
+    const options = {
+        headers: {
+            'Authorization': "Bearer " + getJwtToken()
+        },
+    };
+    return await fetch("/api/finance/bank/transaction", options).then(r => r.json());
 }
 
 export async function getExchangeRate(from, to) {
@@ -18,6 +30,7 @@ export async function sendExchange(exchange){
     const options = {
         method: "POST",
         headers: {
+            'Authorization': "Bearer " + getJwtToken(),
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(exchange),
