@@ -21,5 +21,5 @@ export async function getWeeklyStock(symbol) {
 }
 
 export async function getMaxPage() {
-    return await fetch("/api/finance/stock/max-page").then(r => r.json());
+    return await authorizedFetch("/api/finance/stock/max-page").then(r => r.json());
 }
