@@ -1,6 +1,8 @@
+import { authorizedFetch } from "../../authentication/authenticationUtils";
+
 export async function getStocks(page = 1) {
     const url = `/api/finance/stock?page=${page}`;
-    return await fetch(url).then(r => r.json());
+    return await authorizedFetch(url).then(r => r.json());
 }
 
 export async function getSelectedStock(symbol) {
