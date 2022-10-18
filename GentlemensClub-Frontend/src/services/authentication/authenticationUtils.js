@@ -85,3 +85,28 @@ function parseJwt(token) {
         return null;
     }
 }
+
+export async function authorizedFetch(url, options = null) {
+    if (!isLoggedIn()) {
+        throw "No signed in user token is present!";
+    }
+
+    var authorizationHeader = "Bearer " + getJwtToken();
+
+    if (options === null) {
+        options = {
+            headers: {
+                'Authorization': authorizationHeader
+            }
+        }
+    }
+    else {
+        if (options.headers == null) {
+            options['headers'] = {}
+        }
+
+        options['headers']['Authorization'] = authorizationHeader;
+    }
+
+    return fetch(url, options);
+}
