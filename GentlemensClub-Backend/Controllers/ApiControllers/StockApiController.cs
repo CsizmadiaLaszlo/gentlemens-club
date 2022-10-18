@@ -6,19 +6,21 @@ using GentlemensClub.Models.WeeklyStatistics;
 using GentlemensClub.Models.YearlyStatistics;
 using GentlemensClub.Services;
 using GentlemensClub.Services.Interfaces.Finance.Stock;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GentlemensClub.Controllers.Finance;
 
 [ApiController]
 [Route("api/finance/stock")]
-public class StockController : Controller
+[Authorize]
+public class StockApiController : Controller
 {
     private readonly ILogger<HomeController> _logger;
 
     public IStockApiService ApiHandler { get; set; }
 
-    public StockController(ILogger<HomeController> logger, IStockApiService stockApi)
+    public StockApiController(ILogger<HomeController> logger, IStockApiService stockApi)
     {
         _logger = logger;
         ApiHandler = stockApi;
