@@ -12,7 +12,7 @@ export async function getSelectedStock(symbol) {
 
 export async function getYearlyStock(symbol) {
     const url = `/api/finance/stock/selected-stock/yearly-statistics?symbol=${symbol}`;
-    return await fetch(url).then(r => r.json());
+    return await authorizedFetch(url).then(r => r.json());
 }
 
 export async function getWeeklyStock(symbol) {
