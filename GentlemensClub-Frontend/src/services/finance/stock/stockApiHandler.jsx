@@ -17,7 +17,7 @@ export async function getYearlyStock(symbol) {
 
 export async function getWeeklyStock(symbol) {
     const url = `/api/finance/stock/selected-stock/weekly-statistics?symbol=${symbol}`;
-    return await fetch(url).then(r => r.json());
+    return await authorizedFetch(url).then(r => r.json());
 }
 
 export async function getMaxPage() {
