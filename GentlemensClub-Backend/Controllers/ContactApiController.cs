@@ -28,7 +28,7 @@ public class ContactApiController : ControllerBase
     public async Task<IActionResult> SaveContactFormData([FromBody] ContactPageFormDto formData)
     {
         Account? account = null;
-        
+
         if (User.Identity.IsAuthenticated)
         {
             int accountId = int.Parse(User.Claims.FirstOrDefault(claim => claim.Type == "UserId")!.Value);
@@ -36,7 +36,7 @@ public class ContactApiController : ControllerBase
         }
 
         ContactForm savedContactForm = await _contactService.SaveContactFormData(formData, account);
-        
+
         return CreatedAtAction(nameof(SaveContactFormData), savedContactForm);
     }
 }

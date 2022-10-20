@@ -7,6 +7,7 @@ public class ContactForm
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
+
     public string Message { get; set; }
     public string EmailAddress { get; set; }
     public Account? Account { get; set; }

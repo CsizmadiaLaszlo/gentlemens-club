@@ -33,6 +33,7 @@ public class AccountService : IAccountService
         {
             return false;
         }
+
         var result = PasswordHasher.VerifyHashedPassword(account, account.PasswordHash, credential.Password);
         return result == PasswordVerificationResult.Success;
     }
@@ -89,9 +90,9 @@ public class AccountService : IAccountService
 
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, account.Username),
-            new Claim(ClaimTypes.Email, account.Email),
-            new Claim("UserId", account.Id.ToString()),
+            new (ClaimTypes.Name, account.Username),
+            new (ClaimTypes.Email, account.Email),
+            new ("UserId", account.Id.ToString()),
         };
 
         return claims;

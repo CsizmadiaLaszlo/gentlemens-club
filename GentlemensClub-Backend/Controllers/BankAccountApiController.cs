@@ -17,7 +17,7 @@ public class BankAccountApiController : ControllerBase
     {
         BankService = bankService;
     }
-    
+
     [HttpGet]
     [Route("currency")]
     public string GetCurrency([FromQuery] string acronym)
@@ -26,7 +26,7 @@ public class BankAccountApiController : ControllerBase
         var currency = BankService.GetBankCurrency(userId, acronym);
         return JsonSerializer.Serialize(currency.Result);
     }
-    
+
     [HttpGet]
     [Route("currencies")]
     public string GetAllCurrency()
@@ -35,7 +35,7 @@ public class BankAccountApiController : ControllerBase
         var currency = BankService.GetAllBankCurrencyByBankAccount(userId);
         return JsonSerializer.Serialize(currency.Result.ToList());
     }
-    
+
     [HttpGet]
     [Route("transaction")]
     public string GetAllTransaction()
@@ -44,7 +44,7 @@ public class BankAccountApiController : ControllerBase
         var transactions = BankService.GetAllBankTransactionByBankAccount(userId);
         return JsonSerializer.Serialize(transactions.Result.ToList());
     }
-    
+
     [HttpPost]
     [Route("exchange")]
     public async Task ExchangeCurrency([FromBody] ExchangeDto exchangeData)

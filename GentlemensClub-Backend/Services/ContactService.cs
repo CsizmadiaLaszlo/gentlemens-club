@@ -25,7 +25,7 @@ public class ContactService : IContactService
     public async Task<ContactForm> SaveContactFormData(ContactPageFormDto formData, Account? account)
     {
         ContactForm contactForm = new();
-        
+
         if (account is null)
         {
             contactForm.Message = formData.Message;
@@ -37,7 +37,7 @@ public class ContactService : IContactService
             contactForm.EmailAddress = formData.EmailAddress;
             contactForm.Account = account;
         }
-        
+
         ContactForm savedContactForm = _context.ContactForms.Add(contactForm).Entity;
         await _context.SaveChangesAsync();
 

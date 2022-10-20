@@ -97,7 +97,7 @@ public class DbInitializer
         };
         context.BankAccounts.Add(bankAccount);
         context.SaveChanges();
-        
+
         // Create Tables at Restaurant
         List<RestaurantTable> tables = CreateTablesList();
         context.AddRange(tables);
@@ -349,13 +349,12 @@ public class DbInitializer
         items.AddRange(desserts);
 
         return items;
-
     }
 
     private static List<RestaurantTable> CreateTablesList()
     {
         List<RestaurantTable> tables = new();
-        
+
         const string chars = " A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ";
         Random random = new Random(6969);
         for (int i = 0; i < 25; i++)
@@ -370,6 +369,7 @@ public class DbInitializer
                 newReservation.ReservationStartDate = DateTime.UtcNow;
                 newRestaurantTable.Reservation = newReservation;
             }
+
             tables.Add(newRestaurantTable);
         }
 
