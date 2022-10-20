@@ -11,6 +11,14 @@ export const GoogleMapsEmbed = () => {
     )
 }
 
+export const ContactMessageLink = () => {
+    return (
+        <div className="text-center">
+            <Link className={"btn btn-outline-secondary"} to={"/contact/message"}>Send message</Link>
+        </div>
+    )
+}
+
 export const OpeningHours = () => {
     return (
         <>
