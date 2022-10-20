@@ -8,6 +8,12 @@ const MemberShipPage = () => {
     const [showModal, setShowModal] = useState(false);
     const [tier, setTier] = useState(null);
 
+    const handleSubscribeForm = (formData) => {
+        setShowModal(false);
+        console.log(tier);
+        console.log(formData);
+    }
+
     const cards = [
         {
             title: "Bronze Membership",
@@ -44,31 +50,29 @@ const MemberShipPage = () => {
     return (
         <>
             <CardGroup>
-                {cards.map(({ title, price, features }) => {
+                {cards.map(({ title, price, features, tier }) => {
                     return (
-                        <>
-                            <Card border="light" bg="dark">
-                                <Card.Body>
-                                    <Card.Title>{title}</Card.Title>
-                                    <Card.Text>
-                                        <p>{price}</p>
-                                        <div className="text-center">
-                                            <Button variant="primary" onClick={() => setShowModal(true)}>Subscribe now</Button>
-                                        </div>
-                                        <hr></hr>
-                                        <ul className="list">
-                                            {features.map((feature) => {
-                                                return (
-                                                    <>
-                                                        <li>{feature}</li>
-                                                    </>
-                                                );
-                                            })}
-                                        </ul>
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </>
+                        <Card key={tier} border="light" bg="dark">
+                            <Card.Body>
+                                <Card.Title>{title}</Card.Title>
+                                <p>{price}</p>
+                                <div className="text-center">
+                                    <Button variant="primary" onClick={() => {
+                                        setShowModal(true);
+                                        setTier(tier);
+                                    }
+                                    }>Subscribe now</Button>
+                                </div>
+                                <hr></hr>
+                                <ul className="list">
+                                    {features.map((feature) => {
+                                        return (
+                                            <li key={feature}>{feature}</li>
+                                        );
+                                    })}
+                                </ul>
+                            </Card.Body>
+                        </Card>
                     );
                 })
                 }
@@ -76,9 +80,9 @@ const MemberShipPage = () => {
             <Modal
                 show={showModal}
                 title={"Payment"}
-                body={<PaymentForm />}
-                onClose={() => setShowModal(false)} 
-                />
+                body={<PaymentForm onSubmit={handleSubscribeForm} />}
+                onClose={() => setShowModal(false)}
+            />
         </>
     );
 };
