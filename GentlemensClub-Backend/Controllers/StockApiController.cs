@@ -1,11 +1,4 @@
-﻿using System.Diagnostics;
-using GentlemensClub.Models;
-using GentlemensClub.Models.Stocks;
-using GentlemensClub.Models.TodayStatistic;
-using GentlemensClub.Models.WeeklyStatistics;
-using GentlemensClub.Models.YearlyStatistics;
-using GentlemensClub.Services;
-using GentlemensClub.Services.Interfaces.Finance.Stock;
+﻿using GentlemensClub.Services.Interfaces.Finance.Stock;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +9,6 @@ namespace GentlemensClub.Controllers.Finance;
 [Authorize]
 public class StockApiController : Controller
 {
-
     public IStockApiService ApiHandler { get; set; }
 
     public StockApiController(IStockApiService stockApi)
