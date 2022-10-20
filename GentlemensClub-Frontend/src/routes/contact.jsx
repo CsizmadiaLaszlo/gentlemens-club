@@ -1,12 +1,17 @@
-import {GoogleMapsEmbed, OpeningHours} from "../components/contact/contactComponents";
-import {ContactForm} from "../components/contact/contactComponents";
+import {
+    GoogleMapsEmbed,
+    OpeningHours,
+    ContactMessageLink
+} from "../components/contact/contactComponents";
 
 const Contact = () => {
     return (
         <>
-            <GoogleMapsEmbed/>
-            <OpeningHours/>
-            <ContactForm/>
+            <div className="contact-grid-center" style={{paddingTop: "10px"}}>
+                <GoogleMapsEmbed/>
+                <OpeningHours/>
+            </div>
+            <ContactMessageLink/>
         </>
     );
 }
