@@ -26,7 +26,6 @@
 
     <ItemGroup>
       <Folder Include="Models\Restaurant\Table\" />
-      <Folder Include="wwwroot" />
     </ItemGroup>
 
     <ItemGroup>
