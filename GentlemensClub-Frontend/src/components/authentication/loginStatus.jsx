@@ -27,7 +27,7 @@ const LoginStatus = () => {
 
     if (user !== null) {
         return (
-            <ul className={"navbar-nav flex-grow-1"}>
+            <ul className={"navbar-nav flex-grow-2"}>
                 <li className={"navbar-text"}>
                     <span>Logged in as {user.name}</span>
                 </li>
@@ -38,7 +38,7 @@ const LoginStatus = () => {
         );
     } else {
         return (
-            <ul className={"navbar-nav flex-grow-1"}>
+            <ul className={"navbar-nav flex-grow-2"}>
                 <li className={"nav-item"}>
                     <button className={"btn btn-link nav-link text-light"} onClick={() => {if (showLogin === false) {setShowLogin(true)}}}>Login</button>
                     <LoginModal show={showLogin} onClose={() => setShowLogin(false)} onSuccess={loginSuccessHandler} />
