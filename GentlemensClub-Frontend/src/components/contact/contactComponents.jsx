@@ -1,7 +1,11 @@
 import {getJwtToken} from "../../services/authentication/authenticationUtils";
 import React, {useState} from "react";
 import {GoogleMap} from "../shared.jsx";
+import {Link, Outlet} from "react-router-dom";
 
+export const ContactContainer = () => {
+    return <Outlet/>
+}
 
 export const GoogleMapsEmbed = () => {
     return (
