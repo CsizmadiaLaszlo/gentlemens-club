@@ -11,6 +11,46 @@ export const GoogleMapsEmbed = () => {
     )
 }
 
+export const OpeningHours = () => {
+    return (
+        <>
+            <h2 style={{textAlign: "center"}}>Opening hours</h2>
+            <div id="contact-opening-hours-body"  className="d-flex justify-content-center" style={{paddingTop: "10px"}}>
+                <table>
+                    <tr>
+                        <td><strong>Monday</strong></td>
+                        <td> 6:00 - 23:00</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tuesday</strong></td>
+                        <td> 6:00 - 23:00</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wednesday</strong></td>
+                        <td> 6:00 - 23:00</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thursday</strong></td>
+                        <td> 6:00 - 23:00</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Friday</strong></td>
+                        <td> 6:00 - 00:00</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Saturday</strong></td>
+                        <td> 9:00 - 02:00</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sunday</strong></td>
+                        <td> 9:00 - 18:00</td>
+                    </tr>
+                </table>
+            </div>
+        </>
+    )
+}
+
 export const ContactForm = () => {
     const [message, setMessage] = useState("");
     const [email, setEmail] = useState("");
