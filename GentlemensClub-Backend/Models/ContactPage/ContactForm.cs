@@ -11,4 +11,5 @@ public class ContactForm
     public string Message { get; set; }
     public string EmailAddress { get; set; }
     public Account? Account { get; set; }
+    public MessageStatus MessageStatus { get; set; } = MessageStatus.Received;
 }
