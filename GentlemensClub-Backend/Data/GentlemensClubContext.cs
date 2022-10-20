@@ -20,9 +20,8 @@ public class GentlemensClubContext : DbContext
 
     public GentlemensClubContext(DbContextOptions<GentlemensClubContext> options) : base(options)
     {
-        
     }
-    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // User account
