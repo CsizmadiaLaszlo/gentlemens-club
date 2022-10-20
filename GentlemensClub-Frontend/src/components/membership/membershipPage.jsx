@@ -13,8 +13,7 @@ const MemberShipPage = () => {
 
     const handleSubscribeForm = (formData) => {
         setShowModal(false);
-        console.log(tier);
-        console.log(formData);
+        // TODO handling subscription request
         navigate("/");
     }
 
