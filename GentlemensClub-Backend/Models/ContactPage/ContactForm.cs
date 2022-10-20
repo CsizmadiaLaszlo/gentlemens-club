@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using GentlemensClub.Models.Authentication;
 
-namespace GentlemensClub.Models;
+namespace GentlemensClub.Models.ContactPage;
 
 public class ContactForm
 {

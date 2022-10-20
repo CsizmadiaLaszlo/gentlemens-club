@@ -1,6 +1,6 @@
 using GentlemensClub.Data;
-using GentlemensClub.Models;
 using GentlemensClub.Models.Authentication;
+using GentlemensClub.Models.ContactPage;
 using GentlemensClub.Models.DataTransferObjects;
 using GentlemensClub.Services.Interfaces;
 
