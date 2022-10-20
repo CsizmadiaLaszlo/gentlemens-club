@@ -37,7 +37,7 @@ export const ContactForm = () => {
 
     return (
         <>
-            <h5 className="text-center">If you have questions, please fill the form at the bottom:</h5>
+            <h5 className="text-center" style={{paddingTop: "10px"}}>If you have questions, please fill the form at the bottom:</h5>
             <div id="contact-form" className="d-flex justify-content-center" style={{paddingTop: "10px"}}>
                 <div className="card bg-black text-light text-center" style={{width: "33rem"}}>
 
