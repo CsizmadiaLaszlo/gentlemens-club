@@ -7,13 +7,12 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using GentlemensClub.Services.Interfaces.Finance.Stock;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.Net.Http.Headers;
 using GentlemensClub.Services.Interfaces.Restaurant;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllers();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -36,7 +35,7 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddDbContext<GentlemensClubContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("GentlemensClubConnectionString") ??
-                         throw new InvalidOperationException("Connection string not found!")));
+                      throw new InvalidOperationException("Connection string not found!")));
 builder.Services.AddScoped<IBankService, BankService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IRestaurantService, RestaurantService>();
