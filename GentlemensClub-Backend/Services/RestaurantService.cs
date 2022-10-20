@@ -14,7 +14,7 @@ public class RestaurantService : IRestaurantService
     {
         _context = context;
     }
-    
+
     // TODO define docstring
     public async Task Add(RestaurantTable table)
     {
@@ -34,10 +34,7 @@ public class RestaurantService : IRestaurantService
     /// <returns>RestaurantTable object with corresponding Reservation</returns>
     public async Task<RestaurantTable?> GetTableData(int id)
     {
-        return await _context.
-            RestaurantTables.
-            Include(t => t.Reservation).
-            FirstOrDefaultAsync(t => t.Id == id);
+        return await _context.RestaurantTables.Include(t => t.Reservation).FirstOrDefaultAsync(t => t.Id == id);
     }
 
     /// <summary>
@@ -46,10 +43,7 @@ public class RestaurantService : IRestaurantService
     /// <returns>List of RestaurantTable objects with corresponding Reservations</returns>
     public async Task<IEnumerable<RestaurantTable>> GetAllTables()
     {
-        return await _context.
-            RestaurantTables.
-            Include(t => t.Reservation).
-            ToListAsync();
+        return await _context.RestaurantTables.Include(t => t.Reservation).ToListAsync();
     }
 
     /// <summary>
@@ -59,7 +53,7 @@ public class RestaurantService : IRestaurantService
     public async Task<Dictionary<int, Reservation?>> GetTableReservations()
     {
         var tables = await GetAllTables();
-        
+
         var reservations = new Dictionary<int, Reservation?>();
 
         foreach (RestaurantTable table in tables)
@@ -79,16 +73,13 @@ public class RestaurantService : IRestaurantService
     {
         if (!category.SpecialFoodCategory.Equals(null))
         {
-            return await _context.MenuItems.
-                Where(item => item.SpecialCategories.Equals(category.SpecialFoodCategory)).
-                Where(item => item.Category.Equals(category.MenuItemCategory)).
-                ToListAsync();
+            return await _context.MenuItems.Where(item => item.SpecialCategories.Equals(category.SpecialFoodCategory))
+                .Where(item => item.Category.Equals(category.MenuItemCategory)).ToListAsync();
         }
         else
         {
-            return await _context.MenuItems.
-                Where(item => item.Category.Equals(category.MenuItemCategory)).
-                ToListAsync();
+            return await _context.MenuItems.Where(item => item.Category.Equals(category.MenuItemCategory))
+                .ToListAsync();
         }
     }
 
@@ -96,17 +87,12 @@ public class RestaurantService : IRestaurantService
     {
         if (category.SpecialFoodCategory.Equals(null))
         {
-            return await _context.MenuItems.
-                Where(item => item.SubCategory.Equals(category.MenuItemSubCategory)).
-                ToListAsync();
+            return await _context.MenuItems.Where(item => item.SubCategory.Equals(category.MenuItemSubCategory))
+                .ToListAsync();
         }
-        else
-        {
-            return await _context.MenuItems.
-                Where(item => item.SpecialCategories.Equals(category.SpecialFoodCategory)).
-                Where(item => item.SubCategory.Equals(category.MenuItemSubCategory)).
-                ToListAsync();
-        }
+
+        return await _context.MenuItems.Where(item => item.SpecialCategories.Equals(category.SpecialFoodCategory))
+            .Where(item => item.SubCategory.Equals(category.MenuItemSubCategory)).ToListAsync();
     }
 
     public List<string> GetAllCategories()
