@@ -123,13 +123,13 @@ public class BankService : IBankService
             .Include(account => account.BankTransactions)
             .Include(account => account.Currencies)
             .FirstOrDefaultAsync(account => account.Id == bankAccountId);
-        
+
         var fromCurrency = bankAccount!.Currencies.First(currency => currency.Acronym == exchangeData.FromAcronym);
         fromCurrency.Value -= exchangeData.FromValue;
-        
+
         var toCurrency = bankAccount.Currencies.First(currency => currency.Acronym == exchangeData.ToAcronym);
         toCurrency.Value += exchangeData.ToValue;
-        
+
         var transaction = new BankTransaction()
         {
             Company = $"Sold {fromCurrency.Acronym} for {toCurrency.Acronym}",

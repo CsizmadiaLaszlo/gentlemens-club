@@ -32,7 +32,6 @@ namespace GentlemensClub.Controllers.ApiControllers
             }
 
             return JsonSerializer.Serialize(filters);
-
         }
 
         /// <summary>
@@ -52,7 +51,6 @@ namespace GentlemensClub.Controllers.ApiControllers
             {
                 return JsonSerializer.Serialize(_restaurantService.GetAllCategories());
             }
-            
         }
 
         /// <summary>
@@ -64,7 +62,6 @@ namespace GentlemensClub.Controllers.ApiControllers
         [Route("get-items-of-category")]
         public async Task<IEnumerable<MenuItem>> GetItemsInCategory([FromBody] MenuSearchCategory category)
         {
-
             return await _restaurantService.GetMenuItemsInCategory(category);
         }
 
@@ -119,6 +116,5 @@ namespace GentlemensClub.Controllers.ApiControllers
         {
             return await _restaurantService.GetMenuItemsInSubCategory(category);
         }
-
     }
 }
