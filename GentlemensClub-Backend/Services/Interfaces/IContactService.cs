@@ -1,4 +1,4 @@
-using GentlemensClub.Models;
+using GentlemensClub.Models.ContactPage;
 using GentlemensClub.Models.Authentication;
 using GentlemensClub.Models.DataTransferObjects;
 
