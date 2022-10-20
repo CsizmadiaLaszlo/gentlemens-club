@@ -1,11 +1,14 @@
 import logo from '../assets/img/shared/GC_logo.jpg';
-
+import UserContext from "../services/authentication/userContext";
+import { useContext } from 'react';
 import {
     Link, Outlet,
 } from "react-router-dom";
 import LoginStatus from '../components/authentication/loginStatus';
 
 const Header = () => {
+    const { user } = useContext(UserContext);
+
     return (
         <header>
             <nav
@@ -26,12 +29,20 @@ const Header = () => {
                                 <Link className={"nav-link text-light"} to={'/healthcare'}>Private
                                     healthcare</Link>
                             </li>
-                            <li key={"header-nav-item-4"} className={"nav-item"}>
-                                <Link className={"nav-link text-light"} to={'/membership'}>Membership</Link>
-                            </li>
-                            <li key={"header-nav-item-5"} className={"nav-item"}>
-                                <Link className={"nav-link text-light"} to={'/finance'}>Finance</Link>
-                            </li>
+                            {user !== null
+                                ?
+                                <>
+                                    <li key={"header-nav-item-4"} className={"nav-item"}>
+                                        <Link className={"nav-link text-light"} to={'/membership'}>Membership</Link>
+                                    </li>
+                                    <li key={"header-nav-item-5"} className={"nav-item"}>
+                                        <Link className={"nav-link text-light"} to={'/finance'}>Finance</Link>
+                                    </li>
+                                </>
+                                :
+                                <></>
+                            }
+
                             <li key={"header-nav-item-6"} className={"nav-item"}>
                                 <Link className={"nav-link text-light"} to={'/contact'}>Contact</Link>
                             </li>
