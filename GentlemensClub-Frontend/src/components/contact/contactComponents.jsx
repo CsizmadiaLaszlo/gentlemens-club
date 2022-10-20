@@ -6,7 +6,7 @@ import {GoogleMap} from "../shared.jsx";
 export const GoogleMapsEmbed = () => {
     return (
         <div id="contact-map" style={{display: "flex", justifyContent: "center", paddingBottom: "40px"}}>
-            {GoogleMap("150 central park s new york ny 10019", 600, 600)}
+            {GoogleMap("150 central park s new york ny 10019", 500, 400)}
         </div>
     )
 }
