@@ -16,13 +16,11 @@ namespace GentlemensClub.Controllers.Finance;
 [Authorize]
 public class StockApiController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
 
     public IStockApiService ApiHandler { get; set; }
 
-    public StockApiController(ILogger<HomeController> logger, IStockApiService stockApi)
+    public StockApiController(IStockApiService stockApi)
     {
-        _logger = logger;
         ApiHandler = stockApi;
     }
 
@@ -58,11 +56,5 @@ public class StockApiController : Controller
     public async Task<IActionResult> MaxStockPage()
     {
         return Ok(await ApiHandler.MaxPage());
-    } 
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }

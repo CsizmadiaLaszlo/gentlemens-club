@@ -29,4 +29,34 @@
       <Folder Include="wwwroot\img\restaurant\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Account\Login.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Account\Registration.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Finance\BankAccount.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Finance\Card.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Finance\Crypto.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Finance\Stock.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Finance\StockInformation\SelectedStock.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Finance\StockInformation\WeeklyStatistics.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Finance\StockInformation\YearlyStatistics.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Finance\Vault.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Home\Contact.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Home\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Home\Privacy.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Home\Services.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Restaurant\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Restaurant\Menu.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Restaurant\Reservation.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Restaurant\ReservationSuccess.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Restaurant\Tables.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\Error.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\_FinanceLayout.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\_Layout.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\_LoginStatusPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\_RestaurantLayout.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\_ValidationScriptsPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\_ViewImports.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\_ViewStart.cshtml" />
+    </ItemGroup>
+
 </Project>
