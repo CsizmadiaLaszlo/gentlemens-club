@@ -7,8 +7,12 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+.navbar-nav.flex-grow-2 {
+    padding-right: 10%;
+}
+
 a {
-  color: #0077cc;
+    color: #0077cc;
 }
 
 .btn-primary {
