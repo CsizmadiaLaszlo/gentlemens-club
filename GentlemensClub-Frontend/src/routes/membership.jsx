@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Navigate } from "react-router-dom";
 import MemberShipPage from "../components/membership/membershipPage";
 
 import UserContext from "../services/authentication/userContext";
@@ -8,11 +9,7 @@ const Membership = () => {
 
     if (user === null) {
         return (
-            <>
-                <div>
-                    Please log in to access this page!
-                </div>
-            </>
+            <Navigate to="/" />
         );
     }
 

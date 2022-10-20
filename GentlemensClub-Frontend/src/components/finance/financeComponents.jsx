@@ -1,5 +1,7 @@
 import logo from "../../assets/img/shared/GC_logo.jpg";
-import {Link, Outlet} from "react-router-dom";
+import { Link, Outlet, Navigate } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "../../services/authentication/userContext";
 
 export function FinanceHeader() {
     return (
@@ -30,6 +32,14 @@ export function FinanceHeader() {
 }
 
 export function FinanceContainer() {
+    const { user } = useContext(UserContext);
+    console.log(user);
+    if (user === null) {
+        return (
+            <Navigate to="/" />
+        );
+    }
+
     return (
         <div className="container">
             <main role="main" className="pb-3">
