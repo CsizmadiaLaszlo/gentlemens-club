@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Card, CardGroup } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { Modal } from "../shared/modal";
 import PaymentForm from "../shared/paymentForm";
 
@@ -8,10 +9,13 @@ const MemberShipPage = () => {
     const [showModal, setShowModal] = useState(false);
     const [tier, setTier] = useState(null);
 
+    const navigate = useNavigate();
+
     const handleSubscribeForm = (formData) => {
         setShowModal(false);
         console.log(tier);
         console.log(formData);
+        navigate("/");
     }
 
     const cards = [
