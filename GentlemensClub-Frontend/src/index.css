@@ -441,10 +441,21 @@ Embed google map css
 
 .mapouter {
   position: relative;
-  text-align: right;
 }
 
 .gmap_canvas {
   overflow: hidden;
   background: none !important;
+}
+
+/*
+Contact page css
+*/
+
+.contact-grid-center {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 40px;
+  grid-row-gap: 0;
 }

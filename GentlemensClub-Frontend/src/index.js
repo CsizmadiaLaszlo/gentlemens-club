@@ -38,6 +38,8 @@ import UserContext from './services/authentication/userContext';
 import { getUserFromJwt } from './services/authentication/authenticationUtils';
 import { RestaurantHome, RestaurantMenu, RestaurantTable } from './routes/restaurant';
 import {FinanceContainer} from "./components/finance/financeComponents";
+import {ContactContainer} from "./components/contact/contactComponents";
+import {ContactMessage} from "./routes/contact/contactMessage";
 
 
 const router = createBrowserRouter([
@@ -64,8 +66,18 @@ const router = createBrowserRouter([
             },
             {
                 path: "/contact",
-                element: <Contact/>,
+                element: <ContactContainer/>,
                 errorElement: <ErrorPage/>,
+                children: [
+                    {
+                        path: "/contact",
+                        element: <Contact/>
+                    },
+                    {
+                        path: "/contact/message",
+                        element: <ContactMessage/>
+                    }
+                ]
             },
             {
                 path: "/service",
