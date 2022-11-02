@@ -1,7 +1,10 @@
-import logoWithName from '../assets/img/shared/GC_logo_with_name.jpg';
-import {
-    Link
-} from "react-router-dom";
+import {Link} from "react-router-dom";
+import food_pic from "../assets/img/home/Food_vertical.jpg";
+import fitness_pic from "../assets/img/home/Fitness_vertical.jpg";
+import healthcare_pic from "../assets/img/home/Healthcare_vertical.jpg";
+import membership_pic from "../assets/img/home/Membership_vertical.jpg";
+import bank_pic from "../assets/img/home/Bank_vertical.jpg";
+import contact_pic from "../assets/img/home/Contact_vertical.jpg";
 
 const Index = () => {
     return (
