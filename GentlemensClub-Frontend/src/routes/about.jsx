@@ -6,7 +6,7 @@ import healthcare_pic from "../assets/img/home/Healthcare_vertical.jpg"
 import membership_pic from "../assets/img/home/Membership_vertical.jpg"
 import {Link} from "react-router-dom";
 
-const Service = () => {
+const About = () => {
     return (
         <>
             <div className={"text-center"}>
@@ -110,4 +110,4 @@ const Service = () => {
     );
 }
 
-export default Service;
+export default About;

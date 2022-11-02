@@ -21,7 +21,7 @@ import Healthcare from "./routes/healthcare";
 import Membership from "./routes/membership";
 import Finance from "./routes/finance";
 import Contact from "./routes/contact";
-import Service from "./routes/service";
+import About from "./routes/about";
 
 // Sub-page imports
 import Accounts from "./routes/finance/accounts";
@@ -80,8 +80,8 @@ const router = createBrowserRouter([
                 ]
             },
             {
-                path: "/service",
-                element: <Service/>,
+                path: "/about",
+                element: <About/>,
                 errorElement: <ErrorPage/>,
             },
             {
