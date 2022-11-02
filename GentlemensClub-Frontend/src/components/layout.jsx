@@ -17,6 +17,9 @@ const Header = () => {
                     </Link>
                     <div className={"navbar-collapse collapse d-sm-inline-flex justify-content-between"}>
                         <ul className={"navbar-nav flex-grow-1"}>
+                            <li key={"header-nav-item-6"} className={"nav-item"}>
+                                <Link className={"nav-link text-light"} to={'/about'}>About</Link>
+                            </li>
                             <li key={"header-nav-item-1"} className={"nav-item"}>
                                 <Link className={"nav-link text-light"} to={'/restaurant'}>Restaurant</Link>
                             </li>
