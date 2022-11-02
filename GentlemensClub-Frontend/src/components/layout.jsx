@@ -1,9 +1,7 @@
 import logo from '../assets/img/shared/GC_logo.jpg';
 import UserContext from "../services/authentication/userContext";
 import { useContext } from 'react';
-import {
-    Link, Outlet,
-} from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import LoginStatus from '../components/authentication/loginStatus';
 
 const Header = () => {
