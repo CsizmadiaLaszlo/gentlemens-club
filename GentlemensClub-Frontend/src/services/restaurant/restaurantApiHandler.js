@@ -25,4 +25,25 @@ export async function getAllMenuItems() {
     return await fetch(baseUrl + apiUrl).then((response) => response.json());
 }
 
+export async function getAllMenuItemsInCategory(category, specialCategory = undefined) {
+    var searchCategory;
+    if (specialCategory === undefined) {
+        searchCategory = {
+            "MenuItemCategory": category
+        };
+    } else {
+        searchCategory = {
+            "MenuItemCategory": category,
+            "SpecialFoodCategory": specialCategory
+        };
+    }
+    var apiUrl = 'get-all-menu-items-in-category';
+    return await fetch(baseUrl + apiUrl, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(searchCategory)
+    }).then((response) => response.json());
 }
