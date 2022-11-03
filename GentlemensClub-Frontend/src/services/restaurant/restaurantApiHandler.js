@@ -19,3 +19,10 @@ export async function getCategories() {
     var apiUrl = 'get-categories';
     return await fetch(baseUrl + apiUrl).then((response) => response.json());
 }
+
+export async function getAllMenuItems() {
+    var apiUrl = 'get-all-menu-items';
+    return await fetch(baseUrl + apiUrl).then((response) => response.json());
+}
+
+}
