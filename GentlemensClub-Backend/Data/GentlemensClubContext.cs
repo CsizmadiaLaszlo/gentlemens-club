@@ -17,6 +17,7 @@ public class GentlemensClubContext : DbContext
     public DbSet<Reservation> Reservations { get; set; }
     public DbSet<ContactForm> ContactForms { get; set; }
     public DbSet<MenuItem> MenuItems { get; set; }
+    public DbSet<BankStock> BankStocks { get; set; }
 
     public GentlemensClubContext(DbContextOptions<GentlemensClubContext> options) : base(options)
     {
@@ -30,6 +31,7 @@ public class GentlemensClubContext : DbContext
         modelBuilder.Entity<BankAccount>().ToTable("bank_account");
         modelBuilder.Entity<BankCurrency>().ToTable("bank_currency");
         modelBuilder.Entity<BankTransaction>().ToTable("bank_transaction");
+        modelBuilder.Entity<BankStock>().ToTable("bank_stock");
         // Restaurant
         modelBuilder.Entity<RestaurantTable>().ToTable("restaurant_table");
         modelBuilder.Entity<Reservation>().ToTable("reservation");
