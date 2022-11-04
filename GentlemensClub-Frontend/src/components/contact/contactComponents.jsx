@@ -1,7 +1,6 @@
 import {getJwtToken} from "../../services/authentication/authenticationUtils";
 import React, {useState} from "react";
 import {GoogleMap} from "../shared.jsx";
-import {Link, Outlet} from "react-router-dom";
 import {Outlet} from "react-router-dom";
 import {Modal} from "../shared/modal";
 
@@ -37,10 +36,13 @@ export const GoogleMapsEmbed = () => {
     )
 }
 
-export const ContactMessageLink = () => {
+const SendMessageButton = ({setShowModal}) => {
     return (
         <div className="text-center">
-            <Link className={"btn btn-outline-secondary"} to={"/contact/message"}>Send message</Link>
+            <button className={"btn btn-outline-secondary"} onClick={() => {
+                setShowModal(true);
+            }
+            }>Send message</button>
         </div>
     )
 }
