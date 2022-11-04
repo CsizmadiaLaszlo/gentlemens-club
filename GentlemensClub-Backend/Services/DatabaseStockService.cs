@@ -85,5 +85,11 @@ public class DatabaseStockService : IStockDatabaseService
         return account?.Stocks;
     }
 
+    public async Task<double> GetStockValue(int bankAccountId, string symbol)
+    {
+        var stockId = await FindStockId(bankAccountId, symbol);
+        var stock = _context.BankStocks.FirstOrDefaultAsync(s => s.Id == stockId);
+        return stock.Result.Value;
+    }
 }
 
