@@ -1,13 +1,34 @@
 import {getJwtToken} from "../../services/authentication/authenticationUtils";
 import React, {useState} from "react";
 import {GoogleMap} from "../shared.jsx";
-import {Link, Outlet} from "react-router-dom";
+import {Outlet} from "react-router-dom";
+import {Modal} from "../shared/modal";
+
+export const ContactPage = () => {
+    const [showModal, setShowModal] = useState(false);
+    
+    return (
+        <>
+            <div className="contact-grid-center" style={{paddingTop: "10px"}}>
+                <GoogleMapsEmbed/>
+                <OpeningHours/>
+            </div>
+            <SendMessageButton setShowModal={setShowModal} />
+            <Modal
+                show={showModal}
+                title={"Send message"}
+                body={<ContactForm setShowModal={setShowModal}/>}
+                onClose={() => setShowModal(false)}
+            />
+        </>
+    );
+}
 
 export const ContactContainer = () => {
     return <Outlet/>
 }
 
-export const GoogleMapsEmbed = () => {
+const GoogleMapsEmbed = () => {
     return (
         <div id="contact-map" style={{display: "flex", justifyContent: "center", paddingBottom: "40px"}}>
             {GoogleMap("150 central park s new york ny 10019", 500, 400)}
@@ -15,15 +36,18 @@ export const GoogleMapsEmbed = () => {
     )
 }
 
-export const ContactMessageLink = () => {
+const SendMessageButton = ({setShowModal}) => {
     return (
         <div className="text-center">
-            <Link className={"btn btn-outline-secondary"} to={"/contact/message"}>Send message</Link>
+            <button className={"btn btn-outline-secondary"} onClick={() => {
+                setShowModal(true);
+            }
+            }>Send message</button>
         </div>
     )
 }
 
-export const OpeningHours = () => {
+const OpeningHours = () => {
     return (
         <>
             <div id="contact-opening-hours-body">
@@ -67,21 +91,19 @@ export const OpeningHours = () => {
     )
 }
 
-export const ContactForm = () => {
+const ContactForm = ({setShowModal}) => {
     const [message, setMessage] = useState("");
     const [email, setEmail] = useState("");
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+        
         const formData = {
             Message: message,
             EmailAddress: email
         }
 
-        alert("Your message has been sent.")
-
-        return fetch("/api/contact/save", {
+        await fetch("/api/contact/save", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -89,6 +111,8 @@ export const ContactForm = () => {
             },
             body: JSON.stringify(formData)
         })
+        
+        setShowModal(false);
     }
 
     return (
