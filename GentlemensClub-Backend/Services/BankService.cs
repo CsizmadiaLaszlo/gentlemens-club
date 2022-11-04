@@ -174,7 +174,8 @@ public class BankService : IBankService
                     Country = "hu",
                     Value = 0,
                 }
-            }
+            },
+            Stocks = new HashSet<BankStock>()
         };
     }
 }

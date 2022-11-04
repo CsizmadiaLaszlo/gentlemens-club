@@ -93,6 +93,21 @@ public class DbInitializer
                     Value = -4999,
                     Date = DateTime.UtcNow
                 },
+            },
+            Stocks = new HashSet<BankStock>()
+            {
+                new()
+                {
+                    Name = "Hudson Executive Investment Corp III",
+                    Symbol = "HIII",
+                    Value = 1000,
+                },
+                new()
+                {
+                    Name = "Apple Inc",
+                    Symbol = "AAPL",
+                    Value = 20000,
+                }
             }
         };
         context.BankAccounts.Add(bankAccount);

@@ -40,6 +40,7 @@ builder.Services.AddScoped<IBankService, BankService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IRestaurantService, RestaurantService>();
 builder.Services.AddScoped<IContactService, ContactService>();
+builder.Services.AddScoped<IStockDatabaseService, DatabaseStockService>();
 
 builder.Services.AddSingleton<IStockApiService>(x => new ApiHandlerStockService(builder.Configuration));
 
