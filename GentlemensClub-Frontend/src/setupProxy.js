@@ -13,7 +13,10 @@ const context = [
     "/api/restaurant/get-table-data",
     "/api/restaurant/get-filters",
     "/api/restaurant/get-all-categories",
-    "/api/contact/save"
+    "/api/contact/save",
+    "/api/restaurant/get-all-menu-items",
+    "/api/restaurant/get-all-menu-items-in-category",
+    "/api/restaurant/get-all-menu-items-in-subcategory"
 ];
 
 module.exports = function (app) {
