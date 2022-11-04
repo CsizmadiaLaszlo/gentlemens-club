@@ -42,5 +42,12 @@ public class StockController : Controller
         return Ok(await StockHandler.GetAllStocks(userId));
     }
 
+    [HttpGet]
+    [Route("value")]
+    public async Task<IActionResult> GetStockValue([FromRoute] string symbol)
+    {
+        int.TryParse(User.Claims.First(claim => claim.Type == "UserId").Value, out var userId);
+        return Ok(await StockHandler.GetStockValue(userId, symbol));
+    }
 }
 
