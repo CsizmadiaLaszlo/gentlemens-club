@@ -103,8 +103,7 @@ const ContactForm = ({setShowModal}) => {
             EmailAddress: email
         }
 
-
-        return fetch("/api/contact/save", {
+        await fetch("/api/contact/save", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
