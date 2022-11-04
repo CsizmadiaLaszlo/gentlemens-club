@@ -41,5 +41,20 @@ public class DatabaseStockService : IStockDatabaseService
             await _context.SaveChangesAsync();
         }
     }
+
+    public async Task AddValue(int bankAccountId, string name, string symbol, double value)
+    {
+        var stockId = await FindStockId(bankAccountId, symbol);
+        if (stockId == null) await AddStock(bankAccountId, name, symbol);
+        stockId = await FindStockId(bankAccountId, symbol);
+        var stock = await _context.BankStocks.FirstOrDefaultAsync(s => s.Id == stockId);
+        if (stock != null)
+        {
+            stock.Value += value;
+            _context.BankStocks.Update(stock);
+            await _context.SaveChangesAsync();
+        }
+    }
+
 }
 
