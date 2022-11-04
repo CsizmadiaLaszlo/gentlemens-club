@@ -75,5 +75,15 @@ public class DatabaseStockService : IStockDatabaseService
             await _context.SaveChangesAsync();
         }
     }
+
+    public async Task<HashSet<BankStock>> GetAllStocks(int bankAccountId)
+    {
+        var account = await _context.BankAccounts
+            .Include(a => a.Stocks)
+            .FirstOrDefaultAsync(a => a.AccountId == bankAccountId);
+        Console.WriteLine(account.AccountId);
+        return account?.Stocks;
+    }
+
 }
 
