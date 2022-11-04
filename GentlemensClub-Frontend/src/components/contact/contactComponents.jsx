@@ -112,6 +112,8 @@ const ContactForm = ({setShowModal}) => {
             },
             body: JSON.stringify(formData)
         })
+        
+        setShowModal(false);
     }
 
     return (
