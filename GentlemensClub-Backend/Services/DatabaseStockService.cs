@@ -56,5 +56,24 @@ public class DatabaseStockService : IStockDatabaseService
         }
     }
 
+    public async Task ReduceValue(int bankAccountId, string symbol, double value)
+    {
+        var stockId = await FindStockId(bankAccountId, symbol);
+        var stock = await _context.BankStocks.FirstOrDefaultAsync(s => s.Id == stockId);
+        if (stock != null)
+        {
+            stock.Value -= value;
+            if (stock.Value <= 0)
+            {
+                _context.BankStocks.Remove(stock);
+            }
+            else
+            {
+                _context.BankStocks.Update(stock);
+            }
+            
+            await _context.SaveChangesAsync();
+        }
+    }
 }
 
