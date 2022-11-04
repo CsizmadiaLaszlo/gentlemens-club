@@ -2,6 +2,28 @@ import {getJwtToken} from "../../services/authentication/authenticationUtils";
 import React, {useState} from "react";
 import {GoogleMap} from "../shared.jsx";
 import {Link, Outlet} from "react-router-dom";
+import {Outlet} from "react-router-dom";
+import {Modal} from "../shared/modal";
+
+export const ContactPage = () => {
+    const [showModal, setShowModal] = useState(false);
+    
+    return (
+        <>
+            <div className="contact-grid-center" style={{paddingTop: "10px"}}>
+                <GoogleMapsEmbed/>
+                <OpeningHours/>
+            </div>
+            <SendMessageButton setShowModal={setShowModal} />
+            <Modal
+                show={showModal}
+                title={"Send message"}
+                body={<ContactForm setShowModal={setShowModal}/>}
+                onClose={() => setShowModal(false)}
+            />
+        </>
+    );
+}
 
 export const ContactContainer = () => {
     return <Outlet/>
