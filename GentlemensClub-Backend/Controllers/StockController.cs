@@ -18,5 +18,13 @@ public class StockController : Controller
         StockHandler = stockData;
     }
 
+    [HttpPost]
+    [Route("buy")]
+    public async Task BuyStock([FromBody] BuyStockDto buyStock)
+    {
+        int.TryParse(User.Claims.First(claim => claim.Type == "UserId").Value, out var userId);
+        await StockHandler.AddValue(userId, buyStock.Name, buyStock.Symbol, buyStock.Value);
+    }
+
 }
 
