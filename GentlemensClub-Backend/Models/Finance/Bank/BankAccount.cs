@@ -9,4 +9,5 @@ public class BankAccount
     public int AccountId { get; set; }
     public HashSet<BankCurrency> Currencies { get; set; } = new();
     public HashSet<BankTransaction> BankTransactions { get; set; } = new();
+    public HashSet<BankStock> Stocks { get; set; } = new();
 }

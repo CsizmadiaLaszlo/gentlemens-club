@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect, createContext, useContext } from 'react';
 import { LoadingSpinner } from "../../../components/shared";
-import { getSelectedStock } from "../../../services/finance/stock/stockApiHandler";
+import { getSelectedStock, buyStock } from "../../../services/finance/stock/stockApiHandler";
 import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 import placeholder from "../../../assets/img/stock/placeholder_chart.jpg"
 
@@ -27,6 +27,19 @@ const SelectedStock = () => {
     useEffect(() => {
         stocksLoader();
     }, []);
+
+    const createData = (name, symbol, value) => {
+        return {
+            Name: name,
+            Symbol: symbol,
+            Value: value
+        }
+    }
+
+    const handleExchange = async (name, symbol, value) => {
+        await buyStock(createData(name, symbol, value));
+        alert("Transaction completed!");
+    }
 
     const renderStock = () => {
         return (
@@ -64,6 +77,8 @@ const SelectedStock = () => {
                                     <div>Day change: {st.day_Change}</div>
                                     <div>Volume: {st.volume}</div>
                                     <div>Market cap: {st.market_Cap}</div>
+                                    <button className="btn btn-outline-secondary"
+                                        onClick={() => handleExchange(st.name, symbol, 100)}>Buy 100</button>
                                 </div>
                                 <div className="graph-box">
                                     <div className="text-white d-flex flex-wrap justify-content-center">

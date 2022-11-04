@@ -27,6 +27,7 @@ import About from "./routes/about";
 import Accounts from "./routes/finance/accounts";
 
 import Stock from "./routes/finance/stock/stocks";
+import MyStock from "./routes/finance/stock/myStock";
 import SelectedStock from "./routes/finance/stock/selectedStock";
 import WeeklyStatistics from "./routes/finance/stock/weeklyStatistics";
 import YearlyStatistics from "./routes/finance/stock/yearlyStatistics";
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
                     {
                         path: "stock",
                         element: <Stock/>
+                    },
+                    {
+                        path: "myStock",
+                        element: <MyStock/>
                     },
                     {
                         path: "selected-stock/:symbol",
