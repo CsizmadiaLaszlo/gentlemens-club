@@ -7,6 +7,7 @@ const context = [
     "/api/authentication/authenticate",
     "/api/authentication/register",
     "/api/finance/stock",
+    "/api/finance/stockData",
     "/api/finance/selected-stock",
     "/api/restaurant/get-table-reservations",
     "/api/restaurant/get-table-data",
