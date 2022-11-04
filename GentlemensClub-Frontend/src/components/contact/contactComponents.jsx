@@ -97,13 +97,12 @@ const ContactForm = ({setShowModal}) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+        
         const formData = {
             Message: message,
             EmailAddress: email
         }
 
-        alert("Your message has been sent.")
 
         return fetch("/api/contact/save", {
             method: 'POST',
