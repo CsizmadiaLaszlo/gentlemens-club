@@ -13,5 +13,15 @@ public class DatabaseStockService : IStockDatabaseService
     {
         _context = context;
     }
+
+    public async Task<int?> FindStockId(int bankAccountId, string symbol)
+    {
+        var account = await _context.BankAccounts
+            .Include(a => a.Stocks)
+            .FirstOrDefaultAsync(a => a.AccountId == bankAccountId);
+        var stock = account?.Stocks.FirstOrDefault(s => s.Symbol == symbol);
+        return stock?.Id;
+    }
+
 }
 
