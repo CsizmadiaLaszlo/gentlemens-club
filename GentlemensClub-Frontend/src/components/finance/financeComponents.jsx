@@ -33,7 +33,6 @@ export function FinanceHeader() {
 
 export function FinanceContainer() {
     const { user } = useContext(UserContext);
-    console.log(user);
     if (user === null) {
         return (
             <Navigate to="/" />
@@ -47,6 +46,7 @@ export function FinanceContainer() {
                     <div className="finance-menu">
                         <div className="btn-group-vertical">
                             <Link className="btn btn-outline-secondary" to={"/finance/account"}>Accounts</Link>
+                            <Link className="btn btn-outline-secondary" to={"/finance/mystock"}>My Stocks</Link>
                             <Link className="btn btn-outline-secondary" to={"/finance"}>Cards</Link>
                             <Link className="btn btn-outline-secondary" to={"/finance/stock"}>Stocks</Link>
                             <Link className="btn btn-outline-secondary" to={"/finance"}>Crypto</Link>
