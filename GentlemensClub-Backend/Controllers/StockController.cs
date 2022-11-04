@@ -34,5 +34,13 @@ public class StockController : Controller
         await StockHandler.ReduceValue(userId, sellStock.Symbol, sellStock.Value);
     }
 
+    [HttpGet]
+    [Route("all")]
+    public async Task<IActionResult> GetAllStock()
+    {
+        int.TryParse(User.Claims.First(claim => claim.Type == "UserId").Value, out var userId);
+        return Ok(await StockHandler.GetAllStocks(userId));
+    }
+
 }
 
