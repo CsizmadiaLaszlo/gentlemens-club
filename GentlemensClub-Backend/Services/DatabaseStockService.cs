@@ -23,5 +23,23 @@ public class DatabaseStockService : IStockDatabaseService
         return stock?.Id;
     }
 
+    public async Task AddStock(int bankAccountId, string name, string symbol)
+    {
+        
+        var account = await _context.BankAccounts.FirstOrDefaultAsync(s => s.AccountId == bankAccountId);
+        var stocks = account?.Stocks;
+        if (stocks != null)
+        {
+            BankStock newStock = new BankStock()
+            {
+                Name = name,
+                Symbol = symbol,
+                Value = 0
+            };
+            stocks.Add(newStock);
+            await _context.BankStocks.AddAsync(stocks.Last());
+            await _context.SaveChangesAsync();
+        }
+    }
 }
 
